@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\ApiController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,8 +21,21 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::controller(UserController::class)->group(function(){
 Route::post('login','loginUser');
 });
-Route::controller(UserController::class)->group(function(){
-Route::get('user','getUserDetail');
+
+/*Route::middleware('auth:api')->group(function(){
+Route::post('user','registerUser');
 Route::get('logout','userLogout');
 })->middleware('auth:api');
+*/
+Route::controller(UserController::class)->group(function(){
+Route::post('register','create');
+Route::get('logout','userLogout');
+Route::post('login','loginUser');
+})->middleware('auth:api');
 
+Route::controller(ApiController::class)->group(function(){
+Route::post('book_req','create');
+Route::get('booking_record','show');
+
+})->middleware('auth:api');
+//Route::post('book_req','ApiController@create');

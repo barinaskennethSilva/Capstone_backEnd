@@ -6,52 +6,61 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Validator;
+
 use Auth;
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function loginUser(Request $request): Response
-    {
-       $input = $request->all();
-
-    // Attempt authentication
-    if (Auth::attempt($input)) {
-        // Authentication successful
-        $user = Auth::user();
-
-        if ($user) {
-            // User exists, generate token
-            $token = $user->createToken('example')->accessToken;
-            return new Response(['status' => 200, 'token' => $token], 200);
-        } else {
-            // Auth::user() returned null
-            return new Response(['status' => 500, 'message' => 'Internal Server Error'], 500);
-        }
-    } else {
-        // Authentication failed
-        return new Response(['status' => 401, 'message' => 'Unauthorized'], 401);
-    }
-
-    }
-
+   
     /**
      * Store a newly created resource in storage.
      */
-    public function getUserDetail(): Response
+    public function create(Request $request)
     {
+       $registerUser = new User();
+        $registerUser->Usertype = $request->input('Usertype');
+       $registerUser->fname = $request->input('fname');
+       $registerUser->lname = $request->input('lname');
+        $registerUser->email = $request->input('email');
+         $registerUser->email_verified_at = $request->input('email_verified_at');
+         $registerUser->contactNum = $request->input('contactNum');
+        $registerUser->Permanent_address = $request->input('Permanent_address');  
+           $registerUser->password = $request->input('password');
+
+            $registerUser->save();
+          return response()->json( $registerUser);
+
+  
+    
+    }
+
+           
+
+
+  public function loginUser(Request $request)
+{
+  $this->validate($request, [
+        'email' => 'required|email',
+        'password' => 'required|min:5',
+    ]);
+
+    $credentials = $request->only('Usertype','email', 'password');
+
+    if (Auth::attempt($credentials)) {
         $user = Auth::user();
-        return Response(['data'=> $user],200);
+        $Usertype = $user->Usertype;
+        if ($Usertype) {
+            $role = $Usertype === 'admin' ? 'Admin' : 'User';
+            return response()->json(['message' => 'Welcome ' . $role . ' ' . $user->fname . ' ' . $user->lname . '! You have successfully logged in.'], 200);
+        } else {
+            return response()->json(['message' => 'User type not found for the user.'], 400);
+        }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function userLogout(): Response
-    {
-        //
-    }
+    return response()->json(['message' => 'Email and Password are Incorrect.'], 400);
 
-   
+
+}
+    
+       
 }
