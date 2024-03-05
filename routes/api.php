@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\ApiController;
+use App\Http\Controllers\MailController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -36,6 +37,9 @@ Route::post('login','loginUser');
 Route::controller(ApiController::class)->group(function(){
 Route::post('book_req','create');
 Route::get('booking_record','show');
+Route::put('update_record/{id}/update','update');
 
 })->middleware('auth:api');
+
+Route::post('/email/queue', [MailController::class, 'index']);
 //Route::post('book_req','ApiController@create');

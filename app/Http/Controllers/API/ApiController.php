@@ -29,4 +29,35 @@ class ApiController extends Controller
 
 
      }
+
+
+     public function update(Request $request, $id){
+        $request->validate([
+        'Client_name'=>'required|max:191',
+        'contactNum'=>'required|max:191',
+        'Type_package'=>'required|max:191',
+        'Type_service'=>'required|max:191',
+        'Agent_therapist'=>'required|max:191',
+        'time_interval'=>'required|max:191',
+        'Date_schedule'=>'required|max:191',
+        'price'=>'required|max:191',
+        ]);
+       
+       $book_req = Book_req::find($id);
+       if($book_req){
+         $book_req->Client_name = $request->Client_name;
+              $book_req->contactNum = $request->contactNum;
+       $book_req->Type_package = $request->Type_package;
+        $book_req->Type_service = $request->Type_service;
+         $book_req->Agent_therapist = $request->Agent_therapist;
+        $book_req->time_interval = $request->time_interval;
+           $book_req->Date_schedule = $request->Date_schedule;
+  $book_req->price = $request->price;
+            $book_req->update();
+            return response()->json(['message'=>'Booking request find successfuly'], 200);
+        }
+        else{
+    return response()->json(['message'=>'Booking request not found'], 400);
+        }
+     }
 }
