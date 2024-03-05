@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\Book_req;
 class ApiController extends Controller
 {
+      public function Home(){
+        return view('/Home');
+    }
     public function create(Request $request){
         $book_req = new Book_req();
        $book_req->Client_name = $request->input('Client_name');

@@ -11,10 +11,18 @@ use Illuminate\Support\Facades\Validator;
 use Auth;
 class UserController extends Controller
 {
-   
+   public function Home(){
+        return view('/Home');
+    }
     /**
      * Store a newly created resource in storage.
      */
+    public function register(){
+        return view('/register');
+    }
+        public function login(){
+        return view('/login');
+    }
     public function create(Request $request)
     {
        $registerUser = new User();
@@ -28,7 +36,7 @@ class UserController extends Controller
            $registerUser->password = $request->input('password');
 
             $registerUser->save();
-          return response()->json( $registerUser);
+          return  redirect('/Home')->with( 'success', 'Register successfully');
 
   
     
