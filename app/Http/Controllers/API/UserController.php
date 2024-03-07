@@ -1,18 +1,39 @@
 <?php
 
 namespace App\Http\Controllers\API;
+use Illuminate\Http\RedirectResponse;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
 
 use Auth;
 class UserController extends Controller
 {
-   public function Home(){
-        return view('/Home');
+    
+
+   public function dashboard(){
+        return view('dashboard');
+    }
+
+
+ public function header(){
+        return view('/header');
+    }
+public function booking_reserve(){
+        return view('/booking_reserve');
+    }
+    public function transact_record(){
+        return view('/transact_record');
+    }
+    public function calendar(){
+        return view('/calendar');
+    }
+     public function chat_view(){
+        return view('/chat_view');
     }
     /**
      * Store a newly created resource in storage.
@@ -36,7 +57,7 @@ class UserController extends Controller
            $registerUser->password = $request->input('password');
 
             $registerUser->save();
-          return  redirect('/Home')->with( 'success', 'Register successfully');
+          return  redirect('/dashboard')->with( 'success', 'Register successfully');
 
   
     
@@ -47,28 +68,47 @@ class UserController extends Controller
 
   public function loginUser(Request $request)
 {
-  $this->validate($request, [
-        'email' => 'required|email',
-        'password' => 'required|min:5',
-    ]);
 
-    $credentials = $request->only('Usertype','email', 'password');
+ $credentials = $request->only('email', 'password');
 
-    if (Auth::attempt($credentials)) {
-        $user = Auth::user();
-        $Usertype = $user->Usertype;
-        if ($Usertype) {
-            $role = $Usertype === 'admin' ? 'Admin' : 'User';
-            return response()->json(['message' => 'Welcome ' . $role . ' ' . $user->fname . ' ' . $user->lname . '! You have successfully logged in.'], 200);
-        } else {
-            return response()->json(['message' => 'User type not found for the user.'], 400);
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+
+            // Check user role and redirect accordingly
+            switch ($user->role) {
+                case 'Admin':
+                    return redirect()->route('admin.dashboard');
+                    break;
+              //  case 'manager':
+               //     return redirect()->route('manager.dashboard');
+               //     break;
+                default:
+                case 'User':
+                    return redirect()->route('dashboard');
+            }
         }
-    }
 
-    return response()->json(['message' => 'Email and Password are Incorrect.'], 400);
+        return redirect()->route('login')->with('error', 'Login failed. Please check your credentials.');
 
 
 }
-    
        
+
+
+
+
+
+
+public function logout(Request $request): RedirectResponse
+{
+    Auth::logout();
+ 
+    $request->session()->invalidate();
+ 
+    $request->session()->regenerateToken();
+ 
+    return redirect('/login');
+}
+
+
 }

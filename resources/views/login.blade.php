@@ -19,7 +19,7 @@
   position:absolute;
   top:0px !important;
   left:0px;
-   background-image:url('{{asset('./img/BackFormPic.jpg')}}');
+   background-image:url('{{asset("./img/BackFormPic.jpg")}}');
   background-size:cover;
   background-position:center;
  filter:blur(10px);
@@ -357,19 +357,20 @@ margin-top:25px;
 </div>
 
 <div class='form-container'>
- <form class="myform"  action="{{ route('register') }}" method="post">
+ <form class="myform"  action="{{ route('login') }}" method="POST">
+   @csrf
 <h1>Login Account</h1>
-
+<input type="hidden" name="Usertype" id="Usertype" value="User">
 
   <div class="form-input">
     <i class="icon bi bi-envelope"></i>
-   <input type="email" class="input-field" required/>
+   <input type="email" name="email" id="email" class="input-field" required/>
    <label>Email Address</label>
   </div>
  
   <div class="form-input">
    
-       <input type="password" class="input-field" required/>
+       <input type="password" name="password" id="password" class="input-field" required/>
    <label>Password</label>
     <i class=" icon bi bi-key"></i>
 
@@ -382,8 +383,9 @@ margin-top:25px;
   </div>
   <div class="mt-3">
   <div class="alert_msg" role="alert">
-  A simple danger alert—check it out!
-</div>
+@if(session('error_message'))
+    <span class="error-message">{{ session('error_message') }}</span>
+@endif</div>
 </div>
 <div class="mt-3">
   <button type="submit" class="btnForm">Login</button>

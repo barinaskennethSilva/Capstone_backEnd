@@ -1,1 +1,0 @@
-<label>Successfull Register</label>
