@@ -23,9 +23,7 @@ class UserController extends Controller
  public function header(){
         return view('/header');
     }
-public function booking_reserve(){
-        return view('/booking_reserve');
-    }
+
     public function transact_record(){
         return view('/transact_record');
     }

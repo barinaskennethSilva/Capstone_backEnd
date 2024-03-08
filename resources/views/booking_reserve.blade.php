@@ -207,8 +207,7 @@ font-size:45px;
 
 
 
-<form id="reservationForm" class="ms-2 reservationForm"  method="post" action="/register">
-    @csrf
+<div id="reservationForm" class="ms-2 reservationForm" >
 
     <!-- Step 1 -->
     <div class="step" id="step1">
@@ -222,6 +221,9 @@ font-size:45px;
 <div class="d-flex w-100 ">
       <div class="packages-card">
         <input type="radio" value="Full Body Massage" class="form-check-input me-2 mt-1" name="massage_type"><label>Full Body Massage</label>
+
+
+
   </div>
  
   <div class="packages-card ms-2">
@@ -416,10 +418,10 @@ font-size:45px;
     <div class="mb-3 w-100">
     <label for="time" class="form-label">Time Limit</label>
     <select type="time" class="form-control " id="selectHours">
-      <option></option>
-<option value="3 Hours">3 hours</option>
-<option value="4 Hours">4 hours</option>
-<option value="2 Hours">2 hours</option>
+      <option value="1">1 hours</option>
+<option value="3">3 hours</option>
+<option value="4">4 hours</option>
+<option value="2">2 hours</option>
     </select>
   </div>
 
@@ -443,35 +445,36 @@ font-size:45px;
       </div>
       <div class="step1" style="padding: 0px !important;">
         <div style="overflow-y: auto !important;width:100%;height:100%;overflow-x: hidden;padding: 0px !important;">
-      
+      <form  method="POST" action="{{ route('booking_reserve') }}">
+        @csrf
 <div class="custData">
   <div class="mb-2 p-2">
             <label class="custLabel">Name</label>
-            <input type="text" name="name" class="inputData" value="{{Auth::user()->fname}} {{Auth::user()->lname}}">
+            <input type="text" name="Client_name" class="inputData" value="{{Auth::user()->fname}} {{Auth::user()->lname}}">
           </div>
  <div class="mb-2 p-2">
             <label class="custLabel">Email</label>
-            <input type="text" name="name" class="inputData" value="{{Auth::user()->email}}">
+            <input type="text" name="cust_email" class="inputData" value="{{Auth::user()->email}}">
           </div>
            <div class="mb-2 p-2">
 
             <label class="custLabel">Contact Num</label>
-            <input type="text" name="name" class="inputData" value="{{Auth::user()->contactNum}}">
+            <input type="text" name="contactNum" class="inputData" value="{{Auth::user()->contactNum}}">
 </div>
 </div>
 
  <div class="mb-2 p-2 ms-2">
   <label class="custLabel">Type of Services</label>
-              <input type="text" id="massageTypeInput" class="inputData" name="massage_type_input" readonly>
+    <input type="text" id="massageTypeInput" class="inputData" name="Type_service" readonly>
             </div>
  <div class="mb-2  ms-2 p-2">
       <label class="custLabel">Therapist Agent</label>
-    <input type="text" id="massageTherapistInput" class="inputData" name="massage_therapist_input" readonly>
+    <input type="text" id="massageTherapistInput" class="inputData" name="Agent_therapist" readonly>
        
   </div> 
     <div class="mb-2  ms-2 p-2">
       <label class="custLabel">Time Limit</label>  
- <input type="text" id="TimeInterval" class="inputData" name="massage_therapist_input" readonly>
+ <input type="text" id="TimeInterval" class="inputData" name="time_interval" readonly>
 </div>
 
 <div class="mb-2  ms-2 p-2" >
@@ -481,12 +484,14 @@ font-size:45px;
    
 <div class="mb-2 p-2" >
       <label class="custLabel">Date Arrival</label>
-    <input type="text" id="DateArriveData" class="inputData" name="DateArriveData" readonly>
+    <input type="text" id="DateArriveData" class="inputData" name="Date_schedule" readonly>
   </div>
+
 
 <div class="mb-2 p-2" >
       <label class="custLabel">Price</label>
-    <input type="text" id="PriceData" class="inputData" name="PriceData" readonly>
+<input type="text" value="" id="totalPrice" name="price">
+
   </div>
 
 </div>
@@ -496,9 +501,10 @@ font-size:45px;
         <button type="button" class="btn w-25 btn-primary fw-bold bg-primary" onclick="prevStep('step6', 'step5')">Previous</button>
         <button class="btn btn-primary w-25 bg-primary fw-bold ms-2" type="submit">Submit</button>
       </div>
+</form>
     </div>
   </div>
-</form>
+</div>
  </div>
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -540,6 +546,40 @@ font-size:45px;
             $('#TimeInterval').val($(this).val());
         });
     });
+
+
+ document.addEventListener('DOMContentLoaded', function() {
+            // Get references to the hour select element and the radio buttons
+            const hourSelect = document.getElementById('selectHours');
+            const footSpaRadio = document.querySelector('input[name="massage_type"][value="Foot Spa"]');
+            const fullBodyRadio = document.querySelector('input[name="massage_type"][value="Full Body Massage"]');
+            const totalPriceParagraph = document.getElementById('totalPrice');
+
+            // Function to calculate and update the total price
+            function updateTotalPrice() {
+                const pricePerHourFootSpa = 300;
+                const pricePerHourFullBody = 500;
+                const selectedHours = parseInt(hourSelect.value);
+                const massageType = footSpaRadio.checked ? 'footSpa' : 'fullBody';
+
+                // Calculate total price based on selected hours and massage type
+                let totalPrice = massageType === 'footSpa' ? pricePerHourFootSpa * selectedHours : pricePerHourFullBody * selectedHours;
+
+                // Update the total price display
+                totalPriceParagraph.value = `₱${totalPrice}`;
+            }
+
+            // Add event listeners to hour select and radio buttons to update total price
+            hourSelect.addEventListener('change', updateTotalPrice);
+            footSpaRadio.addEventListener('change', updateTotalPrice);
+            fullBodyRadio.addEventListener('change', updateTotalPrice);
+
+            // Initial calculation of total price
+            updateTotalPrice();
+        });
+
+
+
 
      function nextStep(currentStep, nextStep) {
         document.getElementById(currentStep).style.display = 'none';
