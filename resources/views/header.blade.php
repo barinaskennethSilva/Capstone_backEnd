@@ -123,7 +123,7 @@ background-color:#98FB98;
         </a>
         <div class="dropdown">
             <button class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:transparent;border:none;color:#fff;">
-                <img src="./img/pic1.jpg" class="rounded-circle border border-light me-2" height="35" width="35" alt="Black and White Portrait of a Man" loading="lazy"/>
+                <img src="./img/pic1.jpg" class="rounded-circle border border-light me-2" height="35" width="35" alt="Profile" loading="lazy"/>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="margin-left:-80px;">
                 <li><a class="dropdown-item" href="#">My profile</a></li>

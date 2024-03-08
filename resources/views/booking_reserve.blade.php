@@ -146,22 +146,59 @@ font-size:45px;
   height:375px;
 }
 .packages-card{
-	padding: 10px;
-	width:50%;
-	height: 150px;
-	margin-bottom: 10px;
-	background-color: violet;
-	text-align: center;
+  padding: 10px;
+  width:50%;
+  height: 150px;
+  margin-bottom: 10px;
+  background-color: violet;
+  text-align: center;
+}
+.therapist-agent{
+  width:200px;
+  height: 200px;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+.therapist-agent img{
+   border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+  width:100%;
+}
+.agent-data{
+  text-align: center;
+  font-style: italic;
+  background-color: dodgerblue;
+  border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+  color: #fff;
+  width: 100%;
+  height: 90px;
+  padding: 10px;
+}
+.custData{
+ border-right:2px solid #cdcdcdff;
+  width:50%;
+  height: 100%;
+  float: left;
+}
+.custLabel{
+  font-weight: 700;
+  font-size: 18px;
+  font-style: italic;
+  margin-left: 10px;
+}
+.inputData{
+ width:180px;
 }
 </style>
 <div class="container bg-light">
   <!-- resources/views/register.blade.php -->
 <div class="form-sett">
 <div class='form-disp1'>
-	<div class="header-info">
+  <div class="header-info">
   <h1>Massage Appointment</h1>
 
-    	</div>
+      </div>
 <i class="bi bi-person-vcard icon-detail"></i>
 <h2>Enter Information</h2>
 <p>Please provide you contact  details saw we can send you a confirmation and other contact info</p>
@@ -175,39 +212,39 @@ font-size:45px;
 
     <!-- Step 1 -->
     <div class="step" id="step1">
-    	<div class="header-info">
-    		    	<h1>Single Package</h1>
+      <div class="header-info">
+              <h1>Single Package</h1>
 
-    	</div>
-    	<div class="step1">
-    		<div style="overflow-y: auto;width:100%;height:100%;overflow-x: hidden;">
+      </div>
+      <div class="step1">
+        <div style="overflow-y: auto;width:100%;height:100%;overflow-x: hidden;">
         <input type="hidden" name="packages" id="packages" value="Single Package">
 <div class="d-flex w-100 ">
       <div class="packages-card">
-      	<input type="radio"><label>Full Body Massage</label>
+        <input type="radio" value="Full Body Massage" class="form-check-input me-2 mt-1" name="massage_type"><label>Full Body Massage</label>
   </div>
  
   <div class="packages-card ms-2">
-      	<input type="radio"><label>Foot Spa</label>
+        <input type="radio" class="form-check-input me-2 mt-1" value="Foot Spa" name="massage_type"><label>Foot Spa</label>
   </div>
    </div>
 
    <div class="d-flex w-100 ">
   <div class="packages-card">
-      	<input type="radio"><label>Foot Reflex</label>
+        <input type="radio" class="form-check-input me-2 mt-1" name="massage_type" value="  Foot Reflex"><label>Foot Reflex</label>
   </div>
    <div class="packages-card ms-2">
-      	<input type="radio"><label>30mins Footreflex</label>
+        <input type="radio" name="massage_type" class="form-check-input me-2 mt-1" value="  30mins Foot Reflex"><label>30mins Foot Reflex</label>
   </div>
       
     </div>
 
 <div class="d-flex w-100 ">
   <div class="packages-card">
-      	<input type="radio"><label>Earcandle</label>
+        <input type="radio" class="form-check-input me-2 mt-1"><label>Earcandle</label>
   </div>
    <div class="packages-card ms-2">
-      	<input type="radio"><label>Hotel & Home Services</label>
+        <input type="radio" name="massage_type" class="form-check-input me-2 mt-1"><label>Hotel & Home Services</label>
   </div>
       </div>
     </div>
@@ -219,131 +256,292 @@ font-size:45px;
 </div>
     <!-- Step 2 -->
     <div class="step" id="step2" style="display:none;">
-    	<div class="header-info">
-    		    	<h1>Double Package</h1>
+      <div class="header-info">
+              <h1>Double Package</h1>
 
-    	</div>
-    	<div class="step1">
+      </div>
+      <div class="step1">
+                <div style="overflow-y: auto;width:100%;height:100%;overflow-x: hidden;">
+
         <input type="hidden" name="packages" id="packages" value="Single Package">
 <div class="d-flex w-100 ">
       <div class="packages-card">
-      	<input type="radio"><label>Full Body Massage</label>
+        <input type="radio" value="Full Body Massage" name="massage_type" class="form-check-input me-2 mt-1"><label>Full Body Massage</label>
   </div>
  
   <div class="packages-card ms-2">
-      	<input type="radio"><label>Foot Spa</label>
+        <input type="radio" class="form-check-input me-2 mt-1" name="massage_type" value=" Foot Spa"><label>Foot Spa</label>
   </div>
    </div>
    <div class="d-flex w-100 ">
   <div class="packages-card">
-      	<input type="radio"><label>Foot Reflex</label>
+        <input type="radio" class="form-check-input me-2 mt-1" name="massage_type" value=" Foot Reflex"><label>Foot Reflex</label>
   </div>
    <div class="packages-card ms-2">
-      	<input type="radio"><label>30mins Footreflex</label>
+        <input type="radio" class="form-check-input me-2 mt-1" name="massage_type" value=" 30mins Footreflex"><label>30mins Footreflex</label>
   </div>
-      
+    </div>  
     </div>
     <div class="btn-next d-flex">
        <button class=" bg-primary btn btn-primary w-25" type="button" onclick="prevStep('step2', 'step1')">Previous</button>
         <button  class=" bg-primary btn btn-primary w-25 ms-2" type="button" onclick="nextStep('step2', 'step3')">Next</button>
      </div>
-       
+      </div> 
     </div>
 
 
-<div class="step" id="step1">
-    	<div class="header-info">
-    		    	<h1>Single Package</h1>
+<!--- step 3----->
 
-    	</div>
-    	<div class="step1">
-    		<div style="overflow-y: auto;width:100%;height:100%;overflow-x: hidden;">
-        <input type="hidden" name="packages" id="packages" value="Single Package">
+<div class="step" id="step3" style="display:none;">
+      <div class="header-info">
+              <h1>Combo Package</h1>
+
+      </div>
+      <div class="step1">
+        <div style="overflow-y: auto !important;width:100%;height:100%;overflow-x: hidden;">
+        <input type="hidden" name="packages" id="packages" class="form-check-input me-2 mt-1" value="Single Package">
 <div class="d-flex w-100 ">
       <div class="packages-card">
-      	<input type="radio"><label>Full Body Massage</label>
+        <input type="radio" class="form-check-input me-2 mt-1" name="massage_type" value="Full Body Massage "><label>Full Body Massage</label>
   </div>
  
   <div class="packages-card ms-2">
-      	<input type="radio"><label>Foot Spa</label>
+        <input type="radio" name="massage_type" value="Foot Spa" class="form-check-input me-2 mt-1"><label>Foot Spa</label>
   </div>
    </div>
 
    <div class="d-flex w-100 ">
   <div class="packages-card">
-      	<input type="radio"><label>Foot Reflex</label>
+        <input type="radio" name="massage_type" value="Foot Reflex" class="form-check-input me-2 mt-1"><label>Foot Reflex</label>
   </div>
    <div class="packages-card ms-2">
-      	<input type="radio"><label>30mins Footreflex</label>
+
+        <input type="radio" name="massage_type" value="30mins Footreflex" class="form-check-input me-2 mt-1"><label>30mins Footreflex</label>
   </div>
       
     </div>
 
 <div class="d-flex w-100 ">
   <div class="packages-card">
-      	<input type="radio"><label>Earcandle</label>
+            <input type="radio" class="form-check-input me-2 mt-1" name="massage_type" value="Earcandle"><label>Earcandle</label>
   </div>
-   <div class="packages-card ms-2">
-      	<input type="radio"><label>Hotel & Home Services</label>
+   <div class="packages-card ms-2"> 
+        <input type="radio" name="massage_type" value="Combo three"class="form-check-input me-2 mt-1"><label>Combo three</label>
   </div>
       </div>
     </div>
 
-
-      <button type="button" class="btn-next bg-primary btn btn-primary w-50" onclick="nextStep('step1', 'step2')">Next</button>
+ <div class="btn-next d-flex">
+       <button class=" bg-primary btn btn-primary w-25" type="button" onclick="prevStep('step3', 'step2')">Previous</button>
+        <button  class=" bg-primary btn btn-primary w-25 ms-2" type="button" onclick="nextStep('step3', 'step4')">Next</button>
      </div>
+
 
 </div>
-    <!-- Step 2 -->
-    <div class="step" id="step3" style="display:none;">
-    	<div class="header-info">
-    		    	<h1>Combo Package</h1>
+</div>
 
-    	</div>
-    	<div class="step1">
-        <input type="hidden" name="packages" id="packages" value="Single Package">
-<div class="d-flex w-100 ">
-      <div class="packages-card">
-      	<input type="radio"><label>Full Body Massage</label>
-  </div>
- 
-  <div class="packages-card ms-2">
-      	<input type="radio"><label>Foot Spa</label>
-  </div>
-   </div>
-   <div class="d-flex w-100 ">
-  <div class="packages-card">
-      	<input type="radio"><label>Foot Reflex</label>
-  </div>
-   <div class="packages-card ms-2">
-      	<input type="radio"><label>30mins Footreflex</label>
-  </div>
-      
-    </div>
-    <div class="btn-next d-flex">
-       <button class=" bg-primary btn btn-primary w-25" type="button" onclick="prevStep('step2', 'step1')">Previous</button>
-        <button  class=" bg-primary btn btn-primary w-25 ms-2" type="button" onclick="nextStep('step2', 'step3')">Next</button>
+
+
+<div class="step" id="step4" style="display:none;">
+      <div class="header-info">
+              <h1>Therapist Selection</h1>
+
+      </div>
+      <div class="step1">
+        <div style="overflow-y: auto !important;width:100%;height:100%;overflow-x: hidden;">
+
+<div class="w-100 d-flex">
+<div class="therapist-agent shadow bg-light">
+  <img src="./img/pic1.jpg" class=" border border-light me-2" alt="profile" loading="lazy"/>
+<div class="agent-data">
+  <input type="radio" name="massage_therapist" value="Maviel Therapist">
+  <label>Maviel Therapist</label>
+  <span>Massage Therapist</span>
+</div>
+</div>
+
+<div class="therapist-agent shadow bg-light">
+  <img src="./img/pic1.jpg" class=" border border-light me-2" alt="profile" loading="lazy"/>
+<div class="agent-data">
+  <input type="radio" name="massage_therapist" value="Xialong Therapist">
+  <label>Xialong Therapist</label>
+  <span>Massage Therapist</span>
+</div>
+</div>
+
+
+<div class="therapist-agent shadow bg-light">
+  <img src="./img/pic1.jpg" class=" border border-light me-2" alt="profile" loading="lazy"/>
+<div class="agent-data">
+  <input type="radio" name="massage_therapist" value="Rod Mier Therapist">
+  <label>Rod Mier Therapist</label>
+  <span>Massage Therapist</span>
+</div>
+</div>
+</div>
+
+
+
+        </div>
+
+
+ <div class="btn-next d-flex">
+       <button class=" bg-primary btn btn-primary w-25" type="button" onclick="prevStep('step4', 'step3')">Previous</button>
+        <button  class=" bg-primary btn btn-primary w-25 ms-2" type="button" onclick="nextStep('step4', 'step5')">Next</button>
      </div>
+
+
+      </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="step" id="step5" style="display:none;">
+          <div class="header-info">
+              <h1>Time & Date Selection</h1>
+
+      </div>
+      <div class="step1">
+        <div style="overflow-y: auto !important;width:100%;height:100%;overflow-x: hidden;">
+<div class="mb-3  w-100">
+    <label for="date" class="form-label">The day you want to come</label>
+    <input type="date" class="form-control" id="date" name="DateArrive" >
+ </div>
+  <div class="mb-3 w-100">
+    <label for="time" class="form-label">Time Arrival</label>
+    <input type="time" class="form-control " name="timeArrive" id="timeArrive">
+  </div>
+
+
+  
+    <div class="mb-3 w-100">
+    <label for="time" class="form-label">Time Limit</label>
+    <select type="time" class="form-control " id="selectHours">
+      <option></option>
+<option value="3 Hours">3 hours</option>
+<option value="4 Hours">4 hours</option>
+<option value="2 Hours">2 hours</option>
+    </select>
+  </div>
+
        
+
+  </div>
+
+  </div>
+<div class="btn-next d-flex">
+       <button class=" bg-primary btn btn-primary w-25" type="button" onclick="prevStep('step5', 'step4')">Previous</button>
+        <button  class=" bg-primary btn btn-primary w-25 ms-2" type="button" onclick="nextStep('step5', 'step6')">Next</button>
+     </div>
+
     </div>
 
+ <!-- Step 5 -->
+    <div class="step" id="step6" style="display:none;">
+          <div class="header-info">
+              <h1>Appointment Verification</h1>
 
+      </div>
+      <div class="step1" style="padding: 0px !important;">
+        <div style="overflow-y: auto !important;width:100%;height:100%;overflow-x: hidden;padding: 0px !important;">
+      
+<div class="custData">
+  <div class="mb-2 p-2">
+            <label class="custLabel">Name</label>
+            <input type="text" name="name" class="inputData" value="{{Auth::user()->fname}} {{Auth::user()->lname}}">
+          </div>
+ <div class="mb-2 p-2">
+            <label class="custLabel">Email</label>
+            <input type="text" name="name" class="inputData" value="{{Auth::user()->email}}">
+          </div>
+           <div class="mb-2 p-2">
 
+            <label class="custLabel">Contact Num</label>
+            <input type="text" name="name" class="inputData" value="{{Auth::user()->contactNum}}">
+</div>
+</div>
 
-    <!-- Step 3 -->
-    <div class="step" id="step4" style="display:none;">
-    	        <input type="text" name="address" placeholder="Address">
+ <div class="mb-2 p-2 ms-2">
+  <label class="custLabel">Type of Services</label>
+              <input type="text" id="massageTypeInput" class="inputData" name="massage_type_input" readonly>
+            </div>
+ <div class="mb-2  ms-2 p-2">
+      <label class="custLabel">Therapist Agent</label>
+    <input type="text" id="massageTherapistInput" class="inputData" name="massage_therapist_input" readonly>
+       
+  </div> 
+    <div class="mb-2  ms-2 p-2">
+      <label class="custLabel">Time Limit</label>  
+ <input type="text" id="TimeInterval" class="inputData" name="massage_therapist_input" readonly>
+</div>
 
-    	        <input type="email" name="email" placeholder="Email">
+<div class="mb-2  ms-2 p-2" >
+      <label class="custLabel">Time Arrival</label>
+    <input type="text" id="TimeArriveData" name="TimeArriveData" readonly>
+  </div>
+   
+<div class="mb-2 p-2" >
+      <label class="custLabel">Date Arrival</label>
+    <input type="text" id="DateArriveData" class="inputData" name="DateArriveData" readonly>
+  </div>
 
-        <!-- Add fields for step 3 -->
-        <button type="button" onclick="prevStep('step3', 'step2')">Previous</button>
-        <button type="submit">Submit</button>
+<div class="mb-2 p-2" >
+      <label class="custLabel">Price</label>
+    <input type="text" id="PriceData" class="inputData" name="PriceData" readonly>
+  </div>
+
+</div>
+    
+       <!-- Add fields for step 3 -->
+            <div class="btn-next d-flex">
+        <button type="button" class="btn w-25 btn-primary fw-bold bg-primary" onclick="prevStep('step6', 'step5')">Previous</button>
+        <button class="btn btn-primary w-25 bg-primary fw-bold ms-2" type="submit">Submit</button>
+      </div>
     </div>
+  </div>
 </form>
  </div>
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    function nextStep(currentStep, nextStep) {
+    $(document).ready(function(){
+        // Handle massage type radio button change
+        $('input[name=massage_type]').change(function() {
+            $('#massageTypeInput').val($(this).val());
+        });
+
+        // Handle massage therapist radio button change
+        $('input[name=massage_therapist]').change(function() {
+            $('#massageTherapistInput').val($(this).val());
+        });
+
+ $('input[name=DateArrive]').change(function(){
+            $('#DateArriveData').val($(this).val());
+
+        });
+        $('input[name=timeArrive]').change(function(){
+ var militaryTime = $(this).val();
+    var timeArriveInput = $('#TimeArriveData');
+
+    // Parse the input time
+    var hours = parseInt(militaryTime.substring(0, 2), 10);
+    var minutes = militaryTime.substring(3, 5);
+
+    // Convert to AM/PM format
+    var period = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // Handle midnight (0 hours)
+
+    // Update the value in the TimeArrive input
+    var formattedTime = hours + ':' + minutes + ' ' + period;
+    timeArriveInput.val(formattedTime);
+        });
+
+
+        $('#selectHours').change(function() {
+            $('#TimeInterval').val($(this).val());
+        });
+    });
+
+     function nextStep(currentStep, nextStep) {
         document.getElementById(currentStep).style.display = 'none';
         document.getElementById(nextStep).style.display = 'block';
     }
