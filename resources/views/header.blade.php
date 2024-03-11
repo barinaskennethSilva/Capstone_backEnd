@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+          <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>Jillie Jen's Massage Spa</title>
 
@@ -24,21 +24,42 @@
     @media screen and (min-width:320px) and (max-width:480px){
  .navbar-brand{
   display:block;
+ }
+ .navbar-toggler{
+  float:right;
+  }
+  .rightDash{
+    background:
+rgba( 25, 24, 24, 0.15 );
+box-shadow:
+0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter:
+blur( 2px );
+-webkit-backdrop-filter:
+blur( 2px );
+    right: 0px;
+    top: 0px;
+    position: absolute;
+    height: 100%;
+    width: 0%;
   }
 .mobileDash{
   display:block;
   background-color: #111 ;
-  height: 100vh;
-  width: 60%;
+  height: 100%;
+  width: 0%;
   position: absolute;
   top: 0px;
     left: 0px;
+    overflow:hidden;
+    z-index: 60;
   }
   .Topdash{
     border-bottom:1px solid lightgrey;
     display: flex;
     flex-direction: row;
     padding: 10px;
+    margin-bottom:10px;
   }
   .logo img{
     height: 50px;
@@ -48,6 +69,22 @@
   .dropdown{
   display: none;
   }
+.navbar-nav{
+  text-align:center;
+  margin-top:20px;
+  font-size:17px;
+}
+.nav-item{
+margin-top:10px;
+}
+.icons{
+  position:absolute;
+  left:10px !important;
+  font-size:10px;
+}
+.dashboard{
+  display: none;
+}
 }
 @media screen and (min-width:1024px){
  .navbar-brand{
@@ -69,7 +106,7 @@ float:right;
   position:absolute;
   left:0px;
   top:0px;
-  height:100vh;
+  height:100%;
   width:20%;
   background-color:#111;
   display:block;
@@ -86,7 +123,7 @@ float:right;
   flex-direction:row;
 }
 .topForm h1{
-  font-size:18px;
+  font-size:21px;
   color:#fefefe;
   margin:10px 5px;
 }
@@ -118,7 +155,7 @@ background-color:#98FB98;
 
         <a class='navbar-brand text-white'>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation" style="margin-right:10px">
-                <i class="bi bi-justify" onclick="toggleMobileNav()" v-show="mobile" :class="{'icon-active':mobileNav}"></i>
+                <i class="bi bi-justify" onclick="toggleMobileNav()"></i>
             </button>
         </a>
         <div class="dropdown">
@@ -144,8 +181,12 @@ background-color:#98FB98;
         <div class='logo'>
             <img src='./img/pic1.jpg' alt="logo">
         </div>
-        <h1>{{ Auth::user()->email }}</h1>
+        <div class="d-flex flex-column">
+        <h1>{{ Auth::user()->fname }} {{ Auth::user()->lname }}</h1>
+         <label style='font-weight:700;font-size:16px;color:#fff;'>{{ Auth::user()->email }}</label>
     </div>
+        </div>
+
     <ul class="navbar-nav">
         <li class="nav-item">
             <a class="nav-link active text-white fw-bold nav-dash" aria-current="page" href="{{ route('dashboard') }}"><i class="bi bi-house-door icons"></i> <label class="me-4">Dashboard</label></a>
@@ -166,35 +207,38 @@ background-color:#98FB98;
 </div>
 
 <!---- for mobile view ---->
-<div class="mobileDash">
+<div class="rightDash" id="rightDash">
+  
+</div>
+<div class="mobileDash" id="mobileDash">
      <div class="Topdash">
             <div class='logo'>
                 <img src='./img/pic1.jpg' alt="logo">
             </div>
             <div style="display:flex;flex-direction:column;margin-left:10px;">
-                <label style='font-weight:700;font-size:20px;color:#fff;'>{{ Auth::user()->email }}</label>
-                <p style="font-size:15px;color:#fff;">kbarinas0@gmail.com</p>
+                <label style='font-weight:700;font-size:20px;color:#fff;'>{{ Auth::user()->fname }} {{ Auth::user()->lname }}</label>
+                <p style="font-size:15px;color:#fff;">{{ Auth::user()->email }}</p>
             </div>
         </div>
 <ul  class="dropdown-nav">
     
     <li class="nav-item">
-        <a class="nav-link active text-white fw-bold nav-dash" aria-current="page" href="{{ route('dashboard') }}" onclick="toggleMobileNav()"><i class="bi bi-house-door icons"></i> <label style="position:relative;left:20px;">Dashboard</label></a>
+        <a class="nav-link active text-white fw-bold nav-dash" aria-current="page" href="{{ route('dashboard') }}" onclick="mobileClose()"><i class="bi bi-house-door icons"></i> <label style="position:relative;left:20px;">Dashboard</label></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-white fw-bold nav-dash" href="{{ route('booking_reserve') }}" onclick="toggleMobileNav()"><i class="bi bi-book icons"></i><label class="nav-label" style="position:relative;left:20px;"> Booking Reservation</label></a>
+        <a class="nav-link text-white fw-bold nav-dash" href="{{ route('booking_reserve') }}" onclick="mobileClose()"><i class="bi bi-book icons"></i><label class="nav-label" style="position:relative;left:20px;"> Booking Reservation</label></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-white fw-bold nav-dash" href="{{ route('transact_record') }}" onclick="toggleMobileNav()"><i class="bi bi-bookmarks icons"></i><label class="nav-label" style="position:relative;left:20px;">Transaction Record</label></a>
+        <a class="nav-link text-white fw-bold nav-dash" href="{{ route('transact_record') }}" onclick="mobileClose()"><i class="bi bi-bookmarks icons"></i><label class="nav-label" style="position:relative;left:20px;">Transaction Record</label></a>
     </li>
     <li class="nav-item">
-        <a class="login-btn nav-link text-white fw-bold nav-dash" href="{{ route('calendar') }}" onclick="toggleMobileNav()"><i class="bi bi-calendar3 icons"></i><label class="nav-label" style="position:relative;left:20px;"> Calendar</label></a>
+        <a class="login-btn nav-link text-white fw-bold nav-dash" href="{{ route('calendar') }}" onclick="mobileClose()"><i class="bi bi-calendar3 icons"></i><label class="nav-label" style="position:relative;left:20px;"> Calendar</label></a>
     </li>
     <li class="nav-item">
-        <a class="login-btn nav-link text-white fw-bold nav-dash" href="{{ route('chat_view') }}" onclick="toggleMobileNav()"><i class="bi bi-chat-dots icons"></i><label class="nav-label " style="position:relative;left:20px;"> Message Us</label></a>
+        <a class="login-btn nav-link text-white fw-bold nav-dash" href="{{ route('chat_view') }}" onclick="mobileClose()"><i class="bi bi-chat-dots icons"></i><label class="nav-label " style="position:relative;left:20px;"> Message Us</label></a>
     </li>
     <li class="nav-item">
-        <a class="login-btn nav-link text-white fw-bold nav-dash" href="{{ route('chat_view') }}" onclick="toggleMobileNav()"><i class="bi bi-box-arrow-left icons"></i><label class="nav-label " style="position:relative;left:25px;"> Logout</label></a>
+        <a class="login-btn nav-link text-white fw-bold nav-dash" href="{{ route('chat_view') }}" onclick="mobileClose()"><i class="bi bi-box-arrow-left icons"></i><label class="nav-label " style="position:relative;left:25px;"> Logout</label></a>
     </li>
 </ul>
 </div>
@@ -204,25 +248,19 @@ background-color:#98FB98;
 
 
 <script type="text/javascript" defer >
-    
-    document.addEventListener('DOMContentLoaded', function() {
+
         function toggleMobileNav() {
-            var mobileNav = document.getElementById('mobileNav');
-
-            if (window.matchMedia('(max-width: 768px)').matches) {
-                mobileNav.style.display = 'block'; // Show mobileNav for screens smaller than 768px
-            } else {
-                mobileNav.style.display = 'none'; // Hide mobileNav for larger screens
-            }
+            var mobileDash = document.getElementById('mobileDash');
+var rightDash = document.getElementById('rightDash');
+       mobileDash.style.width = "70%"; 
+           rightDash.style.width = "30%";
         }
-
-        // Call the function initially to set the initial state
-        toggleMobileNav();
-
-        // Add an event listener to the window resize event to update mobileNav when the screen size changes
-        window.addEventListener('resize', toggleMobileNav);
-    });
-
+function mobileClose(){
+  var mobileDash = document.getElementById('mobileDash');
+var rightDash = document.getElementById('rightDash');
+   mobileDash.style.width = "0%";
+   rightDash.style.width = "0%";
+ }       
 </script>
 </body>
 </html>

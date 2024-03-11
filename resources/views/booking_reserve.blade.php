@@ -190,6 +190,50 @@ font-size:45px;
 .inputData{
  width:180px;
 }
+.modal {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    z-index: 60;
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    border: 1px solid #888;
+    width: 50%;
+        text-align: center;
+     font-weight: 600;
+     font-style: italic;
+  }
+.topModal{
+  width: 100%;
+  background-color: dodgerblue;
+  padding: 10px;
+  margin-bottom: 30px;
+}
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
 </style>
 <div class="container bg-light">
   <!-- resources/views/register.blade.php -->
@@ -499,15 +543,52 @@ font-size:45px;
        <!-- Add fields for step 3 -->
             <div class="btn-next d-flex">
         <button type="button" class="btn w-25 btn-primary fw-bold bg-primary" onclick="prevStep('step6', 'step5')">Previous</button>
-        <button class="btn btn-primary w-25 bg-primary fw-bold ms-2" type="submit">Submit</button>
+        <button class="btn btn-primary w-25 bg-primary fw-bold ms-2" onclick="SubmitData()" type="submit">Submit</button>
       </div>
 </form>
     </div>
   </div>
 </div>
  </div>
+
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <div class="topModal">
+    <span class="close">&times;</span>
+  </div>
+    <p> {{ session('message') }} This is a popup modal!</p>
+  </div>
+</div>
+
+
+        
+
+
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+
+var modal = document.getElementById("myModal");
+
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+
+  // When the page loads, show the modal
+  function  SubmitData() {
+    modal.style.display = "block";
+    setTimeout(function() {
+      modal.style.display = "none";
+    }, 4000); // Hide after 4 seconds (4000 milliseconds)
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+
+
+
+
+
     $(document).ready(function(){
         // Handle massage type radio button change
         $('input[name=massage_type]').change(function() {
@@ -590,6 +671,7 @@ font-size:45px;
         document.getElementById(currentStep).style.display = 'none';
         document.getElementById(prevStep).style.display = 'block';
     }
+
 </script>
 
 </body>

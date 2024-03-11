@@ -8,8 +8,154 @@
 </head>
 <body>
     <style>
+ @media screen and (min-width:320px) and (max-width:480px){
+        .background{
+  height:100%;
+  width:100%;
+  position:absolute;
+  top:0px !important;
+  left:0px;
+   background-image:url("./img/BackFormPic.jpg");
+  background-size:cover;
+  background-position:center;
+ filter:blur(10px);
+ z-index:-50;
+}
+.form-container{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:100%;
+  height:100%;
+  background:transparent;
+  backdrop-filter:blur(20px);
+  background-top-right-radius:10px;
+  background-bottom-right-radius:10px;
+  color:#e4e4e4;
+  z-index:-50;
+}
+.mainForm{
+  display:flex;
+  flex-direction:row;
+  width:100%;
+  height:450px;
+ position: absolute ;
+ top:50%;
+ left:50%;
+ transform: translate(-50%,-50%);
+  border-radius:10px;
+background-image: url("./img/BackFormPic.jpg");
+  background-size:cover;
+  background-position:center; 
+   margin-top:20px;
+   z-index:-50;
+}
+  .mainForm .content{
+      display: none;
+  }
+  .text-sci h2{
+  font-size:40px;
+  line-height:1;
+}
+.text-sci p{
+  font-size:16px;
+  margin:20px 0;
+}
+.social-icons a i{
+  font-size:22px;
+  color:#e4e4e4;
+  margin-right:10px;
+  transition: .5s ease;
+}
+.social-icons a:hover i{
+transform: scale(2.2) !important;
+}
+ .mainForm .form-container{
+ height:100%;
+ border-top-right-radius:10px;
+ border-bottom-right-radius:10px;
+ }
+ .myform h1{
+  font-size:32px;
+  text-align:center;
+}
+.myform p{
+  font-size:12px;
+  text-align:center;
+}
+.form-container .form-input{
+ position:relative;
+  width:340px;
+  height:50px;
+  border-bottom:2px solid #e4e4e4;
+  margin:30px 0;
+}
+.form-input input{
+  width:100%;
+  height:100%;
+  background:transparent;
+  border:none;
+  outline:none;
+  font-size:16px;
+  color:#e4e4e4;
+  font-weight:500;
+  padding:28px;
+}
+.form-input label{
+  position:absolute;
+  top:50%;
+  left:0;
+  transfrom:translateY(-50%);
+  font-size:16px;
+  font-weight:500;
+  pointer-events:none;
+  transition: .5s ease;
+}
+.input-field:focus + label, .input-field:valid + label{
+  top: -5px !important;
+}
+
+.form-input .icon{
+  position:absolute;
+  top:13px;
+  right:0;
+  font-size:19px;
+}
+.alert_msg{
+  color:red;
+}
+.btnForm{
+  width:100%;
+  height:45px;
+  background-color:#c4103d;
+  border:none;
+  outline:none;
+  border-radius:4px;
+  cursor:pointer;
+  font-weight:500;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  color:#e4e4e4;
+}
+.login-register {
+font-size:14.5px;
+font-weight:500;
+text-align:center;
+margin-top:25px;
+}
+.linkform{
+  text-decoration:none;
+  margin-left:10px;
+  color:#e4e4e4 !important;
+  font-weight:600;
+
+}
+.linkform:hover{
+  text-decoration:underline;
+}
+    }
+@media (min-width:1025px) {   
 .background{
-  height:100vh;
+  height:100%;
   width:100%;
   position:absolute;
   top:0px !important;
@@ -34,7 +180,7 @@
 .mainForm{
   display:flex;
   flex-direction:row;
-  width:75%;
+  width:100%;
   height:550px;
   top:50%;
   left:50%;
@@ -48,7 +194,7 @@
 }
  .mainForm .content{
  position:absolute;
- top:o;
+ top:0;
  left:0;
  width:58%;
  height:100%;
@@ -163,8 +309,15 @@ margin-top:25px;
   font-weight:600;
 
 }
+.login-register {
+font-size:14.5px;
+font-weight:500;
+text-align:center;
+margin-top:25px;
+}
 .linkform:hover{
   text-decoration:underline;
+}
 }
 </style>
 
@@ -255,6 +408,7 @@ margin-top:25px;
   <span class="changeForm">Have already account?<a href="{{ route('login')}}" class="linkform">Login</a></span>
 </div>
 </div>
+
 </form>
     </div>
 </div>

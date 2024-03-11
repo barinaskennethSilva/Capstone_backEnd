@@ -24,12 +24,7 @@ class UserController extends Controller
         return view('/header');
     }
 
-    public function transact_record(){
-        return view('/transact_record');
-    }
-    public function calendar(){
-        return view('/calendar');
-    }
+    
      public function chat_view(){
         return view('/chat_view');
     }
@@ -42,6 +37,7 @@ class UserController extends Controller
         public function login(){
         return view('/login');
     }
+     
     public function create(Request $request)
     {
        $registerUser = new User();
@@ -108,5 +104,9 @@ public function logout(Request $request): RedirectResponse
     return redirect('/login');
 }
 
+public function transactions()
+{
+    return $this->hasMany(BookReg::class);
+}
 
 }

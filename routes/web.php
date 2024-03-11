@@ -37,11 +37,15 @@ Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard'
 
 Route::get('/booking_reserve', [ApiController::class, 'booking_reserve'])->name('booking_reserve');
 Route::post('/booking_reserve', [ApiController::class, 'create'])->name('booking_reserve');
-Route::get('/transact_record', [UserController::class, 'transact_record'])->name('transact_record');
-Route::get('/calendar', [UserController::class, 'calendar'])->name('calendar');
+Route::get('/transact_record', [ApiController::class, 'show'])->name('transact_record');
+Route::post('/transact_record', [ApiController::class, 'show'])->name('transact_record');
+
+Route::post('/calendar', [ApiController::class, 'calendar'])->name('calendar');
+Route::get('/calendar', [ApiController::class, 'index'])->name('calendar');
 Route::get('/chat_view', [UserController::class, 'chat_view'])->name('chat_view');
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
+ 
 Route::group(['middleware'=>'auth'],function (){
 
 

@@ -14,12 +14,12 @@
 /* smartphones, iPhone, portrait 480x320 phones */
  @media screen and (min-width:320px) and (max-width:480px){
 .background{
-  height:100vh;
+  height:100%;
   width:100%;
   position:absolute;
   top:0px !important;
   left:0px;
-   background-image:url('{{asset("./img/BackFormPic.jpg")}}');
+   background-image:url("./img/BackFormPic.jpg");
   background-size:cover;
   background-position:center;
  filter:blur(10px);
@@ -41,14 +41,14 @@
 .mainForm{
   display:flex;
   flex-direction:row;
-  width:85%;
-  height:550px;
-  top:50%;
-  left:50%;
-transform:translate(-50%,-50%);
+  width:100%;
+  height:450px;
+ position: absolute ;
+ top:50%;
+ left:50%;
+ transform: translate(-50%,-50%);
   border-radius:10px;
-  position:absolute;
-background-image: url('{{ asset("/img/BackFormPic.jpg") }}');
+background-image: url("./img/BackFormPic.jpg");
   background-size:cover;
   background-position:center; 
    margin-top:20px;
@@ -56,7 +56,7 @@ background-image: url('{{ asset("/img/BackFormPic.jpg") }}');
 }
 .mainForm .content{
  position:absolute;
- top:o;
+ top:0;
  left:0;
  width:78%;
  height:100%;
