@@ -27,13 +27,21 @@ Route::post('/register', [UserController::class,'create'])->name('register');
 Route::post('/login', [UserController::class,'loginUser'])->name('login');
 Route::get('/header', [UserController::class, 'header'])->name('header');
 
-// ADMIN ROUTER
-Route::post('/Admin/admin_register', [UserController::class,'create'])->name('admin_register');
+// // ADMIN ROUTER
+// Route::post('/Admin/admin_register', [UserController::class,'create'])->name('admin_register');
+// Route::get('/Admin/admin_register', [UserController::class,'AdminSignUp'])->name('admin_register');
+
+
+// Route::get('/Admin/admin_login', [UserController::class,'loginAdmin'])->name('admin_login');
+// Route::post('/Admin/admin_login', [UserController::class,'loginUser'])->name('admin_login');
+Route::domain('adminjilliejens.laravelgenius.com')->group(function () {
+  Route::domain('adminjilliejens.laravelgenius.com')->group(function () {
+    // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+      Route::post('/Admin/admin_register', [UserController::class,'create'])->name('admin_register');
 Route::get('/Admin/admin_register', [UserController::class,'AdminSignUp'])->name('admin_register');
-
-
 Route::get('/Admin/admin_login', [UserController::class,'loginAdmin'])->name('admin_login');
 Route::post('/Admin/admin_login', [UserController::class,'loginUser'])->name('admin_login');
+});
 
 Route::get('/Admin/admin_header', [UserController::class, 'adminHeader'])->name('admin_header');
 Route::get('/Admin/admin_dashboard', [UserController::class, 'Admindashboard'])->name('admin_dashboard');
