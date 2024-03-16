@@ -13,8 +13,24 @@ use Illuminate\Support\Facades\Session;
 use Auth;
 class UserController extends Controller
 {
+ /* FOR ADMIN CONTROLLER */
+ public function adminHeader(){
+        return view('/Admin/admin_header');
+    }
+     public function Admindashboard(){
+        return view('/Admin/admin_dashboard');
+    }
+public function Admin_smg(){
+        return view('/Admin/admin_message');
+    }
     
-
+     public function loginAdmin(){
+        return view('/Admin/admin_login');
+    }
+    public function AdminSignUp(){
+                return view('/Admin/admin_register');
+    }   
+/* FOR USER CONTROLLER */
    public function dashboard(){
         return view('dashboard');
     }
@@ -40,38 +56,46 @@ class UserController extends Controller
      
     public function create(Request $request)
     {
-       $registerUser = new User();
-        $registerUser->Usertype = $request->input('Usertype');
-       $registerUser->fname = $request->input('fname');
-       $registerUser->lname = $request->input('lname');
-        $registerUser->email = $request->input('email');
-         $registerUser->email_verified_at = $request->input('email_verified_at');
-         $registerUser->contactNum = $request->input('contactNum');
-        $registerUser->Permanent_address = $request->input('Permanent_address');  
-           $registerUser->password = $request->input('password');
+         $registerUser = new User();
+    $registerUser->Usertype = $request->input('Usertype');
+    $registerUser->fname = $request->input('fname');
+    $registerUser->lname = $request->input('lname');
+    $registerUser->email = $request->input('email');
+    $registerUser->email_verified_at = $request->input('email_verified_at');
+    $registerUser->contactNum = $request->input('contactNum');
+    $registerUser->Permanent_address = $request->input('Permanent_address');  
+    $registerUser->password = bcrypt($request->input('password')); // Hashing the password
 
-            $registerUser->save();
-          return  redirect('/dashboard')->with( 'success', 'Register successfully');
-
-  
-    
+ if ($registerUser->Usertype === 'Admin') {
+        $registerUser->Usertype = 'Admin';
+        $dashboardUrl = '/Admin/admin_dashboard';
+    } else {
+        $dashboardUrl = '/dashboard';
     }
+
+    $registerUser->save();
+
+    // Logging in the newly registered user
+    Auth::login($registerUser);
+
+    return redirect($dashboardUrl)->with('success', 'Registered successfully');
+}
+    
 
            
 
 
   public function loginUser(Request $request)
 {
-
  $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
 
             // Check user role and redirect accordingly
-            switch ($user->role) {
+            switch ($user->Usertype) {
                 case 'Admin':
-                    return redirect()->route('admin.dashboard');
+                    return redirect()->route('admin_dashboard');
                     break;
               //  case 'manager':
                //     return redirect()->route('manager.dashboard');
@@ -86,21 +110,24 @@ class UserController extends Controller
 
 
 }
-       
-
-
-
-
 
 
 public function logout(Request $request): RedirectResponse
 {
-    Auth::logout();
- 
-    $request->session()->invalidate();
- 
-    $request->session()->regenerateToken();
- 
+    // Check if the user is authenticated
+    if (Auth::check()) {
+        $user = Auth::user();
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        // Determine the appropriate redirect URL based on the user's Usertype
+        $redirectUrl = $user->Usertype === 'Admin' ? '/Admin/admin_login' : '/login';
+
+        return redirect($redirectUrl);
+    }
+
+    // If the user is not authenticated, redirect them to the login page
     return redirect('/login');
 }
 

@@ -93,6 +93,7 @@ margin-top:10px;
   .navbar{
 width:84%;
 float:right;
+
   }
    .dropdown{
   position: relative;
@@ -110,6 +111,8 @@ float:right;
   width:20%;
   background-color:#111;
   display:block;
+    z-index: 60;
+
  
 }
 }
@@ -160,7 +163,7 @@ background-color:#98FB98;
         </a>
         <div class="dropdown">
             <button class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:transparent;border:none;color:#fff;">
-                <img src="./img/pic1.jpg" class="rounded-circle border border-light me-2" height="35" width="35" alt="Profile" loading="lazy"/>
+                            <img src="{{ asset('./img/pic1.jpg') }}" class="rounded-circle border border-light me-2" height="35" width="35" alt="Header Image">
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="margin-left:-80px;">
                 <li><a class="dropdown-item" href="#">My profile</a></li>
@@ -179,7 +182,8 @@ background-color:#98FB98;
 <div class="dashboard">
     <div class="topForm">
         <div class='logo'>
-            <img src='./img/pic1.jpg' alt="logo">
+            <img src="{{ asset('./img/pic1.jpg') }}" alt="Header Image">
+
         </div>
         <div class="d-flex flex-column">
         <h1>{{ Auth::user()->fname }} {{ Auth::user()->lname }}</h1>
@@ -213,11 +217,15 @@ background-color:#98FB98;
 <div class="mobileDash" id="mobileDash">
      <div class="Topdash">
             <div class='logo'>
-                <img src='./img/pic1.jpg' alt="logo">
+            <img src="{{ asset('./img/pic1.jpg') }}" alt="Header Image">
             </div>
             <div style="display:flex;flex-direction:column;margin-left:10px;">
+
+@if (auth()->check())
+
                 <label style='font-weight:700;font-size:20px;color:#fff;'>{{ Auth::user()->fname }} {{ Auth::user()->lname }}</label>
                 <p style="font-size:15px;color:#fff;">{{ Auth::user()->email }}</p>
+                @endif
             </div>
         </div>
 <ul  class="dropdown-nav">

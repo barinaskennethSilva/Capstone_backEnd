@@ -27,21 +27,74 @@ Route::post('/register', [UserController::class,'create'])->name('register');
 Route::post('/login', [UserController::class,'loginUser'])->name('login');
 Route::get('/header', [UserController::class, 'header'])->name('header');
 
+// ADMIN ROUTER
+Route::post('/Admin/admin_register', [UserController::class,'create'])->name('admin_register');
+Route::get('/Admin/admin_register', [UserController::class,'AdminSignUp'])->name('admin_register');
 
-Route::get('/Admin/admin_dashboard', [AdminController::class, 'Admindashboard'])->name('admin.dashboard');
+
+Route::get('/Admin/admin_login', [UserController::class,'loginAdmin'])->name('admin_login');
+Route::post('/Admin/admin_login', [UserController::class,'loginUser'])->name('admin_login');
+
+Route::get('/Admin/admin_header', [UserController::class, 'adminHeader'])->name('admin_header');
+Route::get('/Admin/admin_dashboard', [UserController::class, 'Admindashboard'])->name('admin_dashboard');
+Route::get('/Admin/admin_message', [UserController::class, 'Admin_smg'])->name('admin_message');
+Route::post('/Admin/admin_message', [UserController::class, 'showMessagePage'])->name('admin_message');
 Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
-
-
-
-
-
 Route::get('/booking_reserve', [ApiController::class, 'booking_reserve'])->name('booking_reserve');
 Route::post('/booking_reserve', [ApiController::class, 'create'])->name('booking_reserve');
 Route::get('/transact_record', [ApiController::class, 'show'])->name('transact_record');
 Route::post('/transact_record', [ApiController::class, 'show'])->name('transact_record');
 
-Route::post('/calendar', [ApiController::class, 'calendar'])->name('calendar');
-Route::get('/calendar', [ApiController::class, 'index'])->name('calendar');
+//Route::post('/calendar', [ApiController::class, 'calendar'])->name('calendar');
+//Route::get('/calendar', [ApiController::class, 'index'])->name('calendar');
+use Carbon\Carbon;
+
+Route::get('/calendar/{year?}/{month?}', function ($year = null, $month = null) {
+    $currentMonth = Carbon::now();
+
+    if ($year && $month) {
+        $currentMonth = Carbon::create($year, $month, 1, 0, 0, 0);
+    }
+
+    $prevMonth = $currentMonth->copy()->subMonth();
+    $nextMonth = $currentMonth->copy()->addMonth();
+
+    // Get the starting day of the week for the current month
+    $firstDayOfMonth = $currentMonth->copy()->startOfMonth();
+    $firstDayOfWeek = $firstDayOfMonth->dayOfWeek;
+
+    // Adjust the start of the week based on the day of the week for March 1st, 2024 (Friday)
+    $startDay = ($firstDayOfWeek + 7) % 7; // Convert Carbon's dayOfWeek to 0-based index
+
+    $currentDay = $firstDayOfMonth->copy()->subDays($startDay);
+
+    $weeks = [];
+    $lastDayOfMonth = $currentMonth->copy()->endOfMonth();
+
+    while ($currentDay->lte($lastDayOfMonth)) {
+        $week = [];
+        for ($i = 0; $i < 7; $i++) {
+            $week[] = [
+                'day' => $currentDay->day,
+                'currentMonth' => $currentDay->month == $currentMonth->month,
+                'isToday' => $currentDay->isToday(),
+            ];
+            $currentDay->addDay();
+        }
+        $weeks[] = $week;
+    }
+
+    return view('calendar', [
+        'weeks' => $weeks,
+        'currentMonth' => $currentMonth,
+        'prevYear' => $prevMonth->year,
+        'prevMonth' => $prevMonth->month,
+        'nextYear' => $nextMonth->year,
+        'nextMonth' => $nextMonth->month,
+    ]);
+})->name('calendar');
+
+
 Route::get('/chat_view', [UserController::class, 'chat_view'])->name('chat_view');
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 

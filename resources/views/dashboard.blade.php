@@ -16,90 +16,40 @@
         <style>
 
 .container {
-  height: 92vh;
-  position:relative;
-  left:153px;
-  width:80% !important;
-  top:53px;
-background-image:url('./img/jilliejens123.png');
-background-size:cover;
+  height: 93vh;
+  width: 80%;
+  position:  absolute ;
+  left:  207px;
+  top:  52px;
+/*  background-color: green;*/
+
   }
- .calendar{
- width:100%;
- height:15vh;
- background-color:#111;
- float: right;
- position:relative;
- bottom:52px;
+ .dash-home{
+  width: 100%;
+  height: 100%;
+  position:  relative ;
+  left:  11px;
+  background-image:url('./img/jilliejens123.png');
+background-size:cover;
+
  }
- .calendar .table-cal {
-  border-collapse: collapse;
-  height:20%;
-  width:100%;
-  background-color:#fff;
-}
-.topFormCal{
-  background-color:#111;
-  display:flex;
-  justify-content: center; 
-  align-items: center;
-  text-align:center;
-}
-.topFormCal h2{
-  font-weight:600;
-  font-size:16px;
-  width:300px;
-  color:#fff;
-  font-family:san Serif;
-  margin-top:10px;
-}
-.previousMonth{
-  margin-right:20px;
-  background-color:transparent;
-  border:none;
-  outline:none;
-  font-size:25px;
-  font-weight:700;
-  color:#fff;
-}
-.nextMonth{
-    margin-left:20px;
-  background-color:transparent;
-  border:none;
-  outline:none;
-  font-size:25px;
-  font-weight:700;
-  color:#fff;
- 
-}
-th, td {
-  padding: 3px;
-  border: 1px solid #ccc;
-  text-align:center;
-}
-
-th {
-  
-  padding:5px;
-  font-size:12px !important;
-}
-.appointment{
-  font-size:12px;
-}
-
 
         </style>
     </head>
     <body>
       @include('header')
 
-  <div>
   
     <div class="container">
-     <div class="calendar shadow">
-    <div id="app">
-        @yield('content')
-    </div>
+
+     <div class="dash-home shadow">
+       <div style="    background: linear-gradient(to bottom, #333333, #666666);
+;width: 93%;position: absolute;top: 5px;left:80px;height: 370px;">
+    <video style="width:100%;height:100%;"controls autoplay loop>
+    <source src="{{ asset('img/adds.mp4') }}" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+ </div>
 </div>
 </div>
 

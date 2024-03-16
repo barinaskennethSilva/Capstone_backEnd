@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
+use Carbon\Carbon as Carbon;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -52,44 +52,27 @@ public function show(Request $request) {
 
 }
 
- public function index(Request $request)
-    {
-   if (Auth::check()) {
-            $events = Book_req::all();
-        } else {
-            $events = Event::all();
+public function index($date = null)
+{
+        // Get the current date
+        $currentDate = Carbon::now();
+
+        // Get the first day of the month
+        $firstDayOfMonth = $currentDate->copy()->startOfMonth();
+
+        // Get the last day of the month
+        $lastDayOfMonth = $currentDate->copy()->endOfMonth();
+
+        // Generate dates for the current month
+        $dates = [];
+        for ($date = $firstDayOfMonth; $date->lte($lastDayOfMonth); $date->addDay()) {
+            $dates[] = $date->copy();
         }
 
-        $today = Carbon::today();
+        return view('calendar', ['dates' => $dates]);
 
-        if ($request->has('month') && $request->has('year')) {
-            $month = $request->month;
-            $year = $request->year;
-        } else {
-            $month = $today->month;
-            $year = $today->year;
-        }
+}
 
-        $prevMonth = Carbon::createFromDate($year, $month, 1)->subMonth();
-        $nextMonth = Carbon::createFromDate($year, $month, 1)->addMonth();
-        
-        // Calculate the number of days in the current month
-        $daysInMonth = Carbon::createFromDate($year, $month, 1)->daysInMonth;
-                $firstDayOfMonth = Carbon::createFromDate($year, $month, 1)->dayOfWeek;
-
-
-        return view('calendar', [
-            'events' => $events,
-            'currentMonth' => $month,
-            'currentYear' => $year,
-            'prevMonth' => $prevMonth->month,
-            'prevYear' => $prevMonth->year,
-            'nextMonth' => $nextMonth->month,
-            'nextYear' => $nextMonth->year,
-            'daysInMonth' => $daysInMonth,
-            'firstDayOfMonth' => $firstDayOfMonth,
-        ]);
-    }
 
      public function update(Request $request, $id){
         $request->validate([
