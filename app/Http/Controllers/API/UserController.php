@@ -5,6 +5,7 @@ use Illuminate\Http\RedirectResponse;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Book_req;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
@@ -13,11 +14,18 @@ use Illuminate\Support\Facades\Session;
 use Auth;
 class UserController extends Controller
 {
+
+
+
  /* FOR ADMIN CONTROLLER */
  public function adminHeader(){
         return view('/Admin/admin_header');
     }
      public function Admindashboard(){
+        $totalCustomers = Book_req::count();
+        $customersWithAppointments = Appointment::distinct()->count('customer_id');
+        $percentage = $totalCustomers > 0 ? ($customersWithAppointments / $totalCustomers) * 100 : 0;
+        return view('/Admin/admin_dashboard', compact('percentage'));
         return view('/Admin/admin_dashboard');
     }
 public function Admin_smg(){
@@ -31,6 +39,12 @@ public function Admin_smg(){
                 return view('/Admin/admin_register');
     }   
 /* FOR USER CONTROLLER */
+public function AboutUs(){
+    return view('AboutUs');
+}
+public function ServiceOffer(){
+    return view('ServiceOffer');
+}
    public function dashboard(){
         return view('dashboard');
     }
@@ -42,7 +56,10 @@ public function Admin_smg(){
 
     
      public function chat_view(){
-        return view('/chat_view');
+    $user = auth()->user();
+    $fname = $user->fname;
+    $lname = $user->lname;
+   return view('chat_view', compact('fname', 'lname'));
     }
     /**
      * Store a newly created resource in storage.
@@ -89,24 +106,34 @@ public function Admin_smg(){
 {
  $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials)) {
-            $user = Auth::user();
+if (Auth::attempt($credentials)) {
+    $user = Auth::user();
 
-            // Check user role and redirect accordingly
-            switch ($user->Usertype) {
-                case 'Admin':
-                    return redirect()->route('admin_dashboard');
-                    break;
-              //  case 'manager':
-               //     return redirect()->route('manager.dashboard');
-               //     break;
-                default:
-                case 'User':
-                    return redirect()->route('dashboard');
+    // Check user role and redirect accordingly
+    switch ($user->Usertype) {
+        case 'Admin':
+            if ($user->Usertype === 'Admin') {
+                return redirect()->route('admin_dashboard');
+            } else {
+                Auth::logout();
+                return redirect()->route('login')->with('error', 'You are not authorized to access this dashboard.');
             }
-        }
+            break;
+        case 'User':
+            if ($user->Usertype === 'User') {
+                return redirect()->route('dashboard');
+            } else {
+                Auth::logout();
+                return redirect()->route('login')->with('error', 'You are not authorized to access this dashboard.');
+            }
+            break;
+        default:
+            Auth::logout();
+            return redirect()->route('login')->with('error', 'Invalid user type.');
+    }
+}
 
-        return redirect()->route('login')->with('error', 'Login failed. Please check your credentials.');
+return redirect()->route('login')->with('error', 'Login failed. Please check your credentials.');
 
 
 }
@@ -130,6 +157,14 @@ public function logout(Request $request): RedirectResponse
     // If the user is not authenticated, redirect them to the login page
     return redirect('/login');
 }
+
+
+
+
+
+
+
+
 
 public function transactions()
 {

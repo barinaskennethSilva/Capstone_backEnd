@@ -38,22 +38,15 @@ class ApiController extends Controller
 
     }
 
-public function show(Request $request) {
-        /*   $user = Auth::user();
-    $transact_records = Book_req::all();
-    return view('transact_record', compact('transact_records')); */
+     public function show(Request $request)
+     {
      $user = Auth::user();
-    
-    // Fetch only the records associated with the authenticated user
-    $transact_records = Book_req::where('cust_email', $user->email)->get();
-    
-    return view('transact_record', compact('transact_records'));
+     $transact_records = Book_req::where('cust_email', $user->email)->get();
+     return view('transact_record', compact('transact_records'));
+     }
 
-
-}
-
-public function index($date = null)
-{
+     public function index($date = null)
+     {
         // Get the current date
         $currentDate = Carbon::now();
 
@@ -72,13 +65,16 @@ public function index($date = null)
         return view('calendar', ['dates' => $dates]);
 
 }
-
-
-     public function update(Request $request, $id){
+ public function edit($id)
+    {
+        $transact_record = Book_req::findOrFail($id);
+        return view('editRecord', compact('transact_record'));
+    }
+   public function update(Request $request, $id){
         $request->validate([
         'Client_name'=>'required|max:191',
+        'cust_email'=>'required|max:191',
         'contactNum'=>'required|max:191',
-        'Type_package'=>'required|max:191',
         'Type_service'=>'required|max:191',
         'Agent_therapist'=>'required|max:191',
         'time_interval'=>'required|max:191',
@@ -89,18 +85,20 @@ public function index($date = null)
        $book_req = Book_req::find($id);
        if($book_req){
          $book_req->Client_name = $request->Client_name;
-              $book_req->contactNum = $request->contactNum;
-       $book_req->Type_package = $request->Type_package;
-        $book_req->Type_service = $request->Type_service;
+         $book_req->cust_email = $request->cust_email;
+         $book_req->contactNum = $request->contactNum;
+         $book_req->Type_service = $request->Type_service;
          $book_req->Agent_therapist = $request->Agent_therapist;
-        $book_req->time_interval = $request->time_interval;
+         $book_req->time_interval = $request->time_interval;
            $book_req->Date_schedule = $request->Date_schedule;
   $book_req->price = $request->price;
             $book_req->update();
-            return response()->json(['message'=>'Booking request find successfuly'], 200);
+        return redirect()->route('transact_record')->with('success', 'Booking request updated successfully');
+
         }
         else{
-    return response()->json(['message'=>'Booking request not found'], 400);
+                    return redirect()->route('transact_record')->with('error', 'Booking request not found');
+
         }
      }
 

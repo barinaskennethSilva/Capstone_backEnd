@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\AdminController;
 use App\Http\Controllers\API\ApiController;
+use App\Http\Controllers\AppointmentController;
 
 
 /*
@@ -16,47 +17,39 @@ use App\Http\Controllers\API\ApiController;
 | middleware group, which means they are protected by session state.
 |
 */
-
+// USER HOME PAGES
 Route::get('/', function () {
-    return view('welcome'); // Assuming you have a blade file named 'login.blade.php'
-});
+    return view('welcome');
+    });
+        Route::get('/home_header', [UserController::class,'home_header'])->name('home_header');
+        Route::get('AboutUs', [UserController::class,'AboutUs'])->name('AboutUs');
+        Route::get('ServiceOffer', [UserController::class,'ServiceOffer'])->name('ServiceOffer');
+        Route::get('/register', [UserController::class,'register'])->name('register');
+        Route::post('/register', [UserController::class,'create'])->name('register');
+        Route::get('/login', [UserController::class,'login'])->name('login');
+        Route::post('/login', [UserController::class,'loginUser'])->name('login');
 
-    Route::get('/register', [UserController::class,'register'])->name('register');
-Route::post('/register', [UserController::class,'create'])->name('register');
-    Route::get('/login', [UserController::class,'login'])->name('login');
-Route::post('/login', [UserController::class,'loginUser'])->name('login');
+// USER MAIN PAGES
 Route::get('/header', [UserController::class, 'header'])->name('header');
-
-// // ADMIN ROUTER
-// Route::post('/Admin/admin_register', [UserController::class,'create'])->name('admin_register');
-// Route::get('/Admin/admin_register', [UserController::class,'AdminSignUp'])->name('admin_register');
-
-
-// Route::get('/Admin/admin_login', [UserController::class,'loginAdmin'])->name('admin_login');
-// Route::post('/Admin/admin_login', [UserController::class,'loginUser'])->name('admin_login');
-Route::domain('adminjilliejens.laravelgenius.com')->group(function () {
-  Route::domain('adminjilliejens.laravelgenius.com')->group(function () {
-    // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-      Route::post('/Admin/admin_register', [UserController::class,'create'])->name('admin_register');
-Route::get('/Admin/admin_register', [UserController::class,'AdminSignUp'])->name('admin_register');
-Route::get('/Admin/admin_login', [UserController::class,'loginAdmin'])->name('admin_login');
-Route::post('/Admin/admin_login', [UserController::class,'loginUser'])->name('admin_login');
-});
-
-Route::get('/Admin/admin_header', [UserController::class, 'adminHeader'])->name('admin_header');
-Route::get('/Admin/admin_dashboard', [UserController::class, 'Admindashboard'])->name('admin_dashboard');
-Route::get('/Admin/admin_message', [UserController::class, 'Admin_smg'])->name('admin_message');
-Route::post('/Admin/admin_message', [UserController::class, 'showMessagePage'])->name('admin_message');
-Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
 Route::get('/booking_reserve', [ApiController::class, 'booking_reserve'])->name('booking_reserve');
-Route::post('/booking_reserve', [ApiController::class, 'create'])->name('booking_reserve');
+Route::post('/booking_reserve',[ApiController::class, 'create'])->name('booking_reserve');
 Route::get('/transact_record', [ApiController::class, 'show'])->name('transact_record');
-Route::post('/transact_record', [ApiController::class, 'show'])->name('transact_record');
+Route::post('/transact_record',[ApiController::class, 'show'])->name('transact_record');
 
-//Route::post('/calendar', [ApiController::class, 'calendar'])->name('calendar');
-//Route::get('/calendar', [ApiController::class, 'index'])->name('calendar');
+
+Route::get('/editRecord/{id}/edit', [ApiController::class, 'edit'])->name('editRecord');
+Route::put('/editRecord/{id}/update', [ApiController::class, 'update'])->name('editRecordUpdate');
+// Assuming your controller is named TransactRecordController
+// Route::put('/transact_record/{id}', [ApiController::class, 'update'])->name('transact_record.update');
+
+// Route::get('/edit-record/{editRecord}/edit', [EditRecordController::class, 'edit'])->name('editRecord.edit');
+// Route::put('/edit-record/{editRecord}', [EditRecordController::class, 'update'])->name('editRecord.update');
+Route::get('/appointments', [AppointmentController::class, 'index'])->name('appointments.index');
+
+
+
+
 use Carbon\Carbon;
-
 Route::get('/calendar/{year?}/{month?}', function ($year = null, $month = null) {
     $currentMonth = Carbon::now();
 
@@ -101,9 +94,37 @@ Route::get('/calendar/{year?}/{month?}', function ($year = null, $month = null) 
         'nextMonth' => $nextMonth->month,
     ]);
 })->name('calendar');
-
-
 Route::get('/chat_view', [UserController::class, 'chat_view'])->name('chat_view');
+
+
+// ADMIN ROUTER
+Route::post('/Admin/admin_register', [UserController::class,'create'])->name('admin_register');
+Route::get('/Admin/admin_register', [UserController::class,'AdminSignUp'])->name('admin_register');
+
+
+Route::get('/Admin/admin_login', [UserController::class,'loginAdmin'])->name('admin_login');
+Route::post('/Admin/admin_login', [UserController::class,'loginUser'])->name('admin_login');
+
+Route::middleware(['checkrole:Admin'])->group(function () {
+Route::get('/Admin/admin_header', [UserController::class, 'adminHeader'])->name('admin_header');
+
+Route::get('/Admin/admin_message', [UserController::class, 'Admin_smg'])->name('admin_message');
+Route::post('/Admin/admin_message', [UserController::class, 'showMessagePage'])->name('admin_message');
+
+});
+Route::middleware(['checkrole:Admin'])->group(function () {
+
+Route::get('/Admin/admin_dashboard', [UserController::class, 'Admindashboard'])->name('admin_dashboard');
+
+});
+Route::middleware(['checkrole:User'])->group(function () {
+Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+});
+
+
+
+
+
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
  

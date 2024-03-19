@@ -1,5 +1,4 @@
          @include('home_header')
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -20,29 +19,48 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <style>
-           
-        .sliding{
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0px;
-            left: 0px;
-        }   
-        .sliding img{
-            width: 100%;
-            height: 100%;
-        } 
-        </style>
-    </head>
-    <body class="antialiased">
-                  <a class="nav-link" href="{{ route('AboutUs') }}">About Us</a>
-
-            <!-- <div class="max-w-7xl mx-auto p-6 lg:p-8 bg-danger">
-                </div> -->
-                <div class="justify-center sliding">
-                   <img src="./img/1.png" >
-                   </div>
+</head>
+<style>
+	 .about-content{
+             width: 100%;
+             height: 100%;
+             position: absolute;
+             top: 0px;
+             left: 0px; 
+             padding: 0px; 
+            }
+             .about-content img{
+            	width: 100%;
+             height: 100%;
+            }
+            .text-data{
+            	width: 40%;
+            	height: 200px;
+            	position: absolute;
+            	right: 70px;
+            	top: 100px;
         
-    </body>
+            }
+            .text-data h1{
+            	font-family: cursive;
+            }
+            .text-data label{
+            	font-weight: 700;
+            	font-size: 20px;
+            }
+            .text-data span{
+            	font-size: 18px;
+            	position: relative;
+            	top: 30px;
+            }
+</style>
+<body>
+	<div class="about-content">
+		<div class="text-data">
+		<h1>About Us</h1>
+		<label>Jillie jen's Massage Spa</label><br>
+		<span>Jillie Jen's Massage Spa offers high-quality services aimed at ensuring customer satisfaction and providing a relaxing treatment experience. You can select treatments that best suit your needs, allowing you to fully enjoy the rejuvenating benefits of our spa services.</div>
+		<img src="./img/aboutPic.png">
+	</div>
+</body>
 </html>

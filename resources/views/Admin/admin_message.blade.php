@@ -1,93 +1,294 @@
-<!-- message.blade.ph
+@include('/Admin/admin_header')
 
-<div class="container bg-light">
-    <div class="col">
-        <!-- Temporary content for joining chat -->
-        <div class="parent-container">
-            <input type="text" class="user-name" placeholder="Name" v-model="currentUser">
-            <button class="join-button btn btn-primary fw-bold" @click="join">Join</button>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Chat interface -->
-        <div class="temporaryDelete text-input" v-if="joined">
-            <!-- Chat box -->
-            <div class="row chatBox">
-                <!-- Main chat window -->
-                <div class="row-12 row-md-6 row-lg-4 w-100 bg-light shadow main-data">
-                    <!-- Chat profile and details -->
-                    <button class='CloseChat'><i class="bi bi-arrow-left"></i></button>
-                    <div class="profile">
-                        <img src='./AdminPic/massage_pic1.jpg' alt="profile">
-                    </div>
-                    <div class='sender-data'>
-                        <label>Kenneth Barinas</label>
-                        <span>kbarinas2gmail.com</span>
-                    </div>
-                </div>
+        <title>Jillie Jen's Massage Spa</title>
 
-                <!-- Messages section -->
-                <div class="col-12 col-md-9 col-lg-8">
-                    <div class="notif-msg">
-                        <div class="smg-text">
-                            <!-- Display messages -->
-                            @foreach($messages as $message)
-                            <div class="sender-smg">
-                                <div class="profile">
-                                    <img src='./AdminPic/massage_pic1.jpg' alt="profile">
-                                </div>
-                                <div class="smg-text">
-                                    <span>{{ $message->user }}</span>
-                                    <span>{{ $message->text }}</span>
-                                    <span style='font-size:12px;text-align:center;margin-top:10px;'>January 20 2024</span>
-                                </div>
-                            </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
-                <!-- Chat sidebar -->
-                <div class="col-12 col-md-3 col-lg-4" style='border-left:1px solid lightgrey'>
-                    <div class="msg-notif" v-show="msgNotif">
-                        <!-- Sidebar content -->
-                        <div class="footer">
-                            <h1>Messages</h1>
-                            <div class="search">
-                                <i class="bi bi-search"></i>
-                                <input type="text" placeholder="Search...">
-                            </div>
-                        </div>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
-                        <!-- Chat sender buttons -->
-                        <button class="sender" @click="hideChat">
-                            <div class='profile'>
-                                <img src='./AdminPic/massage_pic1.jpg' alt="profile">
-                            </div>
-                            <div class="info-sender">
-                                <label>Kenneth Barinas</label>
-                            </div>
-                        </button>
-                        <!-- Add more sender buttons here as needed -->
-                    </div>
-                </div>
+        <style>
 
-                <!-- Input message section -->
-                <div class="row-12 row-md-6 row-lg-4 w-100 bg-dark p-2 shadow" style='margin-left:1px;'>
-                    <div class='input-msgContainer'>
-                        <div class="input-msg shadow">
-                            <input type="text" v-model="text" @input="showHide" class="myinput" placeholder='Type message...'>
-                            <button class="button-send" v-if="text.length > 0" type="submit" @click="sendMessage">
-                                <i class="bi bi-send"></i>
-                            </button>
-                            <button class="button-send" v-show="showLikeButton">
-                                <i class="bi bi-camera"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+/* smartphones, iPhone, portrait 480x320 phones */
+ @media screen and (min-width:320px) and (max-width:480px){
+
+ }
+
+@media (min-width:1025px) { 
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+.container{
+ height: 93vh;
+  width: 80%;
+  position:  absolute ;
+  left:  305px;
+  top:  52px;
+  padding: 0px;
+  background-color: #cdcdcdff;
+}
+.chatbox{
+    width: 50%;
+    height: 93vh;
+    background-color: #fff;
+    float: right;
+}
+.footer{
+    width: 100%;
+    height: 70px;
+    background-color: dodgerblue;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+.footer img{
+    margin-left: 60px;
+}
+.footer h1{
+    font-size: 21px;
+    font-style: italics;
+}
+.chat-content{
+    width: 100%;
+    height: 74.8vh;
+overflow-x: hidden;
+overflow-y: auto;
+background-color: #fff;
+}
+.message{
+    background-color: #111;
+    color: #fff;
+    width: 40%;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px 10px;
+}
+.input-textCont{
+    background-color: lightgrey;
+    width: 60%;
+    margin-left: 20px;
+    height: 50px;
+    border-radius: 10px;
+}
+.input-textCont input::placeholder{
+    padding-left: 10px;
+}
+.input-textCont input:active{
+border:0px solid #fff;
+outline: none;
+}
+.input-textCont input{
+    width: 80%;
+    height: 50px;
+    border:0px;
+    border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    background-color: transparent;
+    padding-left:10px ;
+    outline: none;
+
+}
+.btn-send{
+    position: absolute;
+    right: 240px;
+    bottom:7px;
+    font-size: 25px;
+    margin: 10px;
+}
+.btn-send button{
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+.CustList{
+ background-color: #fff;
+    width: 49%;
+ height: 93vh !important;
+}
+
+.TOPlist{
+    width: 100%;
+    background-color: dodgerblue;
+    padding: 10px;
+    height: 73px;
+}
+.TOPlist h2{
+    font-size: 25px;
+    position: relative;
+    top: 10px;
+    color: #fff;
+}
+.FlatForm{
+    padding: 0px !important;
+    margin: 0px !important;
+    overflow-x:hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    height: 89%;
+}
+.cont-list{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    border-bottom:2px solid #cdcdcdff;
+}
+.cont-list img{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+.sender-data{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+.cont-list label{
+    font-weight: 700;
+    font-size: 20px;
+}
+.online-btn{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: green;
+    position: relative;
+    top: 30px;
+    right: 15px;
+}
+}
+        </style>
+    </head>
+    <body>
+
+<div class="container">
+      <div class="chatbox">
+          <div class="footer">
+  <img
+            src="{{ asset('./AdminPic/JillieJens.png') }}"
+            class="rounded-circle border border-light me-2"
+            height="40"
+            width="40"
+            alt="Black and White Portrait of a Man"
+            loading="lazy"/>   
+            <div class="d-flex flex-column text-white">
+              <h1>jillie Help Desk</h1>
+            </div> 
+  
+      </div>
+      
+<div class="chat-content  bg-light" id="messages">
+       </div> 
+            <div class="input-content p-2 bg-dark" >
+   <div class="input-textCont">
+        <form>
+            <input type="text" id="message-input" placeholder="Type a Message">
+            <div class="btn-send">
+            <button id="send-button"style="display: none;"><i class="bi bi-send"></i></button>
+            <button id="camera-button"><i class="bi bi-camera"></i></button>
+       </div>
+        </form>
     </div>
 </div>
+      
+        
+</div>
+<div class="CustList">
+<div class="TOPlist">
+<h2>Contacts</h2>
+</div>
+<div class="FlatForm">
+<div class="cont-list">
+            <img src="{{ asset('./AdminPic/JillieJens.png') }}" class="porfile" />
+            <div class="online-btn"></div>
+            <div class="sender-data">
+            <label>Kenneth Barinas</label>
+            <span>Hello my Request help!</span>
+        </div>
+</div>
 
-@endsection
+<div class="cont-list">
+            <img src="{{ asset('./AdminPic/JillieJens.png') }}" class="porfile" />
+                   <div class="online-btn"></div>
+     
+            <div class="sender-data">
+            <label>Kenneth Barinas</label>
+            <span>Hello my Request help!</span>
+</div></div>
+<div class="cont-list">
+            <img src="{{ asset('./AdminPic/JillieJens.png') }}" class="porfile" />
+                        <div class="online-btn"></div>
+
+                        <div class="sender-data">
+            <label>Kenneth Barinas</label>
+            <span>Hello my Request help!</span>
+</div></div>
+<div class="cont-list">
+            <img src="{{ asset('./AdminPic/JillieJens.png') }}" class="porfile" />
+                        <div class="online-btn"></div>
+
+                                    <div class="sender-data">
+            <label>Kenneth Barinas</label>
+            <span>Hello my Request help!</span>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+
+const messageInput = document.getElementById("message-input");
+const sendButton = document.getElementById("send-button");
+const cameraButton = document.getElementById("camera-button");
+
+messageInput.addEventListener("input", function() {
+    if (this.value.trim() !== "") {
+        sendButton.style.display = "block";
+        cameraButton.style.display = "none";
+    } else {
+        sendButton.style.display = "none";
+        cameraButton.style.display = "block";
+    }
+});
+
+sendButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    const message = messageInput.value.trim();
+    if (message !== "") {
+        // Send the message
+        // console.log("Message sent: " + message);
+          const messagesContainer = document.getElementById("messages");
+
+          messagesContainer.innerHTML += `<span style="position:relative;top:10px;left:20px;">Jillie Help Desk</span> <div class="message">       
+<span style="padding:10px;max-width: 200px !important;overflow-wrap: break-word;">${message}</span></div>`;
+
+        // Clear input field
+        messageInput.value = "";
+        // Hide send button
+        sendButton.style.display = "none";
+        // Display camera button
+        cameraButton.style.display = "block";
+    }
+});
+
+cameraButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    // Your logic to handle camera button click
+    console.log("Camera button clicked");
+});
+
+</script>

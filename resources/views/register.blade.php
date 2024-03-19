@@ -1,3 +1,5 @@
+         @include('home_header')
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +39,7 @@
 .mainForm{
   display:flex;
   flex-direction:row;
-  width:100%;
+  width:75%;
   height:450px;
  position: absolute ;
  top:50%;
@@ -180,7 +182,7 @@ margin-top:25px;
 .mainForm{
   display:flex;
   flex-direction:row;
-  width:100%;
+  width:75%;
   height:550px;
   top:50%;
   left:50%;
@@ -344,13 +346,13 @@ margin-top:25px;
 <input type="hidden" id="Usertype" value="User" name="Usertype">
 <div class="step" id="step1">
 <div class="form-input">
-    <i class="icon bi bi-envelope"></i>
+    <i class="icon bi bi-person"></i>
    <input type="text" id="fname" name="fname" class="input-field" required/>
    <label>First Name</label>
   </div>
 
 <div class="form-input">
-    <i class="icon bi bi-envelope"></i>
+    <i class="icon bi bi-person"></i>
    <input type="text" id="lname" name="lname" class="input-field" required/>
    <label>Last Name</label>
   </div>

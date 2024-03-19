@@ -33,7 +33,26 @@
 background-size:cover;
 
  }
-
+.btn-link{
+/*    background-color: red;*/
+    width: 36%;
+    height: 70px;
+    position: relative;
+    top: 196px;
+    left: 95px;
+    padding: 20px;
+    margin: 0px;
+    display: flex;
+    flex-direction: row;
+}
+.btnForm{
+    border-radius: 40px;
+    height: 60px;
+    width: 200px;
+outline: none;
+   margin-left: 20px;
+   background-color: transparent;
+}
         </style>
     </head>
     <body>
@@ -49,6 +68,11 @@ background-size:cover;
     <source src="{{ asset('img/adds.mp4') }}" type="video/mp4">
     Your browser does not support the video tag.
 </video>
+<div class="btn-link">
+    <a class="btnForm" href="{{ route('booking_reserve') }}">
+<!-- <button ></buttton> --></a>
+<button class="btnForm" style="position:relative;left: 28px;"></buttton>
+</div>
  </div>
 </div>
 </div>

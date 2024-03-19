@@ -119,11 +119,12 @@
   font-weight:700;
 }
 .btn-next{
-  position: relative;
-  right:390px;
-  bottom: 70px;
+  position: fixed;
+  left:410px;
+  bottom: 160px;
+  z-index: 100;
+  width: 20%;
 }
-
 .agent1{
   display:flex;
   flex-direction:column;
@@ -150,8 +151,12 @@ font-size:45px;
   width:50%;
   height: 150px;
   margin-bottom: 10px;
-  background-color: violet;
   text-align: center;
+}
+.package_check{
+   position: relative;
+   top: 90px;
+   right: 120px;
 }
 .therapist-agent{
   width:200px;
@@ -263,40 +268,44 @@ font-size:45px;
         <div style="overflow-y: auto;width:100%;height:100%;overflow-x: hidden;">
         <input type="hidden" name="packages" id="packages" value="Single Package">
 <div class="d-flex w-100 ">
-      <div class="packages-card">
-        <input type="radio" value="Full Body Massage" class="form-check-input me-2 mt-1" name="massage_type"><label>Full Body Massage</label>
+      <div class="packages-card" style="background-image: url(./img/serve_pic1.png);background-size: 100% 100%;">
+       <input type="radio" value="Full Body Massage" class="form-check-input package_check" name="massage_type">
 
 
 
   </div>
  
-  <div class="packages-card ms-2">
-        <input type="radio" class="form-check-input me-2 mt-1" value="Foot Spa" name="massage_type"><label>Foot Spa</label>
+  <div class="packages-card ms-2" style="background-image: url(./img/serve_pic2.png);background-size: 100% 100%;">
+        <input type="radio" class="form-check-input package_check"  value="Foot Spa" name="massage_type">
   </div>
    </div>
 
    <div class="d-flex w-100 ">
-  <div class="packages-card">
-        <input type="radio" class="form-check-input me-2 mt-1" name="massage_type" value="  Foot Reflex"><label>Foot Reflex</label>
+  <div class="packages-card" style="background-image: url(./img/serve_pic3.png);background-size: 100% 100%;">
+    <input type="radio" class="form-check-input package_check" name="massage_type" value="  Foot Reflex" >
   </div>
-   <div class="packages-card ms-2">
-        <input type="radio" name="massage_type" class="form-check-input me-2 mt-1" value="  30mins Foot Reflex"><label>30mins Foot Reflex</label>
+   <div class="packages-card ms-2" style="background-image: url(./img/serve_pic4.png);background-size: 100% 100%;">
+        <input type="radio" name="massage_type" class="form-check-input package_check" value="  30mins Foot Reflex">
   </div>
       
     </div>
 
 <div class="d-flex w-100 ">
-  <div class="packages-card">
-        <input type="radio" class="form-check-input me-2 mt-1"><label>Earcandle</label>
+  <div class="packages-card" style="background-image: url(./img/serve_pic5.png);background-size: 100% 100%;">
+        <input type="radio" value="Earcandle" name="massage_type" class="form-check-input package_check">
   </div>
-   <div class="packages-card ms-2">
-        <input type="radio" name="massage_type" class="form-check-input me-2 mt-1"><label>Hotel & Home Services</label>
+   <div class="packages-card ms-2" style="background-image: url(./img/serve_pic6.png);background-size: 100% 100%;">
+        <input type="radio" name="massage_type" name="massage_type" value="Hotel & Home Services" class="form-check-input package_check">
   </div>
       </div>
+      <div class="d-flex w-100 ">
+  <div class="packages-card" style="background-image: url(./img/serve_pic7.png);background-size: 100% 100%;">
+        <input type="radio" value="Milk BodyScrub" name="massage_type" class="form-check-input package_check">
+  </div>
     </div>
+</div>
 
-
-      <button type="button" class="btn-next bg-primary btn btn-primary w-50" onclick="nextStep('step1', 'step2')">Next</button>
+      <button type="button" class="btn-next bg-primary btn btn-primary" style="width: 20%;" onclick="nextStep('step1', 'step2')">Next</button>
      </div>
 
 </div>
@@ -309,32 +318,39 @@ font-size:45px;
       <div class="step1">
                 <div style="overflow-y: auto;width:100%;height:100%;overflow-x: hidden;">
 
-        <input type="hidden" name="packages" id="packages" value="Single Package">
 <div class="d-flex w-100 ">
-      <div class="packages-card">
-        <input type="radio" value="Full Body Massage" name="massage_type" class="form-check-input me-2 mt-1"><label>Full Body Massage</label>
+      <div class="packages-card" style="background-image: url(./img/serve_pic8.png);background-size: 100% 100%;">
+        <input type="radio" value="Ventosa" name="massage_type" class="form-check-input package_check">
   </div>
  
-  <div class="packages-card ms-2">
-        <input type="radio" class="form-check-input me-2 mt-1" name="massage_type" value=" Foot Spa"><label>Foot Spa</label>
+  <div class="packages-card ms-2"  style="background-image: url(./img/serve_pic9.png);background-size: 100% 100%;">
+        <input type="radio" class="form-check-input package_check" name="massage_type" value=" Hotstone">
   </div>
    </div>
    <div class="d-flex w-100 ">
-  <div class="packages-card">
-        <input type="radio" class="form-check-input me-2 mt-1" name="massage_type" value=" Foot Reflex"><label>Foot Reflex</label>
+  <div class="packages-card"  style="background-image: url(./img/serve_pic10.png);background-size: 100% 100%;">
+        <input type="radio" class="form-check-input package_check" name="massage_type" value=" BodyScrub">
   </div>
-   <div class="packages-card ms-2">
-        <input type="radio" class="form-check-input me-2 mt-1" name="massage_type" value=" 30mins Footreflex"><label>30mins Footreflex</label>
+   <div class="packages-card ms-2" style="background-image: url(./img/serve_pic11.png);background-size: 100% 100%;">
+        <input type="radio" class="form-check-input package_check" name="massage_type" value="Earcandle">
   </div>
     </div>  
+    <div class="d-flex w-100 ">
+      <div class="packages-card"  style="background-image: url(./img/serve_pic12.png);background-size: 100% 100%;">
+        <input type="radio" value="Footreflex" name="massage_type" class="form-check-input package_check">
+  </div>
+   <div class="packages-card ms-2"  style="background-image: url(./img/serve_pic13.png);background-size: 100% 100%;">
+        <input type="radio" value="FootSpa" name="massage_type" class="form-check-input package_check">
+  </div>
     </div>
+
     <div class="btn-next d-flex">
-       <button class=" bg-primary btn btn-primary w-25" type="button" onclick="prevStep('step2', 'step1')">Previous</button>
-        <button  class=" bg-primary btn btn-primary w-25 ms-2" type="button" onclick="nextStep('step2', 'step3')">Next</button>
+       <button class=" bg-primary btn btn-primary" style="width: 50%;" type="button" onclick="prevStep('step2', 'step1')">Previous</button>
+        <button  class=" bg-primary btn btn-primary  ms-2" type="button" style="width: 50%;" onclick="nextStep('step2', 'step3')">Next</button>
      </div>
       </div> 
     </div>
-
+</div>
 
 <!--- step 3----->
 
@@ -345,41 +361,54 @@ font-size:45px;
       </div>
       <div class="step1">
         <div style="overflow-y: auto !important;width:100%;height:100%;overflow-x: hidden;">
-        <input type="hidden" name="packages" id="packages" class="form-check-input me-2 mt-1" value="Single Package">
 <div class="d-flex w-100 ">
-      <div class="packages-card">
-        <input type="radio" class="form-check-input me-2 mt-1" name="massage_type" value="Full Body Massage "><label>Full Body Massage</label>
+      <div class="packages-card"style="background-image: url(./img/serve_pic14.png);background-size: 100% 100%;">
+        <input type="radio" class="form-check-input package_check " name="massage_type" value="C1 ventosa + hotstone + massage">
   </div>
  
-  <div class="packages-card ms-2">
-        <input type="radio" name="massage_type" value="Foot Spa" class="form-check-input me-2 mt-1"><label>Foot Spa</label>
+  <div class="packages-card ms-2" style="background-image: url(./img/serve_pic15.png);background-size: 100% 100%;">
+        <input type="radio" name="massage_type" value="C2 massage + hotcompress + free candle" class="form-check-input package_check">
   </div>
    </div>
 
    <div class="d-flex w-100 ">
-  <div class="packages-card">
-        <input type="radio" name="massage_type" value="Foot Reflex" class="form-check-input me-2 mt-1"><label>Foot Reflex</label>
+  <div class="packages-card" style="background-image: url(./img/serve_pic16.png);background-size: 100% 100%;">
+        <input type="radio" name="massage_type" value="C3 massage + hotcompress + freecandle" class="form-check-input package_check">
   </div>
-   <div class="packages-card ms-2">
+   <div class="packages-card ms-2" style="background-image: url(./img/serve_pic17.png);background-size: 100% 100%;">
 
-        <input type="radio" name="massage_type" value="30mins Footreflex" class="form-check-input me-2 mt-1"><label>30mins Footreflex</label>
+        <input type="radio" name="massage_type" value="C4 Earcandle + Footreflex + massage" class="form-check-input package_check">
   </div>
       
     </div>
 
 <div class="d-flex w-100 ">
-  <div class="packages-card">
-            <input type="radio" class="form-check-input me-2 mt-1" name="massage_type" value="Earcandle"><label>Earcandle</label>
+  <div class="packages-card" style="background-image: url(./img/serve_pic18.png);background-size: 100% 100%;">
+            <input type="radio" class="form-check-input package_check" name="massage_type" value="C5 ventosa & hotcompress or hotstone + BodyScrub + Earcandle">  </div>
+   <div class="packages-card ms-2" style="background-image: url(./img/serve_pic19.png);background-size: 100% 100%;"> 
+        <input type="radio" name="massage_type" value="VIP Room"class="form-check-input package_check">
   </div>
-   <div class="packages-card ms-2"> 
-        <input type="radio" name="massage_type" value="Combo three"class="form-check-input me-2 mt-1"><label>Combo three</label>
+      </div>
+
+      <div class="d-flex w-100 ">
+  <div class="packages-card" style="background-image: url(./img/serve_pic20.png);background-size: 100% 100%;">
+     <input type="radio" class="form-check-input package_check" name="massage_type" value="VIP Couple">
+
   </div>
+   <div class="packages-card ms-2" style="background-image: url(./img/serve_pic21.png);background-size: 100% 100%;"> 
+        <input type="radio" name="massage_type" value="Hot Compress"class="form-check-input package_check">
+
+  </div>
+      </div>
+       <div class="d-flex w-100 ">
+  <div class="packages-card" style="background-image: url(./img/serve_pic22.png);background-size: 100% 100%;">
+            <input type="radio" class="form-check-input package_check" name="massage_type" value="Earcandle">  </div>
       </div>
     </div>
 
  <div class="btn-next d-flex">
-       <button class=" bg-primary btn btn-primary w-25" type="button" onclick="prevStep('step3', 'step2')">Previous</button>
-        <button  class=" bg-primary btn btn-primary w-25 ms-2" type="button" onclick="nextStep('step3', 'step4')">Next</button>
+       <button class=" bg-primary btn btn-primary"  style="width: 50%;" type="button" onclick="prevStep('step3', 'step2')">Previous</button>
+        <button  class=" bg-primary btn btn-primary ms-2"  style="width: 50%;" type="button" onclick="nextStep('step3', 'step4')">Next</button>
      </div>
 
 
@@ -432,8 +461,8 @@ font-size:45px;
 
 
  <div class="btn-next d-flex">
-       <button class=" bg-primary btn btn-primary w-25" type="button" onclick="prevStep('step4', 'step3')">Previous</button>
-        <button  class=" bg-primary btn btn-primary w-25 ms-2" type="button" onclick="nextStep('step4', 'step5')">Next</button>
+       <button class=" bg-primary btn btn-primary" style="width: 50%;" type="button" onclick="prevStep('step4', 'step3')">Previous</button>
+        <button  class=" bg-primary btn btn-primary ms-2" style="width: 50%;" type="button" onclick="nextStep('step4', 'step5')">Next</button>
      </div>
 
 
@@ -475,8 +504,8 @@ font-size:45px;
 
   </div>
 <div class="btn-next d-flex">
-       <button class=" bg-primary btn btn-primary w-25" type="button" onclick="prevStep('step5', 'step4')">Previous</button>
-        <button  class=" bg-primary btn btn-primary w-25 ms-2" type="button" onclick="nextStep('step5', 'step6')">Next</button>
+       <button class=" bg-primary btn btn-primary" style="width: 50%;" type="button" onclick="prevStep('step5', 'step4')">Previous</button>
+        <button  class=" bg-primary btn btn-primary ms-2" style="width: 50%;" type="button" onclick="nextStep('step5', 'step6')">Next</button>
      </div>
 
     </div>
@@ -542,8 +571,8 @@ font-size:45px;
     
        <!-- Add fields for step 3 -->
             <div class="btn-next d-flex">
-        <button type="button" class="btn w-25 btn-primary fw-bold bg-primary" onclick="prevStep('step6', 'step5')">Previous</button>
-        <button class="btn btn-primary w-25 bg-primary fw-bold ms-2" onclick="SubmitData()" type="submit">Submit</button>
+        <button type="button" class="btn btn-primary fw-bold bg-primary" style="width: 50%;" onclick="prevStep('step6', 'step5')">Previous</button>
+        <button class="btn btn-primary  bg-primary fw-bold ms-2" style="width: 50%;" onclick="SubmitData()" type="submit">Submit</button>
       </div>
 </form>
     </div>

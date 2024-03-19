@@ -42,7 +42,7 @@
 <div class="dropdown">
   <button class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:transparent;border:none;color:#fff; ">
      <img
-            src="{{ asset('./AdminPic/JillieJens01.png') }}"
+            src="{{ asset('./AdminPic/JillieJens.png') }}"
             class="rounded-circle border border-light me-2"
             height="35"
             width="35"
@@ -66,7 +66,7 @@
 <div class="dashboard">
 <div class="topForm">
 <div class='logo'>
-<img src="{{ asset('./AdminPic/JillieJens01.png') }}" alt="logo">
+<img src="{{ asset('./AdminPic/JillieJens.png') }}" alt="logo">
 </div>
 <div class="d-flex ms-2 flex-column ">
         <h1>{{ Auth::user()->fname }} {{ Auth::user()->lname }}</h1>
@@ -74,19 +74,19 @@
 </div> </div>
   <ul class="navbar-nav">
         <li class="nav-item">
-          <RouterLink class="nav-link active text-white fw-bold nav-dash" aria-current="page" to="Dash_Home"><i class="bi bi-house-door icons"></i> <label class="me-4">Dashboard</label></RouterLink>
+          <RouterLink class="nav-link active text-white fw-bold nav-dash" aria-current="page" to="Dash_Home"><i class="bi bi-house-door icons"></i> <label style="position:relative;right:16px;">Dashboard</label></RouterLink>
         </li>
         <li class="nav-item">
-          <RouterLink class="nav-link text-white fw-bold nav-dash" to="/booking_reserve"><i class="bi bi-book icons"></i><label class="nav-label" style="position:relative;left:14px;"> Booking Request</label></RouterLink>
+          <RouterLink class="nav-link text-white fw-bold nav-dash" to="/booking_reserve"><i class="bi bi-book icons"></i><label class="nav-label" style="position:relative;left:5px;"> Booking Request</label></RouterLink>
         </li>
         <li class="nav-item">
-          <RouterLink class="nav-link text-white fw-bold nav-dash" to="/transact_record"><i class="bi bi-bookmarks icons"></i><label class="nav-label ms-5">Transaction Record</label></RouterLink>
+          <RouterLink class="nav-link text-white fw-bold nav-dash" to="/transact_record"><i class="bi bi-bookmarks icons"></i><label class="nav-label ms-3">Register Therapist</label></RouterLink>
         </li>
         <li class="nav-item">
-          <RouterLink class="login-btn nav-link text-white fw-bold nav-dash" to="/calendar"><i class="bi bi-calendar3 icons"></i><label class="nav-label me-4"> Calendar</label></RouterLink>
+          <RouterLink class="login-btn nav-link text-white fw-bold nav-dash" to="/calendar"><i class="bi bi-calendar3 icons"></i><label class="nav-label me-4"> Profit Report</label></RouterLink>
         </li>
         <li class="nav-item">
-          <a class="login-btn nav-link text-white fw-bold nav-dash" href="{{ route('admin_message') }}"><i class="bi bi-chat-dots icons"></i><label class="nav-label "> Message</label></a>
+          <a class="login-btn nav-link text-white fw-bold nav-dash" href="{{ route('admin_message') }}"><i class="bi bi-chat-dots icons"></i><label class="nav-label " style="position:relative;right:31px;"> Message</label></a>
         </li>
        
       </ul>
@@ -98,7 +98,7 @@
 <li>
 <div class="Topdash">
 <div class='logo'>
-<img src="{{ asset('./AdminPic/JillieJens01.png') }}" alt="logo">
+<img src="{{ asset('./AdminPic/JillieJens.png') }}" alt="logo">
 </div>
 <div style="display:flex;flex-direction:column;margin-left:10px;">
 <label style='font-weight:700;font-size:20px;color:#fff;'>{{ Auth::user()->fname }} {{ Auth::user()->lname }}</label>

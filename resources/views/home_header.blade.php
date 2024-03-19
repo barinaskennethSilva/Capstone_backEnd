@@ -1,4 +1,3 @@
-         @include('home_header')
 
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -20,29 +19,42 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <style>
-           
-        .sliding{
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0px;
-            left: 0px;
-        }   
-        .sliding img{
-            width: 100%;
-            height: 100%;
-        } 
-        </style>
-    </head>
-    <body class="antialiased">
-                  <a class="nav-link" href="{{ route('AboutUs') }}">About Us</a>
+</head>
+<style>
+	 .navbar{
+              z-index: 50;  
+            }
+            .nav-login{
+            	position:absolute;
+            	top: 	3px;
+            	right: 	10px;
+            	height: 50px;
+            }
+</style>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
 
-            <!-- <div class="max-w-7xl mx-auto p-6 lg:p-8 bg-danger">
-                </div> -->
-                <div class="justify-center sliding">
-                   <img src="./img/1.png" >
-                   </div>
-        
-    </body>
+          <a class="nav-link" href="{{ route('AboutUs') }}">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('ServiceOffer') }}">Services Offer</a>
+        </li>
+                <li class="nav-item nav-login btn btn-primary fw-bold">
+          <a class="nav-link text-white" href="{{ route('login') }}">Login</a>
+        </li>
+       
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+</body>
 </html>
