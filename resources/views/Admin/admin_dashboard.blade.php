@@ -24,10 +24,11 @@
   <button class="btn btn-dark fw-bold" style="position:relative;left: 310px;height:50px;width:15%;color: #fff;">View</button>
   <button class="btn btn-dark fw-bold" style="position:relative;left: 550px;height:50px;width:15%;color: #fff;">View</button>
 </div>
+
+<div class="graph bg-light">
+    <canvas id="appointmentChart" width="400" height="100"></canvas>
 </div>
-
-    <canvas id="appointmentChart" width="400" height="400"></canvas>
-
+</div>
 
 
 </div>
@@ -72,36 +73,57 @@ height:130px;
   bottom: 115px;
   left: 50px;
 }
+.graph{
+  position: absolute;
+  bottom:10px ;
+  width: 100%;
+  height: 45vh;
+}
 }
 </style>
  <script>
-        var ctx = document.getElementById('appointmentChart').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: ['Customers with Appointments', 'Customers without Appointments'],
-                datasets: [{
-                    label: 'Appointment Percentage',
-                    data: [{{ $percentage }}, {{ 100 - $percentage }}],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)', // Red for customers with appointments
-                        'rgba(54, 162, 235, 0.2)' // Blue for customers without appointments
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
+     var ctx = document.getElementById('appointmentChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['Customers with Appointments', 'Customers without Appointments', 'Booking Requests'],
+        datasets: [{
+            label: 'Appointment Percentage',
+            data: [{{ $percentage }}, {{ 100 - $percentage }}, 0], // Initial value for booking requests
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)', // Red for customers with appointments
+                'rgba(54, 162, 235, 0.2)', // Blue for customers without appointments
+                'rgba(255, 206, 86, 0.2)' // Yellow for booking requests
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
             }
-        });
+        }
+    }
+});
+
+// Fetch and update data for booking requests
+fetch('/api/booking-requests')
+    .then(response => response.json())
+    .then(data => {
+        myChart.data.datasets[0].data[2] = data.bookingRequests;
+        myChart.update();
+    })
+    .catch(error => {
+        console.error('Error fetching booking requests:', error);
+    });
+
+
     </script>
 </body>
 </html>

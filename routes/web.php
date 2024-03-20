@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\AdminController;
 use App\Http\Controllers\API\ApiController;
-use App\Http\Controllers\AppointmentController;
+// use App\Http\Controllers\AppointmentController;
 
 
 /*
@@ -35,16 +35,12 @@ Route::get('/booking_reserve', [ApiController::class, 'booking_reserve'])->name(
 Route::post('/booking_reserve',[ApiController::class, 'create'])->name('booking_reserve');
 Route::get('/transact_record', [ApiController::class, 'show'])->name('transact_record');
 Route::post('/transact_record',[ApiController::class, 'show'])->name('transact_record');
-
-
 Route::get('/editRecord/{id}/edit', [ApiController::class, 'edit'])->name('editRecord');
 Route::put('/editRecord/{id}/update', [ApiController::class, 'update'])->name('editRecordUpdate');
-// Assuming your controller is named TransactRecordController
-// Route::put('/transact_record/{id}', [ApiController::class, 'update'])->name('transact_record.update');
 
-// Route::get('/edit-record/{editRecord}/edit', [EditRecordController::class, 'edit'])->name('editRecord.edit');
-// Route::put('/edit-record/{editRecord}', [EditRecordController::class, 'update'])->name('editRecord.update');
-Route::get('/appointments', [AppointmentController::class, 'index'])->name('appointments.index');
+
+
+
 
 
 
@@ -107,7 +103,7 @@ Route::post('/Admin/admin_login', [UserController::class,'loginUser'])->name('ad
 
 Route::middleware(['checkrole:Admin'])->group(function () {
 Route::get('/Admin/admin_header', [UserController::class, 'adminHeader'])->name('admin_header');
-
+Route::get('/Admin/Register_therapist', [ApiController::class, 'Register_therapist'])->name('Register_therapist');
 Route::get('/Admin/admin_message', [UserController::class, 'Admin_smg'])->name('admin_message');
 Route::post('/Admin/admin_message', [UserController::class, 'showMessagePage'])->name('admin_message');
 
@@ -115,6 +111,8 @@ Route::post('/Admin/admin_message', [UserController::class, 'showMessagePage'])-
 Route::middleware(['checkrole:Admin'])->group(function () {
 
 Route::get('/Admin/admin_dashboard', [UserController::class, 'Admindashboard'])->name('admin_dashboard');
+Route::get('/Admin/Booking_request', [ApiController::class,'Booking_request'])->name('Booking_request');
+Route::post('/Admin/Booking_request', [ApiController::class,'Booking_request'])->name('Booking_request');
 
 });
 Route::middleware(['checkrole:User'])->group(function () {

@@ -102,5 +102,14 @@ class ApiController extends Controller
         }
      }
 
+///ADMIN USER
+    public function Booking_request(){
+    $book_report = Book_req::all();
+    return view('/Admin/Booking_request', compact('book_report'));
+    }
+    public function Register_therapist(Request $request){
+    return view('/Admin/Register_therapist');
 
+
+    }
 }

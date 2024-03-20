@@ -7,11 +7,21 @@ use Illuminate\Http\Request;
 use App\Models\Message;
 class MessageController extends Controller
 {
-    public function showMessagePage()
-{
-    $messages = Message::all(); // Retrieve all messages
-    return view('message')->with('messages', $messages);
-}
+   public function saveMessage(Request $request)
+    {
+        $message = new Message();
+        $message->user_id = $request->user()->id; // Assuming authenticated user
+        $message->content = $request->input('content');
+        $message->save();
+
+        return response()->json($message);
+    }
+
+    public function getMessages()
+    {
+        $messages = Message::latest()->take(50)->get(); // Fetch latest 50 messages
+        return response()->json($messages);
+    }
     public function index()
     {
         //

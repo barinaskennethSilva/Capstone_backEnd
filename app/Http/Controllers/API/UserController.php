@@ -23,10 +23,9 @@ class UserController extends Controller
     }
      public function Admindashboard(){
         $totalCustomers = Book_req::count();
-        $customersWithAppointments = Appointment::distinct()->count('customer_id');
+        $customersWithAppointments = Book_req::distinct()->count('id');
         $percentage = $totalCustomers > 0 ? ($customersWithAppointments / $totalCustomers) * 100 : 0;
         return view('/Admin/admin_dashboard', compact('percentage'));
-        return view('/Admin/admin_dashboard');
     }
 public function Admin_smg(){
         return view('/Admin/admin_message');
@@ -157,15 +156,6 @@ public function logout(Request $request): RedirectResponse
     // If the user is not authenticated, redirect them to the login page
     return redirect('/login');
 }
-
-
-
-
-
-
-
-
-
 public function transactions()
 {
     return $this->hasMany(BookReg::class);

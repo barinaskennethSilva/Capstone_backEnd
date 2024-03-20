@@ -74,14 +74,18 @@
 </div> </div>
   <ul class="navbar-nav">
         <li class="nav-item">
-          <RouterLink class="nav-link active text-white fw-bold nav-dash" aria-current="page" to="Dash_Home"><i class="bi bi-house-door icons"></i> <label style="position:relative;right:16px;">Dashboard</label></RouterLink>
+          <a class="nav-link active text-white fw-bold nav-dash" aria-current="page" href="{{ route('admin_dashboard') }}"><i class="bi bi-house-door icons"></i> <label style="position:relative;right:16px;">Dashboard</label></a>
         </li>
         <li class="nav-item">
-          <RouterLink class="nav-link text-white fw-bold nav-dash" to="/booking_reserve"><i class="bi bi-book icons"></i><label class="nav-label" style="position:relative;left:5px;"> Booking Request</label></RouterLink>
-        </li>
+            <a class="nav-link text-white fw-bold nav-dash" href="{{ route('Booking_request') }}" @click="dashOpen"><i class="bi bi-book icons"></i><label class="nav-label" style="position:relative;left:5px;"> Booking Request</label></a></li>
         <li class="nav-item">
-          <RouterLink class="nav-link text-white fw-bold nav-dash" to="/transact_record"><i class="bi bi-bookmarks icons"></i><label class="nav-label ms-3">Register Therapist</label></RouterLink>
+          <a class="nav-link text-white fw-bold nav-dash" href="{{ route('Register_therapist') }}"><i class="bi bi-bookmarks icons"></i><label class="nav-label ms-3">Register Therapist</label></a>
         </li>
+
+        <li class="nav-item">
+          <a class="nav-link text-white fw-bold nav-dash" href="{{ route('Register_therapist') }}"><i class="bi bi-bookmarks icons"></i><label class="nav-label me-4">Therapist List</label></a>
+        </li>
+
         <li class="nav-item">
           <RouterLink class="login-btn nav-link text-white fw-bold nav-dash" to="/calendar"><i class="bi bi-calendar3 icons"></i><label class="nav-label me-4"> Profit Report</label></RouterLink>
         </li>
@@ -106,10 +110,10 @@
 </div> </div>
 </li>
  <li class="nav-item">
-          <RouterLink class="nav-link active text-white fw-bold nav-dash" aria-current="page" to="Dash_Home" @click="dashOpen"><i class="bi bi-house-door icons"></i> <label style="position:relative;right:20px;">Dashboard</label></RouterLink>
+           <a class="nav-link active text-white fw-bold nav-dash" aria-current="page" href="{{ route('admin_dashboard') }}"><i class="bi bi-house-door icons"></i> <label style="position:relative;right:16px;">Dashboard</label></a>
         </li>
         <li class="nav-item">
-          <RouterLink class="nav-link text-white fw-bold nav-dash" to="/booking_reserve" @click="dashOpen"><i class="bi bi-book icons"></i><label class="nav-label" style="position:relative;left:20px;"> Booking Request</label></RouterLink>
+          <a class="nav-link text-white fw-bold nav-dash" href="{{ route('Booking_request') }}" @click="dashOpen"><i class="bi bi-book icons"></i><label class="nav-label" style="position:relative;left:20px;"> Booking Request</label></a>
         </li>
         <li class="nav-item">
           <RouterLink class="nav-link text-white fw-bold nav-dash" to="/transact_record" @click="dashOpen"><i class="bi bi-bookmarks icons"></i><label class="nav-label ms-4">Transaction Record</label></RouterLink>
