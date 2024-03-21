@@ -15,8 +15,8 @@
 
 </head>
 <body>
-  <style type="text/css">
-    @media screen and (min-width:1024px){
+	<style type="text/css">
+		@media screen and (min-width:1024px){
 .container{
   width:80% !important;
   height:93.3vh;
@@ -25,26 +25,27 @@
   left: 305px;
   padding: 0px;
   margin: 0px;
+  
 }
 .tableReq{
-  width: 90%;
-  margin-left: 50px;
+	width: 90%;
+	margin-left: 50px;
 }
 .search{
-  background-color: #111;
-  border-radius: 20px;
-  width: 30%;
-  height: 50px;
-  display: flex;
-  float: right;
-  position: relative;
-  right: 10px;
-  bottom: 35px;
+	background-color: #111;
+	border-radius: 20px;
+	width: 30%;
+	height: 50px;
+	display: flex;
+	float: right;
+	position: relative;
+	right: 10px;
+	bottom: 35px;
  }
 .search form input{
-  height: 100%;
-  width: 83%;
-  border-top-left-radius: 20px;
+	height: 100%;
+	width: 83%;
+	border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     outline: none;
     border:none;
@@ -53,13 +54,13 @@
     color: #fff;
 }
 .search form button{
-  width: 50px;
-  background-color: transparent;
-  color: #fff;
-  border: none;
+	width: 50px;
+	background-color: transparent;
+	color: #fff;
+	border: none;
 }
 form{
-  width: 100%;
+	width: 100%;
 }
 .footer{
     height: 80px;
@@ -67,62 +68,48 @@ form{
     padding: 0px;
 }
 }
-  </style>
+	</style>
 <div class="container">
 <div class="footer bg-light">
-    <label style="font-size: 30px;position: relative;top: 10px;left: 10px;font-weight: 600;">Booking Request</label>
+     <label style="font-size: 30px;position: relative;bottom: 30px;left: 10px;font-weight: 600;">Therapist Register</label>
 <div class="search">
-  <form>
+	<form>
 <input type="text" placeholder="Search...">
 <button class="searchBtn"><i class="bi bi-search"></i></button>
 </form>
 </div>
 </div>
 <div class="tableReq">
-  <table class="table table-striped table-hover">
-   <thead style="overflow-y: auto;overflow-x: hidden;">
+	<table class="table">
+  <thead>
     <tr>
-      <th scope="col">Client Name</th>
-      <th scope="col">Contact Number</th>
+      <th scope="col">Employee id</th>
+      <th scope="col">Employee Profile</th>
+      <th scope="col">Employee Name</th>
+      <th scope="col">Permanent Address</th>
       <th scope="col">Email Address</th>
-      <th scope="col">Type of Services</th>
-      <th scope="col">Time Interval</th>
-      <th scope="col">Date of Arrival</th>
-      <th scope="col">Payment</th>
+      <th scope="col">Contact Number</th>
+      <th scope="col">Skill</th>
       <th scope="col">Status</th>
       <th scope="col">Action</th>
 
     </tr>
   </thead>
-  <tbody>
-     @foreach($book_report as $Edit_record)
+  <tbody style="overflow-x:hidden;overflow-y: auto;">
     <tr>
-      <td>{{ $Edit_record->Client_name }}</td>
-      <td>{{ $Edit_record->contactNum }}</td>
-      <td>{{ $Edit_record->cust_email }}</td>
-      <td>{{ $Edit_record->Type_service }}</td>
-       <td>{{ $Edit_record->time_interval }}</td>
-       <td>{{ $Edit_record->Date_schedule }}</td>
-              <td>{{ $Edit_record->price }}</td>
-       <td>{{ $Edit_record->status }}</td>
-       <td><div class="d-flex">
-      <a  class="btn btn-primary me-2" href="{{ route('statusEdit', $Edit_record->id) }}" class="btn btn-danger btn-sm">Edit</a>
-      <form id="deleteForm" action="{{ route('Edit_record.delete', $Edit_record->id) }}" method="POST">
-    @csrf
-    @method('DELETE')
-    <button type="submit" onclick="return confirmDelete();" class="btn btn-danger">Delete</button>
-</form>
-</div></td>
-
+      <th scope="row">001</th>
+      <td><img src="/AdminPic/Jilliejens.png" style="height:60px;border-radius: 50%;width:60PX;"></td>
+      <td>Kenneth Barinas</td>
+      <td>Pagadian City</td>
+      <td>kbarinas@gmail.com</td>
+      <td>09876543211</td>
+      <td>Therapist</td>
+      <td>Active</td>
+      <td><div class="d-flex"><button class="btn btn-primary">Edit</button><button class=" ms-2 btn btn-danger">Delete</button></div></td>
     </tr>
-     @endforeach 
-  </tbody></table>
+    
+  </tbody>
+</table>
 </div>
-<script>
-    function confirmDelete() {
-        return confirm("Are you sure to delete this?");
-    }
-</script>
-
 </body>
 </html>

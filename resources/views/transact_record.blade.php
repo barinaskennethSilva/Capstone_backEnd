@@ -51,13 +51,14 @@ th{
     <table class="table">
      <thead>
     <tr class="header-tbl">
-      <th scope="col" class="text-white">Customer Name</th>
-      <th scope="col" class="text-white">Contact Number</th>
-       <th scope="col" class="text-white">Type of Massage</th>
-      <th scope="col" class="text-white">Time Interval</th>
-            <th scope="col" class="text-white">Date of Arrival</th>
-      <th scope="col" class="text-white">Payment</th>
-            <th scope="col" class="text-white">Action</th>
+    <th scope="col" class="text-white">Customer Name</th>
+    <th scope="col" class="text-white">Contact Number</th>
+    <th scope="col" class="text-white">Type of Massage</th>
+    <th scope="col" class="text-white">Time Interval</th>
+    <th scope="col" class="text-white">Date of Arrival</th>
+    <th scope="col" class="text-white">Payment</th>
+    <th scope="col" class="text-white">Status</th>
+    <th scope="col" class="text-white">Action</th>
     </tr>
   </thead>
         <tbody style="overflow-y: auto;overflow-x: hidden;text-align: center;">
@@ -69,6 +70,7 @@ th{
                     <td>{{ $transact_record->time_interval }}</td>
                     <td>{{ $transact_record->Date_schedule }}</td>
                     <td>{{ $transact_record->price }}</td>
+                    <td>{{ $transact_record->status }}</td>
 
                     <!-- Add more columns if needed -->
                     <td>

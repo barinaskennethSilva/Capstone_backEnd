@@ -11,16 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-         Schema::create('admin', function (Blueprint $table) {
+         Schema::create('therapist', function (Blueprint $table) {
             $table->id();
-            $table->string('fname');
-            $table->string('lname');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('contactNum');
+            $table->string('emp_id');
+            $table->string('emp_profile');
+            $table->string('emp_fname');
+            $table->string('emp_lname');
+            $table->string('email_add')->unique();
             $table->string('Permanent_address');
-            $table->string('Position');
-            $table->string('password');
+            $table->string('contactNum');
+            $table->string('skills');
+            $table->string('status');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -31,5 +32,5 @@ return new class extends Migration
      */
     public function down(): void
     {
-         Schema::dropIfExists('admin');    }
+         Schema::dropIfExists('therapist');    }
 };

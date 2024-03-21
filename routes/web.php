@@ -39,12 +39,6 @@ Route::get('/editRecord/{id}/edit', [ApiController::class, 'edit'])->name('editR
 Route::put('/editRecord/{id}/update', [ApiController::class, 'update'])->name('editRecordUpdate');
 
 
-
-
-
-
-
-
 use Carbon\Carbon;
 Route::get('/calendar/{year?}/{month?}', function ($year = null, $month = null) {
     $currentMonth = Carbon::now();
@@ -104,6 +98,7 @@ Route::post('/Admin/admin_login', [UserController::class,'loginUser'])->name('ad
 Route::middleware(['checkrole:Admin'])->group(function () {
 Route::get('/Admin/admin_header', [UserController::class, 'adminHeader'])->name('admin_header');
 Route::get('/Admin/Register_therapist', [ApiController::class, 'Register_therapist'])->name('Register_therapist');
+Route::post('/Admin/Register_therapist', [ApiController::class, 'uploadImage'])->name('Register_therapistUpload');
 Route::get('/Admin/admin_message', [UserController::class, 'Admin_smg'])->name('admin_message');
 Route::post('/Admin/admin_message', [UserController::class, 'showMessagePage'])->name('admin_message');
 
@@ -113,6 +108,12 @@ Route::middleware(['checkrole:Admin'])->group(function () {
 Route::get('/Admin/admin_dashboard', [UserController::class, 'Admindashboard'])->name('admin_dashboard');
 Route::get('/Admin/Booking_request', [ApiController::class,'Booking_request'])->name('Booking_request');
 Route::post('/Admin/Booking_request', [ApiController::class,'Booking_request'])->name('Booking_request');
+Route::get('/statusEdit/{id}/editStatus', [ApiController::class,'editStatus'])->name('statusEdit');
+Route::put('/statusEdit/{id}/updateStatus', [ApiController::class,'updateStatus'])->name('statusEditUpdate');
+Route::delete('/Edit_record/{id}', [ApiController::class, 'delete'])->name('Edit_record.delete');
+Route::get('/Admin/Therapist_list', [ApiController::class,'Therapist_list'])->name('Therapist_list');
+Route::post('/Admin/Therapist_list', [ApiController::class,'Therapist_record'])->name('Therapist_list');
+Route::get('/Admin/Profit_report', [ApiController::class,'Profit_report'])->name('Profit_report');
 
 });
 Route::middleware(['checkrole:User'])->group(function () {
