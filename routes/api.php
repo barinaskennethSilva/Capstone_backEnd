@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\ApiController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\API\AppointmentController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -34,10 +36,12 @@ Route::get('logout','userLogout');
 Route::post('login','loginUser');
 })->middleware('auth:api');
 
-Route::controller(ApiController::class)->group(function(){
-Route::post('book_req','create');
-Route::get('booking_record','show');
-Route::put('update_record/{id}/update','update');
+Route::controller(AppointmentController::class)->group(function(){
+Route::post('book_req','bookreqApi');
+Route::get('/book_req', 'bookreqApi');
+
+// Route::get('booking_record','show');
+// Route::put('update_record/{id}/update','update');
 
 })->middleware('auth:api');
 

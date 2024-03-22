@@ -82,6 +82,7 @@ form{
 <div class="tableReq">
 	<table class="table">
   <thead>
+
     <tr>
       <th scope="col">Employee id</th>
       <th scope="col">Employee Profile</th>
@@ -96,18 +97,27 @@ form{
     </tr>
   </thead>
   <tbody style="overflow-x:hidden;overflow-y: auto;">
+             @foreach($list_therapist as $List_therapist)
+
     <tr>
-      <th scope="row">001</th>
-      <td><img src="/AdminPic/Jilliejens.png" style="height:60px;border-radius: 50%;width:60PX;"></td>
-      <td>Kenneth Barinas</td>
-      <td>Pagadian City</td>
-      <td>kbarinas@gmail.com</td>
-      <td>09876543211</td>
-      <td>Therapist</td>
-      <td>Active</td>
-      <td><div class="d-flex"><button class="btn btn-primary">Edit</button><button class=" ms-2 btn btn-danger">Delete</button></div></td>
+      <th scope="row">{{ $List_therapist->emp_id }}</th>
+      <td><img src="/registration_pic/{{ $List_therapist->emp_profile }}" style="height:60px;border-radius: 50%;width:60PX;"></td>
+      <td>{{ $List_therapist->emp_fname }} {{ $List_therapist->emp_lname }}</td>
+      <td>{{ $List_therapist->Permanent_address }}</td>
+      <td>{{ $List_therapist->email_add }}</td>
+      <td>{{ $List_therapist->contactNum }}</td>
+      <td>{{ $List_therapist->skills }}</td>
+      <td>{{ $List_therapist->status }}</td>
+      <td><div class="d-flex">
+ <a  class="btn btn-primary me-2" href="{{ route('update_TherapistList', $List_therapist->id) }}" class="btn btn-danger btn-sm">Edit</a>
+  <form id="deleteForm" action="{{ route('deleteList.delete', $List_therapist->id) }}" method="POST">
+    @csrf
+    @method('DELETE')
+    <button type="submit" onclick="return confirmDelete();" class="btn btn-danger">Delete</button>
+</form>    </div></td>
     </tr>
-    
+         @endforeach 
+
   </tbody>
 </table>
 </div>

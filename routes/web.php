@@ -113,7 +113,13 @@ Route::put('/statusEdit/{id}/updateStatus', [ApiController::class,'updateStatus'
 Route::delete('/Edit_record/{id}', [ApiController::class, 'delete'])->name('Edit_record.delete');
 Route::get('/Admin/Therapist_list', [ApiController::class,'Therapist_list'])->name('Therapist_list');
 Route::post('/Admin/Therapist_list', [ApiController::class,'Therapist_record'])->name('Therapist_list');
-Route::get('/Admin/Profit_report', [ApiController::class,'Profit_report'])->name('Profit_report');
+Route::get('/Admin/Edit_TherapistList/{id}/EditList', [ApiController::class,'EditList'])->name('update_TherapistList');
+Route::put('/Admin/Edit_TherapistList/{id}/updateList', [ApiController::class,'updateList'])->name('Edit_TherapistList');
+Route::delete('/Therapist_list/{id}', [ApiController::class, 'deleteList'])->name('deleteList.delete');
+
+
+Route::get('/Admin/Profit_report/{year?}/{month?}', [ApiController::class, 'Profit_report'])->name('Profit_report');
+Route::post('/Admin/Profit_report', [ApiController::class, 'showRecordsByDate'])->name('show-records-by-date');
 
 });
 Route::middleware(['checkrole:User'])->group(function () {

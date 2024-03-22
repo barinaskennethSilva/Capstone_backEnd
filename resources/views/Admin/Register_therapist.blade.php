@@ -101,7 +101,7 @@ text-align: center;
 
  <div class="mb-3 ms-2 w-50">
     <label for="lname" class="form-label">Last Name</label>
-    <input type="text" class="form-control" id="emp_lname" aria-describedby="alertsms">
+    <input type="text" class="form-control" id="emp_lname" name="emp_lname" aria-describedby="alertsms">
       <div id="alertsms" class="form-text text-center text-danger fw-bold"></div>
   </div>
 
@@ -133,7 +133,7 @@ text-align: center;
    <div class="d-flex mt-5 w-100 ms-2">
   <div class="mb-3 w-50">
     <label for="Position" class="form-label">Skills</label>
-    <input type="text" value="Therapist" name="Position" class="form-control" aria-describedby="alertsms">
+    <input type="text" value="Therapist" name="skills" class="form-control" aria-describedby="alertsms">
 
   </div>
 
@@ -150,8 +150,8 @@ text-align: center;
 <div class="d-flex mt-5 w-100 ms-2">
  
 <div class="mb-3 w-50 ms-4 ms-2">
-    <label for="profile" class="form-label">Permanent Address</label>
-    <input type="text" class="form-control" name="profile" id="profile" aria-describedby="alertsms">
+    <label for="Permanent_address" class="form-label">Permanent Address</label>
+    <input type="text" class="form-control" name="Permanent_address" id="Permanent_address" aria-describedby="alertsms">
          <div id="alertsms" class="form-text text-center text-danger fw-bold"></div>
   </div>
 
@@ -160,11 +160,11 @@ text-align: center;
  <label for="gender" class="form-label">Gender</label>
 <div class="d-flex">
   <div class=" form-check">
-    <input type="checkbox" class="form-check-input" id="gender01">
+    <input type="checkbox" class="form-check-input" name="gender" value="Male" id="gender01">
     <label class="form-check-label" for="gender">Male</label>
   </div>
   <div class=" ms-3 form-check">
-    <input type="checkbox" class="form-check-input" id="gender02">
+    <input type="checkbox" class="form-check-input" name="gender" value="Female" id="gender02">
     <label class="form-check-label" for="gender">Female</label>
   </div>
   </div>

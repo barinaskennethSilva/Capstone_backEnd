@@ -84,7 +84,8 @@ form{
     <tr>
       <th scope="col">Client Name</th>
       <th scope="col">Contact Number</th>
-      <th scope="col">Email Address</th>
+      <th scope="col">Email Address</th> 
+      <th scope="col">Agent Therapist</th>
       <th scope="col">Type of Services</th>
       <th scope="col">Time Interval</th>
       <th scope="col">Date of Arrival</th>
@@ -100,6 +101,7 @@ form{
       <td>{{ $Edit_record->Client_name }}</td>
       <td>{{ $Edit_record->contactNum }}</td>
       <td>{{ $Edit_record->cust_email }}</td>
+            <td>{{ $Edit_record->Agent_therapist }}</td>
       <td>{{ $Edit_record->Type_service }}</td>
        <td>{{ $Edit_record->time_interval }}</td>
        <td>{{ $Edit_record->Date_schedule }}</td>

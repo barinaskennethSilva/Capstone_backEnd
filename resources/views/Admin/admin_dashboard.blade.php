@@ -113,7 +113,7 @@ var myChart = new Chart(ctx, {
 });
 
 // Fetch and update data for booking requests
-fetch('/api/booking-requests')
+fetch('http://127.0.0.1:8000/api/book_req')
     .then(response => response.json())
     .then(data => {
         myChart.data.datasets[0].data[2] = data.bookingRequests;
