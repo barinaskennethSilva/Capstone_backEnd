@@ -30,6 +30,10 @@ Route::get('/', function () {
         Route::post('/login', [UserController::class,'loginUser'])->name('login');
 
 // USER MAIN PAGES
+Route::get('User_profile', [UserController::class, 'User_profile'])->name('User_profile');
+Route::put('profile.update', [UserController::class, 'profile_update'])->name('profile.update');
+Route::put('User_profile', [UserController::class, 'User_profileImg'])->name('profile.updateImage');
+
 Route::get('/header', [UserController::class, 'header'])->name('header');
 Route::get('/booking_reserve', [ApiController::class, 'booking_reserve'])->name('booking_reserve');
 Route::post('/booking_reserve',[ApiController::class, 'create'])->name('booking_reserve');
@@ -105,14 +109,21 @@ Route::post('/Admin/admin_message', [UserController::class, 'showMessagePage'])-
 });
 Route::middleware(['checkrole:Admin'])->group(function () {
 
+// Route::get('User_profile', [UserController::class, 'User_profile'])->name('User_profile');
 Route::get('/Admin/admin_dashboard', [UserController::class, 'Admindashboard'])->name('admin_dashboard');
 Route::get('/Admin/Booking_request', [ApiController::class,'Booking_request'])->name('Booking_request');
 Route::post('/Admin/Booking_request', [ApiController::class,'Booking_request'])->name('Booking_request');
+
+Route::get('/Admin/Admin_profile', [UserController::class, 'Admin_profile'])->name('Admin_profile');
+
+Route::get('/Admin/searchBooking_req', [ApiController::class,'search_bookingReq'])->name('search_bookingResearch');
 Route::get('/statusEdit/{id}/editStatus', [ApiController::class,'editStatus'])->name('statusEdit');
 Route::put('/statusEdit/{id}/updateStatus', [ApiController::class,'updateStatus'])->name('statusEditUpdate');
 Route::delete('/Edit_record/{id}', [ApiController::class, 'delete'])->name('Edit_record.delete');
 Route::get('/Admin/Therapist_list', [ApiController::class,'Therapist_list'])->name('Therapist_list');
 Route::post('/Admin/Therapist_list', [ApiController::class,'Therapist_record'])->name('Therapist_list');
+Route::get('/Admin/search_therapist', [ApiController::class,'search_record'])->name('search');
+
 Route::get('/Admin/Edit_TherapistList/{id}/EditList', [ApiController::class,'EditList'])->name('update_TherapistList');
 Route::put('/Admin/Edit_TherapistList/{id}/updateList', [ApiController::class,'updateList'])->name('Edit_TherapistList');
 Route::delete('/Therapist_list/{id}', [ApiController::class, 'deleteList'])->name('deleteList.delete');

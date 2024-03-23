@@ -27,60 +27,30 @@
   margin: 0px;
   
 }
-.tableReq{
-	width: 90%;
-	margin-left: 50px;
-}
-.search{
-	background-color: #111;
-	border-radius: 20px;
-	width: 30%;
-	height: 50px;
-	display: flex;
-	float: right;
-	position: relative;
-	right: 10px;
-	bottom: 35px;
- }
-.search form input{
-	height: 100%;
-	width: 83%;
-	border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-    outline: none;
-    border:none;
-    background-color: transparent;
-    padding-left: 10px;
-    color: #fff;
-}
-.search form button{
-	width: 50px;
-	background-color: transparent;
-	color: #fff;
-	border: none;
-}
-form{
-	width: 100%;
-}
-.footer{
+.topHeader{
+    position: relative;
+    top:2px;
     height: 80px;
-    margin: 0px;
-    padding: 0px;
 }
+.close{
+   position: relative;
+   left: 990px;
+   font-size: 30px;
+   top: 15px;
+
 }
-	</style>
+</style>
 <div class="container">
-<div class="footer bg-light">
-     <label style="font-size: 30px;position: relative;bottom: 30px;left: 10px;font-weight: 600;">Therapist Register</label>
-<div class="search">
-	<form  action="{{ route('search') }}" method="GET">
-<input type="text" name="query" placeholder="Search..." autocomplete="off">
-<button class="searchBtn text-white" type="submit"><i class="bi bi-search"></i></button>
-</form>
+
+<div class="topHeader bg-light">
+     <label style="font-size: 30px;position: relative;bottom: -10px;left: 10px;font-weight: 600;">Search Result</label>
+<a class="close" href="{{ route('Therapist_list') }}">
+   <i class="bi bi-x-lg "></i> 
+</a>
 </div>
-</div>
-<div class="tableReq" style="max-height: 78vh; overflow-x: hidden;overflow-y: auto;">
-	<table class="table table-bordered table-hover" >
+
+<div class="tableReq">
+    <table class="table">
   <thead>
 
     <tr>
@@ -96,31 +66,36 @@ form{
 
     </tr>
   </thead>
-  
-<tbody >
-  
-             @foreach($list_therapist as $List_therapist)
+  <tbody style="overflow-x:hidden;overflow-y: auto;">
+            @if ($results->count() > 0)
+ @foreach ($results as $result)
     <tr>
-      <th scope="row">{{ $List_therapist->emp_id }}</th>
-      <td><img src="/registration_pic/{{ $List_therapist->emp_profile }}" style="height:60px;border-radius: 50%;width:60PX;"></td>
-      <td>{{ $List_therapist->emp_fname }} {{ $List_therapist->emp_lname }}</td>
-      <td>{{ $List_therapist->Permanent_address }}</td>
-      <td>{{ $List_therapist->email_add }}</td>
-      <td>{{ $List_therapist->contactNum }}</td>
-      <td>{{ $List_therapist->skills }}</td>
-      <td>{{ $List_therapist->status }}</td>
+      <th scope="row">{{ $result->emp_id }}</th>
+      <td><img src="/registration_pic/{{ $result->emp_profile }}" style="height:60px;border-radius: 50%;width:60PX;"></td>
+      <td>{{ $result->emp_fname }} {{ $result->emp_lname }}</td>
+      <td>{{ $result->Permanent_address }}</td>
+      <td>{{ $result->email_add }}</td>
+      <td>{{ $result->contactNum }}</td>
+      <td>{{ $result->skills }}</td>
+      <td>{{ $result->status }}</td>
       <td><div class="d-flex">
- <a  class="btn btn-primary me-2" href="{{ route('update_TherapistList', $List_therapist->id) }}" class="btn btn-danger btn-sm">Edit</a>
-  <form id="deleteForm" action="{{ route('deleteList.delete', $List_therapist->id) }}" method="POST">
+ <a  class="btn btn-primary me-2" href="{{ route('update_TherapistList', $result->id) }}" class="btn btn-danger btn-sm">Edit</a>
+  <form id="deleteForm" action="{{ route('deleteList.delete', $result->id) }}" method="POST">
     @csrf
     @method('DELETE')
     <button type="submit" onclick="return confirmDelete();" class="btn btn-danger">Delete</button>
 </form>    </div></td>
     </tr>
          @endforeach 
-
+@else
+    <p>No results found for the search query.</p>
+@endif
   </tbody>
 </table>
+</div>
+
+
+
 </div>
 </body>
 </html>

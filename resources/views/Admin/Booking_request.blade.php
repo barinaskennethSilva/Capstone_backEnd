@@ -72,15 +72,16 @@ form{
 <div class="footer bg-light">
     <label style="font-size: 30px;position: relative;top: 10px;left: 10px;font-weight: 600;">Booking Request</label>
 <div class="search">
-  <form>
-<input type="text" placeholder="Search...">
+
+  <form  action="{{ route('search_bookingResearch') }}" method="GET">
+<input type="text" placeholder="Search..." name="query">
 <button class="searchBtn"><i class="bi bi-search"></i></button>
 </form>
 </div>
 </div>
-<div class="tableReq">
-  <table class="table table-striped table-hover">
-   <thead style="overflow-y: auto;overflow-x: hidden;">
+<div class="tableReq" style="max-height: 78vh; overflow-x: hidden;overflow-y: auto;">
+  <table class="table table-bordered table-hover">
+   <thead>
     <tr>
       <th scope="col">Client Name</th>
       <th scope="col">Contact Number</th>
@@ -95,7 +96,7 @@ form{
 
     </tr>
   </thead>
-  <tbody>
+<tbody>
      @foreach($book_report as $Edit_record)
     <tr>
       <td>{{ $Edit_record->Client_name }}</td>

@@ -37,6 +37,9 @@ public function Admin_smg(){
     public function AdminSignUp(){
                 return view('/Admin/admin_register');
     }   
+    public function Admin_profile(){
+            return view('/Admin/Admin_profile');
+}
 /* FOR USER CONTROLLER */
 public function AboutUs(){
     return view('AboutUs');
@@ -160,5 +163,61 @@ public function transactions()
 {
     return $this->hasMany(BookReg::class);
 }
+//FOR USER Profile
+public function User_profile(){
+            return view('/User_profile');
 
+}
+
+public function User_profileImg(Request $request)
+{
+ $user = Auth::user();
+
+$request->validate([
+    'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+]);
+
+$imageName = $user->user_profile;
+
+if ($request->hasFile('profile_image')) {
+    $image = $request->file('profile_image');
+
+    // Ensure the file is uploaded successfully
+    if ($image->isValid()) {
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+
+        // Store the image in the storage folder
+        // $image->storeAs('User_folder', $imageName);
+        $image->move(public_path('User_folder'), $imageName);
+
+        // Delete old profile image if exists
+        // if ($user->user_profile) {
+        //     User::delete(public_path('User_folder') . $user->user_profile);
+        // }
+    }
+}
+
+$user->user_profile = $imageName;
+$user->save();
+
+return redirect()->back()->with('success', 'Profile updated successfully.');
+
+}
+public function profile_update(Request $request)
+{
+   $user = Auth::user();
+$user->fname = $request->input('fname');
+$user->lname = $request->input('lname');
+$user->email = $request->input('email');
+$user->contactNum = $request->input('contactNum');
+$user->Permanent_address = $request->input('Permanent_address');
+$user->password = $request->input('password');
+
+// Update the profile image name in the user model
+
+$user->save();
+
+return redirect()->back()->with('success', 'Profile updated successfully.');
+
+}
 }

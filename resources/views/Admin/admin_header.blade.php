@@ -26,7 +26,7 @@ style="margin-right:10px">
 <img src="{{ asset('./AdminPic/JillieJens.png') }}" class="rounded-circle border border-light me-2" height="35" width="35" alt="Black and White Portrait of a Man" loading="lazy"/>
 </button>
 <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1" style="margin-left:-80px;">
-<li><a class="dropdown-item" href="#">My profile</a></li>
+<li><a class="dropdown-item" href=" {{ route('Admin_profile') }}">My profile</a></li>
 <li><a class="dropdown-item" href="#">Settings</a></li>
 <li><a class="dropdown-item" href="#"><form method="POST" action="{{ route('logout') }}">
 @csrf

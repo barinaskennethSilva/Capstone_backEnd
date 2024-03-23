@@ -159,15 +159,18 @@ font-size:45px;
    right: 120px;
 }
 .therapist-agent{
-  width:200px;
+ width: 200px;
   height: 200px;
   border-radius: 5px;
   margin-left: 10px;
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 .therapist-agent img{
    border-top-left-radius: 5px;
       border-top-right-radius: 5px;
   width:100%;
+  height: 200px;
 }
 .agent-data{
   text-align: center;
@@ -425,34 +428,21 @@ font-size:45px;
       <div class="step1">
         <div style="overflow-y: auto !important;width:100%;height:100%;overflow-x: hidden;">
 
-<div class="w-100 d-flex">
-<div class="therapist-agent shadow bg-light">
-  <img src="./img/pic1.jpg" class=" border border-light me-2" alt="profile" loading="lazy"/>
-<div class="agent-data">
-  <input type="radio" name="massage_therapist" value="Maviel Therapist">
-  <label>Maviel Therapist</label>
-  <span>Massage Therapist</span>
-</div>
-</div>
+<div class="w-100 d-flex" style="overflow-x:auto;overflow-y: hidden;height: 43vh;">
+
+<!---- therapist ---->
+             @foreach($list_therapist as $List_therapist)
 
 <div class="therapist-agent shadow bg-light">
-  <img src="./img/pic1.jpg" class=" border border-light me-2" alt="profile" loading="lazy"/>
+  <img src="./registration_pic/{{ $List_therapist->emp_profile }}" class=" border border-light me-2" alt="profile" loading="lazy"/>
 <div class="agent-data">
-  <input type="radio" name="massage_therapist" value="Xialong Therapist">
-  <label>Xialong Therapist</label>
-  <span>Massage Therapist</span>
+  <input type="radio" name="massage_therapist" value="{{ $List_therapist->emp_fname }} {{ $List_therapist->emp_lname }}">
+  <label>{{ $List_therapist->emp_fname }} {{ $List_therapist->emp_lname }}</label>
+  <span>{{ $List_therapist->skills }}</span>
 </div>
 </div>
+         @endforeach 
 
-
-<div class="therapist-agent shadow bg-light">
-  <img src="./img/pic1.jpg" class=" border border-light me-2" alt="profile" loading="lazy"/>
-<div class="agent-data">
-  <input type="radio" name="massage_therapist" value="Rod Mier Therapist">
-  <label>Rod Mier Therapist</label>
-  <span>Massage Therapist</span>
-</div>
-</div>
 </div>
 
 

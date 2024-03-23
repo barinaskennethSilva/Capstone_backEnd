@@ -15,8 +15,11 @@ class ApiController extends Controller
     public function transact_record(){
         return view('/transact_record');
     }
-      public function booking_reserve(){
-        return view('/booking_reserve');
+      public function booking_reserve(Request $request){
+        $list_therapist = Therapist_req::all();
+    return view('booking_reserve', compact('list_therapist'));
+    
+        // return view('/booking_reserve');
     }
      public function calendar(){
         return view('/calendar');
@@ -37,7 +40,8 @@ class ApiController extends Controller
     $book_req->status = $status;
     $book_req->save();
     $message = "Your popup message here";
-    return view('/booking_reserve')->with('message', $message);
+     $list_therapist = Therapist_req::all();
+    return view('/booking_reserve')->with(['message'=> $message,'list_therapist' => $list_therapist]);
 
     }
 
@@ -113,41 +117,52 @@ class ApiController extends Controller
     }
     public function uploadImage(Request $request){
         
-   //      // Generate the auto-generated ID
-        $latestRecord = Therapist_req::latest()->first();
-         $newNumericPart = $latestRecord ? ((int)explode('-', $latestRecord->emp_id)[1]) + 1 : 1;
-         $newId = '12-' . str_pad($newNumericPart, 4, '0', STR_PAD_LEFT);
-        
-        
- $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+  $request->validate([
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'email_add' => 'required|email',
+    ]);
 
-        $therapist_req = new Therapist_req();
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('registration_pic'), $imageName);
-        }
+    // Check if the email already exists in the database
+    $existingTherapist = Therapist_req::where('email_add', $request->input('email_add'))->first();
 
-        $therapist_req->emp_id = $newId;
-        $therapist_req->emp_profile = $imageName;
-        $therapist_req->emp_fname = $request->input('emp_fname');
-        $therapist_req->emp_lname = $request->input('emp_lname');
-        $therapist_req->email_add = $request->input('email_add');
-        $therapist_req->Permanent_address = $request->input('Permanent_address');
-        $therapist_req->contactNum = $request->input('contactNum');
-        $therapist_req->skills = $request->input('skills');
-        $therapist_req->Age = $request->input('Age');
-        $therapist_req->status = $request->input('status');
-        // Save the model
-        $therapist_req->save();
-        
-        // Return a response with success message
-        return back()->with('success', 'Therapist request submitted successfully.');
-   
+    if ($existingTherapist) {
+        $message = 'Email address already taken.';
+        return redirect()->route('Register_therapist')->with('error', $message)->withInput();
     }
 
+    // Generate the auto-generated ID
+    $latestRecord = Therapist_req::latest()->first();
+    $newNumericPart = $latestRecord ? ((int)explode('-', $latestRecord->emp_id)[1]) + 1 : 1;
+    $newId = '12-' . str_pad($newNumericPart, 4, '0', STR_PAD_LEFT);
+
+    // Save image
+    $imageName = '';
+    if ($request->hasFile('image')) {
+        $image = $request->file('image');
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('registration_pic'), $imageName);
+    }
+
+    // Create Therapist_req instance
+    $therapist_req = new Therapist_req();
+    $therapist_req->emp_id = $newId;
+    $therapist_req->emp_profile = $imageName;
+    $therapist_req->emp_fname = $request->input('emp_fname');
+    $therapist_req->emp_lname = $request->input('emp_lname');
+    $therapist_req->email_add = $request->input('email_add');
+    $therapist_req->Permanent_address = $request->input('Permanent_address');
+    $therapist_req->contactNum = $request->input('contactNum');
+    $therapist_req->skills = $request->input('skills');
+    $therapist_req->Age = $request->input('Age');
+    $therapist_req->status = $request->input('status');
+
+    // Save the model
+    $therapist_req->save();
+    
+    // Return a response with success message
+    return back()->with('success', 'Therapist request submitted successfully.');
+        }
+   
 
 
     public function editStatus($id){
@@ -181,6 +196,19 @@ class ApiController extends Controller
    $list_therapist = Therapist_req::all();
     return view('/Admin/Therapist_list', compact('list_therapist'));
         }
+  public function search_record(Request $request){
+        $query = $request->input('query');
+$results = Therapist_req::where('emp_fname', 'like', '%'.$query.'%')
+                             ->orWhere('emp_lname', 'like', '%'.$query.'%')->get();
+        return view('/Admin/search_therapist', ['results' => $results]);
+  }
+
+  public function search_bookingReq(Request $request){
+        $query = $request->input('query');
+$results = Book_req::where('Client_name', 'like', '%'.$query.'%')
+                             ->orWhere('cust_email', 'like', '%'.$query.'%')->get();
+        return view('/Admin/searchBooking_req', ['results' => $results]);
+  }
 
     public function EditList($id){
          $EditList = Therapist_req::findOrFail($id);

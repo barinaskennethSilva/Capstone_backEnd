@@ -163,10 +163,10 @@ background-color:#98FB98;
         </a>
         <div class="dropdown">
             <button class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:transparent;border:none;color:#fff;">
-                            <img src="{{ asset('./img/pic1.jpg') }}" class="rounded-circle border border-light me-2" height="35" width="35" alt="Header Image">
+                            <img src="{{ asset('User_folder/' . Auth::user()->user_profile) }}"  class="rounded-circle border border-light me-2" height="35" width="35" alt="Header Image">
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="margin-left:-80px;">
-                <li><a class="dropdown-item" href="#">My profile</a></li>
+                <li><a class="dropdown-item" href="{{ route('User_profile') }}">My profile</a></li>
                 <li><a class="dropdown-item" href="#">Settings</a></li>
                 <li><a class="dropdown-item" href="#"><form method="POST" action="{{ route('logout') }}">
     @csrf
@@ -182,7 +182,7 @@ background-color:#98FB98;
 <div class="dashboard">
     <div class="topForm">
         <div class='logo'>
-            <img src="{{ asset('./img/pic1.jpg') }}" alt="Header Image">
+            <img src="{{ asset('User_folder/' . Auth::user()->user_profile) }}"  alt="Header Image">
 
         </div>
         <div class="d-flex flex-column">
@@ -217,7 +217,8 @@ background-color:#98FB98;
 <div class="mobileDash" id="mobileDash">
      <div class="Topdash">
             <div class='logo'>
-            <img src="{{ asset('./img/pic1.jpg') }}" alt="Header Image">
+                <img src="{{ asset('User_folder/' . Auth::user()->user_profile) }}" alt="Header Image">
+
             </div>
             <div style="display:flex;flex-direction:column;margin-left:10px;">
 

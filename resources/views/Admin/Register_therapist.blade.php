@@ -113,7 +113,11 @@ text-align: center;
   <div class="mb-3 w-50">
     <label for="email" class="form-label">Email Address</label>
     <input type="email" class="form-control w-100" id="email" name="email_add" aria-describedby="alertsms">
-       <div id="alertsms" class="form-text text-center text-danger fw-bold"></div>
+       <div id="alertsms" class="form-text text-center text-danger fw-bold">@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif</div>
   
 </div>
 

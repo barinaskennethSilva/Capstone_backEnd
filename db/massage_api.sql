@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 05, 2024 at 03:52 AM
+-- Generation Time: Mar 22, 2024 at 09:25 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -30,13 +30,14 @@ SET time_zone = "+00:00";
 CREATE TABLE `book_req` (
   `id` int(10) UNSIGNED NOT NULL,
   `Client_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cust_email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `contactNum` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Type_package` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Type_service` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Agent_therapist` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `time_interval` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Date_schedule` date NOT NULL,
   `price` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -45,11 +46,12 @@ CREATE TABLE `book_req` (
 -- Dumping data for table `book_req`
 --
 
-INSERT INTO `book_req` (`id`, `Client_name`, `contactNum`, `Type_package`, `Type_service`, `Agent_therapist`, `time_interval`, `Date_schedule`, `price`, `created_at`, `updated_at`) VALUES
-(1, 'kenneth gwapo', '09876543211', 'Single Packages', 'foot spa', 'lexi lore', '3 hours', '2028-09-09', '300', '2024-02-26 13:02:34', '2024-02-28 23:27:34'),
-(2, 'kenneth Silva', '09876543211', 'Single Packages', 'foot spa', 'Maviel', '3 hours', '2028-09-09', '300', '2024-02-26 16:47:22', '2024-02-26 16:47:22'),
-(3, 'jilvert bital', '09876543211', 'Single Packages', 'foot spa', 'Maviel', '3 hours', '2028-09-09', '300', '2024-02-26 16:54:41', '2024-02-26 16:54:41'),
-(4, 'Mr Bean', '09876543211', 'Single Packages', 'foot spa', 'Maviel', '3 hours', '2028-09-09', '300', '2024-02-28 22:31:59', '2024-02-28 22:31:59');
+INSERT INTO `book_req` (`id`, `Client_name`, `cust_email`, `contactNum`, `Type_service`, `Agent_therapist`, `time_interval`, `Date_schedule`, `price`, `status`, `created_at`, `updated_at`) VALUES
+(15, 'kenneth barinas', 'kbarinas011@gmail.com', '986645231', 'C5 ventosa & hotcompress or hotstone + BodyScrub + Earcandle', 'Maviel Therapist', '3', '2024-03-21', '1500', 'Done', '2024-03-20 19:05:45', '2024-03-20 19:07:36'),
+(16, 'kenneth barinas', 'kbarinas011@gmail.com', '986645231', 'Foot Reflex', 'Xialong Therapist', '3', '2024-06-29', '₱1500', 'Pending', '2024-03-20 19:06:45', '2024-03-20 19:06:45'),
+(17, 'Mr gwapo', 'kbarinas@gmail.com', '09876543211', 'foot spa', 'Maviel', '3 hours', '2028-09-09', '300', 'Pending', '2024-03-21 11:48:57', '2024-03-21 11:48:57'),
+(19, 'Mr gwapo', 'kbarinas@gmail.com', '09876543211', 'foot spa', 'Maviel', '3 hours', '2028-09-09', '300', 'Pending', '2024-03-21 12:03:20', '2024-03-21 12:03:20'),
+(22, 'kenneth barinas', 'kbarinas0@gmail.com', '986645231', 'C4 Earcandle + Footreflex + massage', 'Rod Mier Therapist', '4', '2024-03-28', '₱2000', 'Pending', '2024-03-21 13:20:33', '2024-03-21 13:20:33');
 
 -- --------------------------------------------------------
 
@@ -93,7 +95,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (16, '2016_06_01_000005_create_oauth_personal_access_clients_table', 2),
 (17, '2019_08_19_000000_create_failed_jobs_table', 2),
 (18, '2019_12_14_000001_create_personal_access_tokens_table', 2),
-(19, '2024_02_04_144619_booking_req_table', 3);
+(19, '2024_02_04_144619_booking_req_table', 3),
+(20, '2024_03_14_004031_admin_table', 4),
+(21, '2024_03_14_004031_therapist_table', 5);
 
 -- --------------------------------------------------------
 
@@ -208,6 +212,36 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `therapist`
+--
+
+CREATE TABLE `therapist` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `emp_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `emp_profile` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `emp_fname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `emp_lname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_add` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Permanent_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `contactNum` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `skills` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Age` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `therapist`
+--
+
+INSERT INTO `therapist` (`id`, `emp_id`, `emp_profile`, `emp_fname`, `emp_lname`, `email_add`, `Permanent_address`, `contactNum`, `skills`, `Age`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
+(3, '12-0002', '1711056863.jpg', 'Kenneth', 'Barinas', 'kbarinas011@gmail.com', 'Pagadian City Santo Nino', '986645231', 'Therapist', '20', 'Active', NULL, '2024-03-21 13:34:23', '2024-03-21 17:55:25');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -231,8 +265,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `Usertype`, `fname`, `lname`, `email`, `email_verified_at`, `contactNum`, `Permanent_address`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'Kenneth', 'Barinas', 'kennethgwapoko@gmail.com', NULL, '09881233531', 'Pagadian City', '$2y$12$.mC9BY22KhOf3D79.ZNtGuIc1lJ8tg8F6eXF2jTYwuxIB4pV.MXSK', NULL, '2024-02-26 12:37:21', '2024-02-26 12:37:21'),
-(2, 'Admin', 'Kenneth', 'Silva', 'kbarinas0@gmail.com', NULL, '09881233531', 'Pagadian City', '$2y$12$YO88ISZ2qw8DjlpTTVD/seMzM2DNEXmVaUxzXOwIC2aVgYHGWA1ue', NULL, '2024-02-26 16:55:55', '2024-02-26 16:55:55');
+(6, 'User', 'kenneth', 'barinas', 'kbarinas0@gmail.com', NULL, '986645231', 'Pagadian City Santo Nino', '$2y$12$8XgUIv7/IwhyVC0xPogAwusR00zRDKEHkow/xqbJ0hBVlDyvN77bC', NULL, '2024-03-05 19:52:20', '2024-03-05 19:52:20'),
+(44, 'Admin', 'jilveret', 'Bital', 'jilvertbital03@gmail.com', NULL, '9790767654', 'Pagadian City Santo Nino', '$2y$12$kc4yZ2rgw2bkQ8dMjj5Vkeh0sa4DO7kIO30T9FcKabLBi27e9yhk6', NULL, '2024-03-13 21:36:23', '2024-03-13 21:36:23'),
+(48, 'Admin', 'kenneth', 'barinas', 'kbarinas011@gmail.com', NULL, '986645231', 'Pagadian City Santo Nino', '$2y$12$3I3xDuf.SJ/cGcS8XnyccuGngqGHKi/XCl30lMPQs0tXYxagFZVDu', NULL, '2024-03-14 19:20:50', '2024-03-14 19:20:50');
 
 --
 -- Indexes for dumped tables
@@ -306,6 +341,13 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
+-- Indexes for table `therapist`
+--
+ALTER TABLE `therapist`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `therapist_email_add_unique` (`email_add`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -320,7 +362,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `book_req`
 --
 ALTER TABLE `book_req`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -332,7 +374,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `oauth_clients`
@@ -353,10 +395,16 @@ ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `therapist`
+--
+ALTER TABLE `therapist`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
