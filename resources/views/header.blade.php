@@ -24,6 +24,10 @@
     @media screen and (min-width:320px) and (max-width:480px){
  .navbar-brand{
   display:block;
+  z-index: 60;
+ }
+ .navbar{
+    z-index: 60;
  }
  .navbar-toggler{
   float:right;

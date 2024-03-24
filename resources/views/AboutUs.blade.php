@@ -21,6 +21,13 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <style>
+  @media (min-width:1025px){
+
+  *{
+margin: 0px;
+padding:0px;
+box-sizing: border-box;
+  }
 	 .about-content{
              width: 100%;
              height: 100%;
@@ -29,10 +36,7 @@
              left: 0px; 
              padding: 0px; 
             }
-             .about-content img{
-            	width: 100%;
-             height: 100%;
-            }
+         
             .text-data{
             	width: 40%;
             	height: 200px;
@@ -53,6 +57,46 @@
             	position: relative;
             	top: 30px;
             }
+            .aboutPic2{
+  display: none;
+}
+.aboutPic1{
+  display: block;
+  width: 100%;
+             height: 100%;
+}
+          }
+          @media screen and (min-width:320px) and (max-width:480px){
+             *{
+margin: 0px;
+padding:0px;
+box-sizing: border-box;
+  }
+   .about-content{
+             width: 100%;
+             height: 100%;
+             position: absolute;
+             top: 0px;
+             left: 0px; 
+             padding: 0px;
+             background-color: green; 
+            }
+.aboutPic2{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.aboutPic1{
+  display: none;
+}
+ .text-data{
+              width: 63%;
+              height: 200px;
+              position: absolute;
+              left: 100px;
+              top: 140px;
+            }
+}
 </style>
 <body>
 	<div class="about-content">
@@ -60,7 +104,8 @@
 		<h1>About Us</h1>
 		<label>Jillie jen's Massage Spa</label><br>
 		<span>Jillie Jen's Massage Spa offers high-quality services aimed at ensuring customer satisfaction and providing a relaxing treatment experience. You can select treatments that best suit your needs, allowing you to fully enjoy the rejuvenating benefits of our spa services.</div>
-		<img src="./img/aboutPic.png">
+		<img src="./img/aboutPic.png" class="aboutPic1">
+    <img src="./img/aboutUs.png"class="aboutPic2">
 	</div>
 </body>
 </html>

@@ -14,15 +14,18 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.css" rel="stylesheet">
 
         <style>
-
+@media (min-width:1025px){
+      *{
+margin: 0px;
+padding:0px;
+box-sizing: border-box;
+  }
 .container {
   height: 93vh;
   width: 80%;
   position:  absolute ;
   left:  207px;
   top:  52px;
-/*  background-color: green;*/
-
   }
  .dash-home{
   width: 100%;
@@ -34,7 +37,6 @@ background-size:cover;
 
  }
 .btn-link{
-/*    background-color: red;*/
     width: 36%;
     height: 70px;
     position: relative;
@@ -53,6 +55,64 @@ outline: none;
    margin-left: 20px;
    background-color: transparent;
 }
+.vid-adds{
+background: linear-gradient(to bottom, #333333, #666666);
+;width: 93%;
+position: absolute;
+top: 5px;
+left:80px;
+height: 370px;
+}
+}
+ @media screen and (min-width:320px) and (max-width:480px){
+             *{
+margin: 0px;
+padding:0px;
+box-sizing: border-box;
+  }
+  .container {
+  height: 100%;
+  width: 100%;
+  position:  absolute ;
+  left: 0px;
+  top:  0px;
+  }
+.dash-home{
+  width: 100%;
+  height: 100%;
+  background-image:url('./img/mobiledash.png');
+background-size:100% 100%;
+position:  absolute ;
+  left: 0px;
+  top:  0px;
+ }
+ .vid-adds{
+background: linear-gradient(to bottom, #333333, #666666);
+;width: 97%;
+position: absolute;
+top: 60px;
+left:5px;
+height: 280px;
+}
+.btn-link{
+    width: 40%;
+    height: 70px;
+    position: relative;
+    top: 196px;
+    left: 50px;
+    padding: 20px;
+    margin: 0px;
+}
+.btnForm{
+    border-radius: 13px;
+    padding: 15px 25px;
+outline: none;
+   margin-left: 20px;
+position: relative;
+right:40px;
+top: 9px;
+}
+}
         </style>
     </head>
     <body>
@@ -62,16 +122,16 @@ outline: none;
     <div class="container">
 
      <div class="dash-home shadow">
-       <div style="    background: linear-gradient(to bottom, #333333, #666666);
-;width: 93%;position: absolute;top: 5px;left:80px;height: 370px;">
+       <div class="vid-adds">
     <video style="width:100%;height:100%;"controls autoplay loop>
     <source src="{{ asset('img/adds.mp4') }}" type="video/mp4">
     Your browser does not support the video tag.
 </video>
 <div class="btn-link">
-    <a class="btnForm" href="{{ route('booking_reserve') }}">
-<!-- <button ></buttton> --></a>
-<button class="btnForm" style="position:relative;left: 28px;"></buttton>
+      <a class="btnForm" href="{{ route('chat_view') }}">
+</a>
+    <a class="btnForm" style="right:48px" href="{{ route('booking_reserve') }}">
+</a>
 </div>
  </div>
 </div>

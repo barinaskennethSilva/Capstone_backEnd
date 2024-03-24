@@ -21,6 +21,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <style>
+	@media (min-width:1025px){
 	.services-content{
 		text-align: center;
 		padding: 20px;
@@ -66,6 +67,61 @@
 		align-items: 	center;
 		justify-content: center;
 	}
+}
+       @media screen and (min-width:320px) and (max-width:480px){
+             *{
+margin: 0px;
+padding:0px;
+box-sizing: border-box;
+  }
+	.services-content{
+		text-align: center;
+		padding: 20px;
+		overflow-y: auto;
+		overflow-x: hidden;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		width:100%;
+		height: 100%;
+
+	}
+	.services-content h1{
+		font-family: cursive;
+	}
+	.services-content label{
+		font-weight: 600;
+		font-size: 25px;
+	}
+	.services-content p{
+		font-size: 20px;
+		margin-top: 10px;
+	}
+	.services_Offer img{
+		width: 95%;
+		height: 70%;
+		position: relative	;
+		top:50px;
+	}
+	
+	.services_Offer{
+		width: 100%;		
+		height: 300px;
+		padding: 0px;
+		margin-top: 60px;
+		display: flex;
+		flex-direction: 	column;
+		align-items: 	center;
+	 justify-content: 	center;
+	}
+	
+	.services_Offer .dataMassCont{
+  width: 85%;
+  z-index: 	50;
+  height: 200px;
+
+	}
+}
 </style>
 <body>
 	<div class="services-content">

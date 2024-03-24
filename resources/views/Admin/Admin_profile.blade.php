@@ -101,7 +101,7 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="profile_image" class="form-label">Choose Image</label>
-                        <input type="file" class="form-control" id="profile_image" name="profile_image">
+                        <input type="file" class="form-control" id="profile_image" accept="image/*" name="profile_image">
                     </div>
                 </div>
                 <div class="modal-footer">
