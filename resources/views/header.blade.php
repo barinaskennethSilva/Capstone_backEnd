@@ -238,6 +238,11 @@ background-color:#98FB98;
     <li class="nav-item">
         <a class="nav-link active text-white fw-bold nav-dash" aria-current="page" href="{{ route('dashboard') }}" onclick="mobileClose()"><i class="bi bi-house-door icons"></i> <label style="position:relative;left:20px;">Dashboard</label></a>
     </li>
+
+<li class="nav-item">
+    <a class="nav-link text-white fw-bold nav-dash" href="{{ route('User_profile') }}" onclick="mobileClose()"><i class="bi bi-person icons"></i><label class="nav-label" style="position:relative;left:20px;">My profile</label></a>
+
+ </li>    
     <li class="nav-item">
         <a class="nav-link text-white fw-bold nav-dash" href="{{ route('booking_reserve') }}" onclick="mobileClose()"><i class="bi bi-book icons"></i><label class="nav-label" style="position:relative;left:20px;"> Booking Reservation</label></a>
     </li>

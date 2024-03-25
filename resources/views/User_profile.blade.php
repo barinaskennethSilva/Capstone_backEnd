@@ -18,6 +18,73 @@
 </head>
 <body>
 	<style type="text/css">
+            @media screen and (min-width:320px) and (max-width:480px){
+                *{
+                    padding: 0px;
+                    margin: 0px;
+                    box-sizing: border-box;
+                }
+.container{
+  width:100%;
+  height:100% !important;
+  position:absolute;
+  left:0px;
+top:0px;
+}
+.header{
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+     position: relative;
+    top: 60px;
+}
+.footer{
+     margin: 0px;
+    padding: 0px;
+    width: 100%;
+     position: relative;
+    top: 250px;
+}
+.prof_design{
+    background-color: dodgerblue;
+    width: 100%;
+    height: 25vh;
+}
+.profile{
+    position: relative;
+    top: 90px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.profile img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-left: 120px;
+}
+.Btn_holder{
+    height: 100px;
+    width: 100%;
+    position: relative;
+    top:300px;
+    right: 230px;
+
+}
+.Btn_holder a{
+    font-size: 15px;
+    width: 150px;
+     flex-grow: 0;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+.Btn_holder a i{
+    font-size: 28px;
+}
+}
+@media screen and (min-width:1024px){
 		.container{
   width:80%;
   height:92.5vh !important;
@@ -42,18 +109,25 @@
 .prof_design{
     background-color: dodgerblue;
     width: 100%;
-    height: 25vh;
+    height: 45vh;
+}
+.profile{
+ position: relative;
+    top: 200px;
+    left: 20px  ;
 }
 .profile img{
-    width: 25%;
-    height: 25vh;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-left: 40px;
 }
 .Btn_holder{
     height: 95px;
     width: 40%;
     position: relative;
-    top:100px;
-    left: 30px;
+    top:120px;
+    left: 130px;
 }
 .Btn_holder a{
     font-size: 18px;
@@ -66,6 +140,7 @@
 .Btn_holder a i{
     font-size: 35px;
 }
+}
 	</style>
     <div class="container">
 	<div class="header bg-danger">
@@ -75,11 +150,11 @@
 <div class="d-flex w-100">
 <img src="{{ asset('User_folder/' . Auth::user()->user_profile) }}" >
 <div class="Btn_holder d-flex">
-    <a href="#" class="btn btn-light w-20 ms-2" data-bs-toggle="modal" data-bs-target="#updateProfileImageModal"><i class="bi bi-camera"></i>Edit Profile</a>
+    <a href="#" class="btn btn-primary w-20 ms-2" data-bs-toggle="modal" data-bs-target="#updateProfileImageModal"><i class="bi bi-camera"></i>Edit Profile</a>
         <a href="#" class="btn btn-light w-50 ms-2 p-2" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-pencil-square" ></i>Edit Personal Information</a>
 </div>
 </div>
-<div class="mt-2 text-center w-25">
+<div class="mt-2 text-center w-50">
 <h2>{{ Auth::user()->fname }} {{ Auth::user()->lname }}</h2>
 <span>{{ Auth::user()->email }}</span>
 </div>
