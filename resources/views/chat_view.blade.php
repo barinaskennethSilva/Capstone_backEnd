@@ -19,14 +19,82 @@
 
 /* smartphones, iPhone, portrait 480x320 phones */
  @media screen and (min-width:320px) and (max-width:480px){
-
+.chatbox{
+    display: none;
  }
+ .chat-content{
+    width: 100%;
+    height: 70vh;
+overflow-x: hidden;
+overflow-y: auto;
+background-color: #fff;
+ }
+ .btn-mobile{
+    display: block;
+    font-size: 45px;
+    color: dodgerblue;
+    border:none;
+    outline: none;
+    background-color: transparent;
+    position: absolute;
+    bottom: 30px;
+    right: 20px;
+ }
+ .input-textCont{
+    background-color: lightgrey;
+    width: 90%;
+    margin-left: 20px;
+    height: 50px;
+    border-radius: 10px;
+}
+.input-textCont input::placeholder{
+    padding-left: 10px;
+}
+.input-textCont input:active{
+border:0px solid #fff;
+outline: none;
+}
+.input-textCont input{
+    width: 80%;
+    height: 50px;
+    border:0px;
+    border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    background-color: transparent;
+    padding-left:10px ;
+    outline: none;
+
+}
+.btn-send{
+    position: absolute;
+    right: 40px;
+    bottom:20px;
+    font-size: 25px;
+    margin: 10px;
+}
+.btn-send button{
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+.message{
+    background-color: #111;
+    color: #fff;
+    width: 40%;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px 10px;
+}
+}
 
 @media (min-width:1025px) { 
 *{
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
+}
+.btn-mobile{
+display: none;
 }
 .container{
  height: 93vh;
@@ -42,6 +110,7 @@
     height: 93vh;
     background-color: #fff;
     float: right;
+    display: block;
 }
 .footer{
     width: 100%;
@@ -151,10 +220,59 @@ outline: none;
     <body>
 
 <div class="container">
+
+<button class="btn-mobile" data-bs-toggle="modal" data-bs-target="#updateProfileImageModal"><i class="bi bi-messenger"></i></button>
+
+<div class="modal fade" id="updateProfileImageModal" tabindex="-1" aria-labelledby="updateProfileImageModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                  <img
+            src="{{ asset('./AdminPic/JillieJens.png') }}"
+            class="rounded-circle border border-light me-2"
+            height="40"
+            width="40"
+            alt="Black and White Portrait of a Man"
+            loading="lazy"/>   
+            <div class="d-flex flex-column text-white">
+              <h1>jillie Help Desk</h1>
+            </div>
+                <!-- <h5 class="modal-title" id="updateProfileImageModalLabel">Chat Box</h5> -->
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="app">
+                    <div id="messages" class="chat-content bg-light">
+                        @foreach($messages as $message)
+                            <div>{{ $message->content }}</div>
+                        @endforeach
+                    </div>
+                 <!--    <input type="text" id="newMessage" class="form-control mb-2">
+                    <button onclick="sendMessage()"class="btn btn-primary">Send</button> -->
+                      <div class="input-content p-2 bg-dark" >
+                     <div class="input-textCont">
+        <form>
+            <input type="text" id="message-input" placeholder="Type a Message">
+            <div class="btn-send">
+            <button id="send-button"style="display: none;"><i class="bi bi-send"></i></button>
+            <button id="camera-button"><i class="bi bi-camera"></i></button>
+       </div>
+        </form>
+    </div>
+          </div>      </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
       <div class="chatbox">
           <div class="footer">
   <img
-            src="{{ asset('./AdminPic/JillieJens01.png') }}"
+            src="{{ asset('./AdminPic/JillieJens.png') }}"
             class="rounded-circle border border-light me-2"
             height="40"
             width="40"
@@ -195,8 +313,9 @@ outline: none;
 </div>
 </div>
 </div>
-<script type="text/javascript">
- var fname = "{{ $fname }}";
+   
+        <script defer>
+            var fname = "{{ $fname }}";
     var lname = "{{ $lname }}";
     console.log("First Name: " + fname);
     console.log("Last Name: " + lname);
@@ -239,5 +358,5 @@ cameraButton.addEventListener("click", function(event) {
     // Your logic to handle camera button click
     console.log("Camera button clicked");
 });
-
-</script>
+        </script>
+ 

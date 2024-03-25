@@ -13,15 +13,10 @@ class Message extends Model
     use HasFactory;
     use SerializesModels;
 
-    public $message;
-
-    public function __construct($message)
-    {
-        $this->message = $message;
-    }
-
+ protected $fillable = ['content'];
+   
     public function broadcastOn()
     {
-        return new Channel('chat-room');
+        return new Channel('/chat_view');
     }
 }

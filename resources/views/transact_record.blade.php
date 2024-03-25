@@ -14,6 +14,7 @@
 </head>
 <body>
     <style type="text/css">
+          @media screen and (min-width:1024px){
         .container{
   width:80%;
   height:92.5vh !important;
@@ -40,7 +41,41 @@
 th{
     border:1px solid #111;
 }
+}
+ @media screen and (min-width:320px) and (max-width:480px){
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
 
+.headerContent{
+    width: 100%;
+    padding: 10px;
+}
+.contentTrans{
+    height: 60vh;
+     width: 100%;
+     position: absolute;
+     left: 0px;
+     
+}
+.header-tbl{
+    border-bottom: 2px solid lightgrey;
+    background-color: #111;
+
+}
+th{
+    border:1px solid #111;
+}
+.tableReq {
+    width: 100%;
+    height: 78vh;
+     overflow: auto;
+     
+}
+
+ }
     </style>
 <div class="container">
 <div class="contentTrans bg-light shadow">
@@ -48,7 +83,8 @@ th{
     <h3>Transaction Record</h3>
 
 </div>
-    <table class="table">
+<div class="tableReq">
+    <table class="table table-bordered table-hover">
      <thead>
     <tr class="header-tbl">
     <th scope="col" class="text-white">Customer Name</th>
@@ -61,7 +97,7 @@ th{
     <th scope="col" class="text-white">Action</th>
     </tr>
   </thead>
-        <tbody style="overflow-y: auto;overflow-x: hidden;text-align: center;">
+        <tbody>
             @foreach($transact_records as $transact_record)
                 <tr>
                     <td>{{ $transact_record->Client_name }}</td>
@@ -82,6 +118,7 @@ th{
             @endforeach
         </tbody>
     </table>
+</div>
 </div>
 </div>
 </body>

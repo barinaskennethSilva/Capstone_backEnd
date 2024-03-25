@@ -57,12 +57,7 @@ public function ServiceOffer(){
     }
 
     
-     public function chat_view(){
-    $user = auth()->user();
-    $fname = $user->fname;
-    $lname = $user->lname;
-   return view('chat_view', compact('fname', 'lname'));
-    }
+     
     /**
      * Store a newly created resource in storage.
      */

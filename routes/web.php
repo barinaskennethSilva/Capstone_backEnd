@@ -4,8 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\AdminController;
 use App\Http\Controllers\API\ApiController;
-// use App\Http\Controllers\AppointmentController;
-
+use App\Http\Controllers\API\MessageController;
+use App\Models\Message;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,8 +88,11 @@ Route::get('/calendar/{year?}/{month?}', function ($year = null, $month = null) 
         'nextMonth' => $nextMonth->month,
     ]);
 })->name('calendar');
-Route::get('/chat_view', [UserController::class, 'chat_view'])->name('chat_view');
-
+Route::get('/chat_view', [MessageController::class, 'chat_view'])->name('chat_view');
+// Route::get('/chat_view', function () {
+//     $messages = Message::all(); 
+//     return view('/chat_view', compact('messages')); 
+// });
 
 // ADMIN ROUTER
 Route::post('/Admin/admin_register', [UserController::class,'create'])->name('admin_register');
