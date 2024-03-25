@@ -16,6 +16,22 @@
 </head>
 <body>
   <style type="text/css">
+        @media screen and (min-width:320px) and (max-width:480px){
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.container{
+  width:100%;
+  height:100%;
+  position: absolute;
+  top:0px;
+  left:0px;
+  padding: 0px;
+  margin: 0px;
+}
+}
     @media screen and (min-width:1024px){
 .container{
   width:80% !important;

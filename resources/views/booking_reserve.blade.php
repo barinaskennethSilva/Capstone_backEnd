@@ -17,7 +17,215 @@
 
 
 <style>
+ @media screen and (min-width:320px) and (max-width:480px){
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.container{
+  width:100%;
+  height:100%;
+  position: absolute;
+  top:0px;
+  left:0px;
+  padding: 0px;
+  margin: 0px;
+}
+.form-sett{
+  display:flex;
+  flex-direction:column;
+  height:80%;
+  background-color:#cbcbcbff;
+  width:95%;
+  margin:40px 10px;
+  border-radius:8px;
+  z-index:50;
+}
+.form-disp1{
+  background-color:#fff;
+  padding:10px;
+  width:100%;
+  text-align:center;
+  border-top-left-radius:8px;
+  border-top-right-radius:8px;
+}
+.form-disp1 .icon-detail{
+  font-size:45px;
+  margin:20px;
+}
 
+
+.first-step{
+  background-color:dodgerblue;
+}
+.form-disp2{
+  width:100%;
+}
+
+.header-info{
+  margin-bottom:10px;
+  height:50px;
+   background-color:#fff;
+    padding:10px;
+width: 100%;
+}
+.header-info h1{
+  font-size:25px;
+  color:dodgerblue;
+   text-align:center;
+   
+}
+.step1{
+  background-color:#fff;
+  padding:10px;
+  position:relative;
+  height:208px;
+    border-bottom-right-radius:8px;
+  }
+  .step{
+ margin-top: 10px;
+   position:relative;
+ right: 8px;
+padding: 0px;
+  margin: 0px;
+}
+.reservationForm{
+  width: 100%;
+  padding: 0px;
+  margin-top: 10px;
+}
+
+
+.custo-details{
+  margin-top:10px;
+   background-color:#fff;
+   height:382px;
+   position:relative;
+  bottom:7px;
+   border-bottom-right-radius:8px;
+}
+.sum-label{
+  font-size:20px;
+  font-weight:700;
+}
+.btn-next{
+  position: fixed;
+  left:10px;
+  bottom: 20px;
+  z-index: 100;
+  width: 40%;
+}
+.formDate{
+  background-color:#fff;
+  border-bottom-left-radius: 8px;
+  width:100%;
+  padding:10px;
+  height:375px;
+}
+.packages-card{
+  padding: 10px;
+  width:50%;
+  height: 150px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.package_check{
+   position: relative;
+   top: 8px;
+  left: 63px;
+}
+.therapist-agent{
+ width: 150px;
+  height: 130px;
+  border-radius: 5px;
+  margin-left: 10px;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.therapist-agent img{
+   border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+  width:100%;
+  height: 110px;
+}
+.agent-data{
+  text-align: center;
+  font-style: italic;
+  background-color: dodgerblue;
+  border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+  color: #fff;
+  width: 100%;
+  height: 90px;
+  padding: 10px;
+}
+.custData{
+ border-right:2px solid #cdcdcdff;
+  width:50%;
+  height: 100%;
+  float: left;
+}
+.custLabel{
+  font-weight: 700;
+  font-size: 18px;
+  font-style: italic;
+  margin-left: 10px;
+}
+.inputData{
+ width:180px;
+}
+.modal {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    z-index: 60;
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    border: 1px solid #888;
+    width: 50%;
+        text-align: center;
+     font-weight: 600;
+     font-style: italic;
+  }
+.topModal{
+  width: 100%;
+  background-color: dodgerblue;
+  padding: 10px;
+  margin-bottom: 30px;
+}
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .therapist-list{
+    overflow-x:auto;
+    overflow-y: hidden !important;
+  height: 30vh;
+
+}
+    @media screen and (min-width:1024px){
 .container{
   width:80%;
   height:92.5vh !important;
@@ -27,14 +235,6 @@
   justify-content:center;
   align-items:center;
   flex-direction:column;
-}
-.backform{
-  width:100%;
-  height:100%;
-  position:absolute;
-  top:0px;
-  left:0px;
-
 }
 .form-sett{
   display:flex;
@@ -58,19 +258,7 @@
   font-size:45px;
   margin:20px;
 }
-.pagnation-btn{
-  display:flex;
-  flex:1;
 
-  justify-content:center;
-}
-.pagnation-btn div{
-  border-radius:50%;
-  height:20px;
-  width:20px;
-  border:1px solid #cdcdcdff;
-  margin-left:10px;
-}
 .first-step{
   background-color:dodgerblue;
 }
@@ -242,9 +430,14 @@ font-size:45px;
     text-decoration: none;
     cursor: pointer;
   }
+  .therapist-list{
+    overflow-x:auto;
+    overflow-y: hidden !important;
+  height: 43vh;
+}
+}
 </style>
 <div class="container bg-light">
-  <!-- resources/views/register.blade.php -->
 <div class="form-sett">
 <div class='form-disp1'>
   <div class="header-info">
@@ -428,7 +621,7 @@ font-size:45px;
       <div class="step1">
         <div style="overflow-y: auto !important;width:100%;height:100%;overflow-x: hidden;">
 
-<div class="w-100 d-flex" style="overflow-x:auto;overflow-y: hidden;height: 43vh;">
+<div class="w-100 d-flex therapist-list">
 
 <!---- therapist ---->
              @foreach($list_therapist as $List_therapist)
