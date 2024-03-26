@@ -23,7 +23,7 @@
   margin: 0;
   box-sizing: border-box;
 }
-.container{
+.booking_inquire{
   width:100%;
   height:100%;
   position: absolute;
@@ -225,24 +225,29 @@ padding: 0px;
   height: 30vh;
 
 }
+}
     @media screen and (min-width:1024px){
-.container{
-  width:80%;
-  height:92.5vh !important;
-  position:relative;
-  left:152px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
+      *{
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+      }
+.booking_inquire{
+  height: 100%;
+  width: 100% !important;
+  display: flex;
+align-items: center;
+justify-content: center;
+  background-color: #cdcdcdff;
+  padding:  10px;
 }
 .form-sett{
   display:flex;
   flex-direction:row;
   height:58vh;
   background-color:#cbcbcbff;
-  width:95%;
-  margin-left:30px;
+  width:80%;
+  margin-left:auto;
   border-radius:8px;
   z-index:50;
 }
@@ -285,12 +290,12 @@ padding: 0px;
   background-color:#fff;
   padding:10px;
   position:relative;
-  height:378px;
+  height:422px;
     border-bottom-right-radius:8px;
 
 }
 .reservationForm{
-  width: 65%;
+  width: 75%;
 }
 
 
@@ -308,8 +313,8 @@ padding: 0px;
 }
 .btn-next{
   position: fixed;
-  left:410px;
-  bottom: 160px;
+  left:380px;
+  bottom: 340px;
   z-index: 100;
   width: 20%;
 }
@@ -344,7 +349,7 @@ font-size:45px;
 .package_check{
    position: relative;
    top: 90px;
-   right: 120px;
+   right: 150px;
 }
 .therapist-agent{
  width: 200px;
@@ -436,8 +441,10 @@ font-size:45px;
   height: 43vh;
 }
 }
+
 </style>
-<div class="container bg-light">
+<div class="booking_inquire ">
+
 <div class="form-sett">
 <div class='form-disp1'>
   <div class="header-info">

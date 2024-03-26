@@ -30,3 +30,18 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? 'https') === 'https',
 //     enabledTransports: ['ws', 'wss'],
 // });
+// resources/js/bootstrap.js
+import Echo from 'laravel-echo'
+window.io = require('socket.io-client');
+
+window.Echo = new Echo({
+    broadcaster: 'socket.io',
+    host: window.location.hostname + ':6001'
+});
+
+// Example usage
+window.Echo.private('user.' + userId)
+    .listen('MessageSent', (e) => {
+        console.log(e.message);
+        // Append message to chatbox
+    });

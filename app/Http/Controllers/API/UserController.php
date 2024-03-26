@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
+use Laravolt\Avatar\Avatar;
+use Illuminate\Support\Facades\Storage;
 
 use Auth;
 class UserController extends Controller
@@ -71,6 +73,7 @@ public function ServiceOffer(){
     public function create(Request $request)
     {
          $registerUser = new User();
+       
     $registerUser->Usertype = $request->input('Usertype');
     $registerUser->fname = $request->input('fname');
     $registerUser->lname = $request->input('lname');
@@ -79,6 +82,16 @@ public function ServiceOffer(){
     $registerUser->contactNum = $request->input('contactNum');
     $registerUser->Permanent_address = $request->input('Permanent_address');  
     $registerUser->password = bcrypt($request->input('password')); // Hashing the password
+
+
+ $avatar = new Avatar();
+    $image = $avatar->create($registerUser->name)->getImageObject();
+
+    // Store profile image
+    $imagePath = 'public/User_folder/' . $registerUser->id . '.png';
+    Storage::put($imagePath, (string) $image->encode('png'));
+ $registerUser->user_profile = Storage::url($imagePath);
+ 
 
  if ($registerUser->Usertype === 'Admin') {
         $registerUser->Usertype = 'Admin';

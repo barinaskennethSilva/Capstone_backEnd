@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>Jillie Jen's Massage Spa</title>
 
@@ -19,6 +19,12 @@
 
 /* smartphones, iPhone, portrait 480x320 phones */
  @media screen and (min-width:320px) and (max-width:480px){
+    *{
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+    }
+  
 .chatbox{
     display: none;
  }
@@ -67,7 +73,7 @@ outline: none;
 }
 .btn-send{
     position: absolute;
-    right: 40px;
+    right: 50px;
     bottom:20px;
     font-size: 25px;
     margin: 10px;
@@ -96,21 +102,25 @@ outline: none;
 .btn-mobile{
 display: none;
 }
-.container{
- height: 93vh;
-  width: 80%;
-  position:  absolute ;
-  left:  305px;
-  top:  52px;
-  padding: 0px;
+.container_pages{
+ height: 100%;
+  width: 100% !important;
+  display: flex;
+flex-direction: row-reverse;
+align-items: center;
+justify-content: center;
   background-color: #cdcdcdff;
+  padding:  0px;
+  margin:   0px;
 }
 .chatbox{
-    width: 50%;
+    width:35%;
     height: 93vh;
     background-color: #fff;
     float: right;
     display: block;
+    position:   relative ;
+    left:  170px;
 }
 .footer{
     width: 100%;
@@ -130,7 +140,7 @@ display: none;
 }
 .chat-content{
     width: 100%;
-    height: 74.8vh;
+    height: 76.8vh;
 overflow-x: hidden;
 overflow-y: auto;
 background-color: #fff;
@@ -170,8 +180,8 @@ outline: none;
 }
 .btn-send{
     position: absolute;
-    right: 240px;
-    bottom:7px;
+    right: 230px;
+    bottom:5px;
     font-size: 25px;
     margin: 10px;
 }
@@ -182,8 +192,10 @@ outline: none;
 }
 .CustList{
  background-color: #fff;
-    width: 49%;
+    width: 45%;
  height: 93vh !important;
+ position:  relative;
+ left:160px;
 }
 .FlatForm{
  display: flex;
@@ -203,6 +215,7 @@ outline: none;
     font-size: 25px;
     position: relative;
     top: 10px;
+    left:  20px;
     color: #fff;
 }
 .social-icons{
@@ -219,8 +232,7 @@ outline: none;
     </head>
     <body>
 
-<div class="container">
-
+<div class="container_pages">
 <button class="btn-mobile" data-bs-toggle="modal" data-bs-target="#updateProfileImageModal"><i class="bi bi-messenger"></i></button>
 
 <div class="modal fade" id="updateProfileImageModal" tabindex="-1" aria-labelledby="updateProfileImageModalLabel" aria-hidden="true">
@@ -242,7 +254,7 @@ outline: none;
             </div>
             <div class="modal-body">
                 <div id="app">
-                    <div id="messages" class="chat-content bg-light">
+                    <div id="messages1" class="chat-content bg-light">
                         @foreach($messages as $message)
                             <div>{{ $message->content }}</div>
                         @endforeach
@@ -252,10 +264,10 @@ outline: none;
                       <div class="input-content p-2 bg-dark" >
                      <div class="input-textCont">
         <form>
-            <input type="text" id="message-input" placeholder="Type a Message">
+            <input type="text" id="message-input1" placeholder="Type a Message">
             <div class="btn-send">
-            <button id="send-button"style="display: none;"><i class="bi bi-send"></i></button>
-            <button id="camera-button"><i class="bi bi-camera"></i></button>
+            <button id="send-button1"style="display: none;"><i class="bi bi-send"></i></button>
+            <button id="camera-button1"><i class="bi bi-camera"></i></button>
        </div>
         </form>
     </div>
@@ -312,13 +324,14 @@ outline: none;
 <span style="position: relative;top:10px">Please don't hesitate to contact us for any inquiries regarding our massage services, or connect with us through our social media channels.</span>
 </div>
 </div>
+
 </div>
    
         <script defer>
+ //FOR DESKTOP           
             var fname = "{{ $fname }}";
     var lname = "{{ $lname }}";
-    console.log("First Name: " + fname);
-    console.log("Last Name: " + lname);
+  
 const messageInput = document.getElementById("message-input");
 const sendButton = document.getElementById("send-button");
 const cameraButton = document.getElementById("camera-button");
@@ -337,14 +350,12 @@ sendButton.addEventListener("click", function(event) {
     event.preventDefault();
     const message = messageInput.value.trim();
     if (message !== "") {
-        // Send the message
-        // console.log("Message sent: " + message);
           const messagesContainer = document.getElementById("messages");
 
           messagesContainer.innerHTML += `<span style="position:relative;top:10px;left:20px;">${fname} ${lname}</span> <div class="message">       
 <span style="padding:10px;max-width: 200px !important;overflow-wrap: break-word;">${message}</span></div>`;
 
-        // Clear input field
+       // Clear input field
         messageInput.value = "";
         // Hide send button
         sendButton.style.display = "none";
@@ -353,10 +364,46 @@ sendButton.addEventListener("click", function(event) {
     }
 });
 
+//FOR MOBILE
+const messageInput1 = document.getElementById("message-input1");
+const sendButton1 = document.getElementById("send-button1");
+const cameraButton1 = document.getElementById("camera-button1");
+
+messageInput1.addEventListener("input", function() {
+    if (this.value.trim() !== "") {
+        sendButton1.style.display = "block";
+        cameraButton1.style.display = "none";
+    } else {
+           sendButton1.style.display = "none";
+        cameraButton1.style.display = "block";
+    }
+});
+//down not run
+sendButton1.addEventListener("click", function(event) {
+    event.preventDefault();
+    const message = messageInput1.value.trim();
+    if (message !== "") {
+          const messagesContainer1 = document.getElementById("messages1");
+
+          messagesContainer1.innerHTML += `<span style="position:relative;top:10px;left:20px;">${fname} ${lname}</span> <div class="message">       
+<span style="padding:10px;max-width: 200px !important;overflow-wrap: break-word;">${message}</span></div>`;
+
+        // Clear input field
+        messageInput1.value = "";
+        // Hide send button
+        sendButton1.style.display = "none";
+        // Display camera button
+        cameraButton1.style.display = "block";
+    }
+});
+
+
+
+
 cameraButton.addEventListener("click", function(event) {
     event.preventDefault();
     // Your logic to handle camera button click
     console.log("Camera button clicked");
 });
+
         </script>
- 

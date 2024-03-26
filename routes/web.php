@@ -88,11 +88,9 @@ Route::get('/calendar/{year?}/{month?}', function ($year = null, $month = null) 
         'nextMonth' => $nextMonth->month,
     ]);
 })->name('calendar');
-Route::get('/chat_view', [MessageController::class, 'chat_view'])->name('chat_view');
-// Route::get('/chat_view', function () {
-//     $messages = Message::all(); 
-//     return view('/chat_view', compact('messages')); 
-// });
+Route::get('/chat_view/{user}', [MessageController::class, 'chat_view'])->name('chat_view');
+Route::post('/chat_view/send', [MessageController::class, 'chat_view'])->name('chat_view');
+
 
 // ADMIN ROUTER
 Route::post('/Admin/admin_register', [UserController::class,'create'])->name('admin_register');
