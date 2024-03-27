@@ -16,7 +16,79 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
         <style>
+@media screen and (min-width:481px) and (max-width:580px){
+    *{
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+    }
+    .chatbox{
+    display: none;
+ }
+ .chat-content{
+    width: 100%;
+    height: 70vh;
+overflow-x: hidden;
+overflow-y: auto;
+background-color: #fff;
+ }
+ .btn-mobile{
+    display: block;
+    font-size: 45px;
+    color: dodgerblue;
+    border:none;
+    outline: none;
+    background-color: transparent;
+    position: absolute;
+    bottom: 30px;
+    right: 20px;
+ }
+ .input-textCont{
+    background-color: lightgrey;
+    width: 90%;
+    margin-left: 20px;
+    height: 50px;
+    border-radius: 10px;
+}
+.input-textCont input::placeholder{
+    padding-left: 10px;
+}
+.input-textCont input:active{
+border:0px solid #fff;
+outline: none;
+}
+.input-textCont input{
+    width: 80%;
+    height: 50px;
+    border:0px;
+    border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    background-color: transparent;
+    padding-left:10px ;
+    outline: none;
 
+}
+.btn-send{
+    position: absolute;
+    right: 50px;
+    bottom:20px;
+    font-size: 25px;
+    margin: 10px;
+}
+.btn-send button{
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+.message{
+    background-color: #111;
+    color: #fff;
+    width: 40%;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px 10px;
+}
+}
 /* smartphones, iPhone, portrait 480x320 phones */
  @media screen and (min-width:320px) and (max-width:480px){
     *{
@@ -264,7 +336,7 @@ outline: none;
                       <div class="input-content p-2 bg-dark" >
                      <div class="input-textCont">
         <form>
-            <input type="text" id="message-input1" placeholder="Type a Message">
+            <input type="text" id="message-input1" autocomplete="off" placeholder="Type a Message">
             <div class="btn-send">
             <button id="send-button1"style="display: none;"><i class="bi bi-send"></i></button>
             <button id="camera-button1"><i class="bi bi-camera"></i></button>
@@ -301,7 +373,7 @@ outline: none;
             <div class="input-content p-2 bg-dark" >
    <div class="input-textCont">
         <form>
-            <input type="text" id="message-input" placeholder="Type a Message">
+            <input type="text" id="message-input" autocomplete="off" placeholder="Type a Message">
             <div class="btn-send">
             <button id="send-button"style="display: none;"><i class="bi bi-send"></i></button>
             <button id="camera-button"><i class="bi bi-camera"></i></button>

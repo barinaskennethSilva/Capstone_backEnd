@@ -72,8 +72,17 @@ public function ServiceOffer(){
      
     public function create(Request $request)
     {
+         $validatedData = $request->validate([
+        'fname' => 'required|string|max:255',
+        // Add validation rules for other fields as needed
+    ]);
          $registerUser = new User();
-       
+        $avatarName = strtoupper(substr($validatedData['fname'], 0, 1)) . '-avatar.png';
+
+    // Save the user data including the avatar name
+    $registerUser->fname = $validatedData['fname'];
+    // Assign other fields from the request as needed
+    $registerUser->user_profile = $avatarName;
     $registerUser->Usertype = $request->input('Usertype');
     $registerUser->fname = $request->input('fname');
     $registerUser->lname = $request->input('lname');
@@ -93,7 +102,19 @@ public function ServiceOffer(){
  $registerUser->user_profile = Storage::url($imagePath);
  
 
- if ($registerUser->Usertype === 'Admin') {
+$request->validate([
+        'email' => 'required|email',
+    ]);
+
+    // Check if the email already exists in the database
+    $existingEmail = User::where('email', $request->input('email'))->first();
+
+    if ($existingEmail) {
+        $message = 'Email address already taken.';
+        return redirect()->route('register')->with('error', $message)->withInput();
+    }
+
+ else if ($registerUser->Usertype === 'Admin') {
         $registerUser->Usertype = 'Admin';
         $dashboardUrl = '/Admin/admin_dashboard';
     } else {

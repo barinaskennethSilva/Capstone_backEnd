@@ -21,6 +21,32 @@
 
 
 <style>
+     @media screen and (max-width:600px){
+*{
+box-sizing: border-box;
+padding: 0px;
+margin: 0px;
+
+}
+.navbar-brand{
+  display:block;
+  z-index: 60;
+ }
+ .mobileDash{
+  display:block;
+  background-color: #111 ;
+  height: 100%;
+  width: 0%;
+  position: absolute;
+  top: 0px;
+    left: 0px;
+    overflow:hidden;
+    z-index: 60;
+  }
+}
+     @media screen and (max-width:900px){
+
+     }
     @media screen and (min-width:320px) and (max-width:480px){
  .navbar-brand{
   display:block;
@@ -101,7 +127,7 @@ float:right;
   }
    .dropdown{
   position: relative;
-  left: 1140px;
+  left: 1300px;
   display: block;
   }
   .mobileDash{
